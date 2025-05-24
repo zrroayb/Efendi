@@ -378,6 +378,43 @@ function App() {
           ))}
         </div>
       </header>
+      <footer
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 48,
+          marginBottom: 24,
+        }}
+      >
+        <a
+          href="https://www.instagram.com/efendi_nargile_pub/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "#fff",
+            textDecoration: "none",
+            fontWeight: 500,
+            fontSize: 18,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+            style={{ marginRight: 6 }}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M224 202.66A53.34 53.34 0 1 0 277.34 256 53.38 53.38 0 0 0 224 202.66Zm124.71-41a54 54 0 0 0-30.36-30.36C293.19 120 256.6 118.13 224 118.13s-69.19 1.87-94.35 13.17a54 54 0 0 0-30.36 30.36C120 162.81 118.13 199.4 118.13 232s1.87 69.19 13.17 94.35a54 54 0 0 0 30.36 30.36C162.81 392 199.4 393.87 232 393.87s69.19-1.87 94.35-13.17a54 54 0 0 0 30.36-30.36C392 349.19 393.87 312.6 393.87 280s-1.87-69.19-13.17-94.35ZM224 338a82 82 0 1 1 82-82 82 82 0 0 1-82 82Zm85.4-148.6a19.2 19.2 0 1 1-19.2-19.2 19.2 19.2 0 0 1 19.2 19.2ZM398.8 80A80 80 0 0 0 368 51.2C347.2 32.8 320.8 24 288 24H160c-32.8 0-59.2 8.8-80 27.2A80 80 0 0 0 49.2 80C32.8 100.8 24 127.2 24 160v128c0 32.8 8.8 59.2 27.2 80A80 80 0 0 0 80 432c20.8 18.4 47.2 27.2 80 27.2h128c32.8 0 59.2-8.8 80-27.2a80 80 0 0 0 27.2-80c18.4-20.8 27.2-47.2 27.2-80V160c0-32.8-8.8-59.2-27.2-80ZM224 338a114 114 0 1 1 114-114A114 114 0 0 1 224 338Zm146.4-186.4a32 32 0 1 1-32-32 32 32 0 0 1 32 32Z" />
+          </svg>
+          @efendi_nargile_pub
+        </a>
+      </footer>
     </Container>
   );
 }
