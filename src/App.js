@@ -240,7 +240,7 @@ const menu = [
         desc: "120 gr Burger Köftesi, Turşu Relish, Cheddar Peyniri, Trüflü Aioli, Burger Sos ve Patates Kızartması",
       },
       {
-        name: "Yula Burger",
+        name: "Efendi Burger",
         desc: "120 gr Burger Köftesi, Dana Bacon Kaburga, Hot Cocktail Sos, Burger Sos, Karamelize Kırmızı Soğan, Cheddar ve Patates Kızartması",
       },
       {
@@ -332,8 +332,8 @@ function App() {
             src="/efendi-logo.png"
             alt="Efendi Bar Logo"
             style={{
-              height: 120,
-              width: 120,
+              height: 96,
+              width: 96,
               objectFit: "contain",
               display: "block",
             }}
