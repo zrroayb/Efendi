@@ -1,0 +1,144 @@
+body {
+  background: #111;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'sans-serif';
+  color: #fff;
+}
+
+.App {
+  min-height: 100vh;
+  padding: 0;
+  background: #111;
+  position: relative;
+}
+
+.watermark {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.07;
+  width: 60vw;
+  left: 20vw;
+  top: 10vh;
+  pointer-events: none;
+}
+
+.App-header {
+  padding: 2rem 0 0 0;
+  background: transparent;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-section-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.menu-item-title {
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #fff;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.menu-item-desc {
+  font-size: 1rem;
+  color: #bbb;
+  margin-bottom: 1.2rem;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.MuiAccordion-root {
+  background: #181818 !important;
+  border: 1px solid #222 !important;
+  box-shadow: 0 2px 8px #000 !important;
+  border-radius: 12px !important;
+}
+
+.MuiAccordionSummary-root {
+  border-bottom: 1px solid #222 !important;
+}
+
+.MuiTypography-root {
+  color: #fff !important;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+}
+
+@media (max-width: 600px) {
+  .App-header {
+    padding: 1rem 0 0 0;
+  }
+  .menu-section-title {
+    font-size: 1.3rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+  .menu-item-title {
+    font-size: 1rem;
+  }
+  .menu-item-desc {
+    font-size: 0.95rem;
+  }
+  .MuiAccordion-root {
+    border-radius: 8px !important;
+    margin-bottom: 10px !important;
+  }
+  .App-header img {
+    height: 60px !important;
+    margin-bottom: 10px !important;
+  }
+  h1 {
+    font-size: 1.2rem !important;
+    letter-spacing: 3px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .App-header {
+    padding: 0.5rem 0 0 0;
+  }
+  .menu-section-title {
+    font-size: 1.05rem;
+  }
+  .menu-item-title {
+    font-size: 0.9rem;
+  }
+  .menu-item-desc {
+    font-size: 0.85rem;
+  }
+  .App-header img {
+    height: 40px !important;
+  }
+  h1 {
+    font-size: 0.9rem !important;
+    letter-spacing: 2px !important;
+  }
+}
