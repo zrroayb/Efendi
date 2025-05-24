@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Container } from "react-bootstrap";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -302,7 +302,21 @@ const menu = [
 ];
 
 function App() {
-  const [expanded, setExpanded] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const accordionRefs = useRef([]);
+
+  const handleAccordionChange = (idx) => (event, isExpanded) => {
+    setExpanded(isExpanded ? idx : false);
+    if (isExpanded && accordionRefs.current[idx]) {
+      setTimeout(() => {
+        accordionRefs.current[idx].scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 200);
+    }
+  };
+
   return (
     <Container
       fluid
@@ -344,8 +358,9 @@ function App() {
           {menu.map((section, idx) => (
             <Accordion
               key={section.title}
+              ref={(el) => (accordionRefs.current[idx] = el)}
               expanded={expanded === idx}
-              onChange={() => setExpanded(expanded === idx ? false : idx)}
+              onChange={handleAccordionChange(idx)}
               sx={{
                 background: "rgba(24,24,24,0.95)",
                 mb: 2,
