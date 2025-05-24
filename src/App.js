@@ -309,19 +309,34 @@ function App() {
       style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}
     >
       {watermark}
-      <header className="App-header">
+      <header
+        className="App-header"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          minHeight: "100vh",
+        }}
+      >
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
+            marginTop: 32,
           }}
         >
           <img
             src="/efendi-logo.png"
             alt="Efendi Bar Logo"
-            style={{ height: 100, marginBottom: 24, display: "block" }}
+            style={{
+              height: 120,
+              width: 120,
+              objectFit: "contain",
+              display: "block",
+            }}
           />
         </div>
         <div style={{ marginTop: 40 }}>
