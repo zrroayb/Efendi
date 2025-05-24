@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -302,6 +302,7 @@ const menu = [
 ];
 
 function App() {
+  const [expanded, setExpanded] = useState(0);
   return (
     <Container
       fluid
@@ -339,16 +340,17 @@ function App() {
             }}
           />
         </div>
-        <div style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 40, width: "100%", maxWidth: 600 }}>
           {menu.map((section, idx) => (
             <Accordion
               key={section.title}
-              defaultExpanded={idx === 0}
+              expanded={expanded === idx}
+              onChange={() => setExpanded(expanded === idx ? false : idx)}
               sx={{
-                background: "rgba(255,255,255,0.95)",
+                background: "rgba(24,24,24,0.95)",
                 mb: 2,
                 borderRadius: 2,
-                boxShadow: "0 2px 8px #e3e3e3",
+                boxShadow: "0 2px 8px #000",
               }}
             >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -356,7 +358,7 @@ function App() {
                   sx={{
                     fontWeight: 700,
                     fontSize: "1.3rem",
-                    color: "#0d47a1",
+                    color: "#fff",
                     display: "flex",
                     alignItems: "center",
                   }}
