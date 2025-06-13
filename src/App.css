@@ -13,7 +13,7 @@ body::before {
   right: 0;
   bottom: 0;
   background: #111;
-  opacity: 0.85;
+  opacity: 0.92;
   z-index: -1;
 }
 
@@ -26,7 +26,7 @@ body::before {
 
 .App::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -34,9 +34,9 @@ body::before {
   background-image: url('./efendi-logo.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 60%;
-  opacity: 0.15;
-  z-index: -1;
+  background-size: 80%;
+  opacity: 0.08;
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -106,10 +106,11 @@ body::before {
 }
 
 .MuiAccordion-root {
-  background: #181818 !important;
+  background: rgba(24, 24, 24, 0.85) !important;
   border: 1px solid #222 !important;
   box-shadow: 0 2px 8px #000 !important;
   border-radius: 12px !important;
+  backdrop-filter: blur(5px);
 }
 
 .MuiAccordionSummary-root {
