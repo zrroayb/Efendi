@@ -19,31 +19,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import logo from "./efendi-logo.png";
 
-const watermark = (
-  <svg
-    className="watermark"
-    viewBox="0 0 600 600"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g opacity="0.2">
-      <circle cx="300" cy="300" r="280" stroke="#fff" strokeWidth="8" />
-      <path
-        d="M300 60 Q340 300 300 540 Q260 300 300 60 Z"
-        stroke="#fff"
-        strokeWidth="4"
-        fill="none"
-      />
-      <path
-        d="M60 300 Q300 340 540 300 Q300 260 60 300 Z"
-        stroke="#fff"
-        strokeWidth="4"
-        fill="none"
-      />
-    </g>
-  </svg>
-);
-
 const BarrelIcon = () => (
   <svg
     width="40"
@@ -315,7 +290,6 @@ function App() {
       className="App"
       style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}
     >
-      {watermark}
       <header
         className="App-header"
         style={{

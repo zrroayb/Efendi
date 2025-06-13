@@ -40,20 +40,12 @@ body::after {
   position: relative;
 }
 
-.App::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('./efendi-logo.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 60%;
-  opacity: 0.15;
-  z-index: -1;
-  pointer-events: none;
+.App-header {
+  padding: 2rem 0 0 0;
+  background: transparent;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 .watermark {
@@ -64,14 +56,6 @@ body::after {
   left: 20vw;
   top: 10vh;
   pointer-events: none;
-}
-
-.App-header {
-  padding: 2rem 0 0 0;
-  background: transparent;
-  min-height: 100vh;
-  position: relative;
-  z-index: 1;
 }
 
 .menu-section-title {
