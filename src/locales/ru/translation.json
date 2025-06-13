@@ -16,93 +16,93 @@
       "total": "Итого",
       "checkout": "Оформить заказ"
     },
-    "specialCocktails": "Специальные Коктейли",
-    "classicCocktails": "Классические Коктейли",
+    "specialCocktails": "Специальные коктейли",
+    "classicCocktails": "Классические коктейли",
     "beers": "Пиво",
     "wines": "Вино",
-    "sparkling": "Игристое Вино",
-    "softDrinks": "Безалкогольные Напитки",
-    "hotCoffee": "Горячий Кофе",
-    "coldCoffee": "Холодный Кофе",
+    "sparkling": "Игристое",
+    "softDrinks": "Безалкогольные напитки",
+    "hotCoffee": "Горячий кофе",
+    "coldCoffee": "Холодный кофе",
     "breakfast": "Завтрак"
   },
   "items": {
     "citrusBlend": {
-      "name": "Цитрусовый Бленд",
-      "desc": "Tanqueray Sevilla, Aperol, Italicus, Bodrum Mandarin, Лимонный Сок"
+      "name": "Цитрусовый бленд",
+      "desc": "Tanqueray Sevilla, Aperol, Italicus, Мандарин Бодрума, Лимонный сок"
     },
     "lambEar": {
-      "name": "Бараний Ушко",
-      "desc": "Gordon's Gin, Свежий Бараний Ушко, Юзу, Лимонный Сок, Огурец"
+      "name": "Ухо ягненка",
+      "desc": "Gordon's Gin, Свежее ухо ягненка, Юзу, Лимонный сок, Огурец"
     },
     "rhubarb": {
       "name": "Ревень",
-      "desc": "Smirnoff Vodka, Douzico, Ликер из Ревеня, Гранатовый Сироп, Лимонный Сок"
+      "desc": "Smirnoff Vodka, Douzico, Ликер из ревеня, Гранатовый соус, Лимонный сок"
     },
     "drIndia": {
       "name": "Доктор Индия",
-      "desc": "Captain Morgan Spiced Gold, Имбирный Ликер, Корица, Лимонный Сок"
+      "desc": "Captain Morgan Spiced Gold, Имбирный ликер, Корица, Лимонный сок"
     },
     "peachSour": {
-      "name": "Персиковый Соур",
-      "desc": "Gordon's Gin, Персиковый Ликер, Свежий Персик, Лимонный Сок, Коктейльная Пена"
+      "name": "Персиковый сауэр",
+      "desc": "Gordon's Gin, Персиковый ликер, Свежий персик, Лимонный сок, Коктейльная пена"
     },
     "goldenHarmony": {
-      "name": "Золотая Гармония",
-      "desc": "Singleton 12 Years, Luxardo Maraschino, Карамелизированный Свежий Персик, Лимонный Сок, Коктейльная Пена"
+      "name": "Золотая гармония",
+      "desc": "Singleton 12 Years, Luxardo Maraschino, Карамелизированный свежий персик, Лимонный сок, Коктейльная пена"
     },
     "chiliPassion": {
-      "name": "Чили Страсть",
-      "desc": "Чили Инфьюзд Casamigos, Маракуйя, Лимонный Сок, Таджин Спайсд Нек"
+      "name": "Чили страсть",
+      "desc": "Настоянный на чили Casamigos, Маракуйя, Лимонный сок, Таджин со специями"
     },
     "number10": {
       "name": "Номер 10",
-      "desc": "Gordon's Gin, Маракуйя, Свежий Bodrum Mandarin, Лимонный Сок, Коктейльная Пена"
+      "desc": "Gordon's Gin, Маракуйя, Свежий мандарин Бодрума, Лимонный сок, Коктейльная пена"
     },
     "wakeUp": {
       "name": "Проснись",
-      "desc": "Гватемальские Кофейные Зерна Инфьюзд Captain Morgan Rum, Dede Mix, Коктейльная Пена"
+      "desc": "Настоянный на кофейных зернах Гватемалы Captain Morgan Ром, Дед Микс, Коктейльная пена"
     },
     "whiskeySour": {
-      "name": "Виски Соур",
-      "desc": "Bulleit Bourbon Whiskey, Лимонный Сок, Простой Сироп, Ангостура Биттерс, Коктейльная Пена"
+      "name": "Виски сауэр",
+      "desc": "Виски Bulleit Bourbon, Лимонный сок, Простой сироп, Ангостура биттер, Коктейльная пена"
     },
     "bramble": {
-      "name": "Брамбл",
-      "desc": "Gordon's Gin, Лесной Ягодный Ликер, Свежий Лимонный Сок"
+      "name": "Ежевика",
+      "desc": "Gordon's Gin, Ликер из лесных ягод, Свежий лимонный сок"
     },
     "oldFashioned": {
-      "name": "Олд Фэшн",
-      "desc": "Woodford Reserve Whiskey, Ангостура Биттерс"
+      "name": "Олд фэшн",
+      "desc": "Виски Woodford Reserve, Ангостура биттер"
     },
     "manhattan": {
       "name": "Манхэттен",
-      "desc": "Bulleit Bourbon, Cinzano 1757 Rosso, Вишня Мараскино"
+      "desc": "Bulleit Bourbon, Cinzano 1757 Rosso, Вишня мараскино"
     },
     "aperolSpritz": {
-      "name": "Апероль Спритц",
-      "desc": "Aperol, Ruffino Prosecco, Сода"
+      "name": "Апероль шприц",
+      "desc": "Апероль, Ruffino Prosecco, Сода"
     },
     "barrelAgedNegroni": {
-      "name": "Баррел-Эйджд Негрони",
-      "desc": "Tanqueray, Campari, Сладкий Вермут"
+      "name": "Выдержанный в бочке Негрони",
+      "desc": "Tanqueray, Кампари, Сладкий вермут"
     },
     "margaritaRocks": {
-      "name": "Маргарита Рокс",
-      "desc": "Casamigos, Cointreau, Лаймовый Сок"
+      "name": "Маргарита на камнях",
+      "desc": "Casamigos, Куантро, Сок лайма"
     },
     "mezcalMargarita": {
-      "name": "Мезкаль Маргарита",
-      "desc": "Casamigos Mezcal, Cointreau, Лаймовый Сок"
+      "name": "Маргарита с мескалем",
+      "desc": "Casamigos Mezcal, Куантро, Сок лайма"
     },
     "belfastDraft": {
-      "name": "Белфаст Драфт 50cl"
+      "name": "Белфаст разливное 50cl"
     },
     "efes": {
       "name": "Эфес 33cl"
     },
     "efesGlutenFree": {
-      "name": "Эфес Без Глютена"
+      "name": "Эфес без глютена"
     },
     "becks": {
       "name": "Бекс 33cl"
@@ -123,16 +123,16 @@
       "name": "Эрдингер 33cl"
     },
     "duvel": {
-      "name": "Дувел 33cl"
+      "name": "Дувель 33cl"
     },
     "garaGuzu": {
-      "name": "Гара Гузу Саммер АйПиЭй"
+      "name": "Гара Гузу Саммер Айпа"
     },
     "torchBrewery": {
-      "name": "Торч Брюэри АйПиЭй"
+      "name": "Торч Брюэри Айпа"
     },
     "kayraVintage": {
-      "name": "Кайра Винтаж Каберне Совиньон",
+      "name": "Кайра Винтаж К. Совиньон",
       "desc": "Красное"
     },
     "morSalkimSyrah": {
@@ -156,7 +156,7 @@
       "desc": "Блаш"
     },
     "allureRose": {
-      "name": "Аллюр Уайт Калечик Карасы",
+      "name": "Аллюр Белый Калечик Карасы",
       "desc": "Розовое"
     },
     "morSalkimRose": {
@@ -180,7 +180,7 @@
       "desc": "Бутылка"
     },
     "chandonGardenSpritz": {
-      "name": "Шандон Гарден Спритц",
+      "name": "Шандон Гарден Сприц",
       "desc": "Бутылка"
     },
     "vitruviusKombucha": {
@@ -189,10 +189,10 @@
     },
     "bitburger": {
       "name": "Битбургер",
-      "desc": "Безалкогольное Пиво"
+      "desc": "Безалкогольное пиво"
     },
     "orangeJuice": {
-      "name": "Апельсиновый Сок"
+      "name": "Апельсиновый сок"
     },
     "pellegrino": {
       "name": "С.Пеллегрино Черчилль"
@@ -201,7 +201,7 @@
       "name": "Моктейль"
     },
     "homemadeLemonade": {
-      "name": "Домашний Лимонад"
+      "name": "Домашний лимонад"
     },
     "water": {
       "name": "Вода 33cl"
@@ -213,7 +213,7 @@
       "name": "Американо"
     },
     "doubleEspresso": {
-      "name": "Двойной Эспрессо"
+      "name": "Двойной эспрессо"
     },
     "latte": {
       "name": "Латте"
@@ -225,28 +225,28 @@
       "name": "Эспрессо"
     },
     "filterCoffee": {
-      "name": "Фильтр Кофе"
+      "name": "Фильтр кофе"
     },
     "flavoredLatte": {
-      "name": "Латте со Вкусом",
+      "name": "Ароматизированный латте",
       "desc": "Ваниль, Карамель"
     },
     "turkishCoffee": {
-      "name": "Турецкий Кофе"
+      "name": "Турецкий кофе"
     },
     "iceAmericano": {
-      "name": "Айс Американо"
+      "name": "Айс американо"
     },
     "iceLatte": {
-      "name": "Айс Латте"
+      "name": "Айс латте"
     },
     "flavoredIceLatte": {
-      "name": "Айс Латте со Вкусом",
+      "name": "Ароматизированный айс латте",
       "desc": "Ваниль, Карамель"
     },
     "yankeeBreakfast": {
-      "name": "Янки Завтрак",
-      "desc": "Франкфуртская Колбаска, Говяжий Бекон, Жареный Картофель, Салат, Жареное Яйцо, Томатный Тост"
+      "name": "Завтрак Янки",
+      "desc": "Франкфуртская сосиска, Говяжий бекон, Запеченный картофель, Салат, Яйцо-пашот, Хлеб с жареными помидорами"
     }
   },
   "common": {
