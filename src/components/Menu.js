@@ -37,7 +37,7 @@ const Menu = () => {
         <img src={logo} alt="Efendi Logo" className="logo" />
       </div>
       <Container maxWidth="md" sx={{ flex: 1 }}>
-        <div className="menu-container">
+        <div className="menu-container" style={{ marginBottom: "80px" }}>
           {Object.entries(menuData).map(([category, data]) => (
             <Accordion
               key={category}
