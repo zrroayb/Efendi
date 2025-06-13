@@ -2,6 +2,25 @@ body {
   background: #111;
   font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'sans-serif';
   color: #fff;
+  background-image: url('/efendi-logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #111;
+  opacity: 0.85;
+  z-index: -1;
 }
 
 .App {
