@@ -1,0 +1,49 @@
+{
+  "menu": {
+    "title": "Menü",
+    "categories": {
+      "starters": "Başlangıçlar",
+      "mainCourses": "Ana Yemekler",
+      "desserts": "Tatlılar",
+      "drinks": "İçecekler"
+    },
+    "addToCart": "Sepete Ekle",
+    "removeFromCart": "Sepetten Çıkar",
+    "cart": {
+      "title": "Sepetim",
+      "empty": "Sepetiniz boş",
+      "total": "Toplam",
+      "checkout": "Sipariş Ver"
+    },
+    "specialCocktails": "Özel Kokteyller",
+    "classicCocktails": "Klasik Kokteyller",
+    "beers": "Biralar",
+    "wines": "Şaraplar",
+    "sparkling": "Köpüklüler",
+    "softDrinks": "Softlar",
+    "hotCoffee": "Sıcak Kahveler",
+    "coldCoffee": "Soğuk Kahveler",
+    "breakfast": "Kahvaltı"
+  },
+  "items": {
+    "citrusBlend": {
+      "name": "Citrus Blend",
+      "desc": "Tanqueray Sevilla, Aperol, Italicus, Bodrum Mandalinası, Limon Suyu"
+    },
+    "lambEar": {
+      "name": "Kuzu Kulağı",
+      "desc": "Gordon's Gin, Taze Kuzu Kulağı, Yuzu, Limon Suyu, Salatalık"
+    }
+  },
+  "common": {
+    "glass": "Kadeh",
+    "bottle": "Şişe",
+    "red": "Kırmızı",
+    "white": "Beyaz",
+    "rose": "Rose",
+    "blush": "Blush",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "retry": "Tekrar Dene"
+  }
+} 

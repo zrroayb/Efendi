@@ -1,0 +1,49 @@
+{
+  "menu": {
+    "title": "Menu",
+    "categories": {
+      "starters": "Starters",
+      "mainCourses": "Main Courses",
+      "desserts": "Desserts",
+      "drinks": "Drinks"
+    },
+    "addToCart": "Add to Cart",
+    "removeFromCart": "Remove from Cart",
+    "cart": {
+      "title": "My Cart",
+      "empty": "Your cart is empty",
+      "total": "Total",
+      "checkout": "Checkout"
+    },
+    "specialCocktails": "Special Cocktails",
+    "classicCocktails": "Classic Cocktails",
+    "beers": "Beers",
+    "wines": "Wines",
+    "sparkling": "Sparkling",
+    "softDrinks": "Soft Drinks",
+    "hotCoffee": "Hot Coffee",
+    "coldCoffee": "Cold Coffee",
+    "breakfast": "Breakfast"
+  },
+  "items": {
+    "citrusBlend": {
+      "name": "Citrus Blend",
+      "desc": "Tanqueray Sevilla, Aperol, Italicus, Bodrum Mandarin, Lemon Juice"
+    },
+    "lambEar": {
+      "name": "Lamb's Ear",
+      "desc": "Gordon's Gin, Fresh Lamb's Ear, Yuzu, Lemon Juice, Cucumber"
+    }
+  },
+  "common": {
+    "glass": "Glass",
+    "bottle": "Bottle",
+    "red": "Red",
+    "white": "White",
+    "rose": "Rose",
+    "blush": "Blush",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry"
+  }
+} 

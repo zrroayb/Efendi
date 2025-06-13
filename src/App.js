@@ -18,6 +18,9 @@ import StarIcon from "@mui/icons-material/Star";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import logo from "./efendi-logo.png";
+import { useTranslation } from "react-i18next";
+import "./i18n";
+import LanguageSelector from "./components/LanguageSelector";
 
 const BarrelIcon = () => (
   <svg
@@ -327,6 +330,7 @@ const menu = [
 
 function App() {
   const [expanded, setExpanded] = useState(false);
+  const { t } = useTranslation();
 
   const handleAccordionChange = (idx) => (event, isExpanded) => {
     setExpanded(isExpanded ? idx : false);
@@ -338,6 +342,7 @@ function App() {
       className="App"
       style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}
     >
+      <LanguageSelector />
       <header
         className="App-header"
         style={{

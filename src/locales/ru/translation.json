@@ -1,0 +1,49 @@
+{
+  "menu": {
+    "title": "Меню",
+    "categories": {
+      "starters": "Закуски",
+      "mainCourses": "Основные блюда",
+      "desserts": "Десерты",
+      "drinks": "Напитки"
+    },
+    "addToCart": "Добавить в корзину",
+    "removeFromCart": "Удалить из корзины",
+    "cart": {
+      "title": "Моя корзина",
+      "empty": "Ваша корзина пуста",
+      "total": "Итого",
+      "checkout": "Оформить заказ"
+    },
+    "specialCocktails": "Специальные Коктейли",
+    "classicCocktails": "Классические Коктейли",
+    "beers": "Пиво",
+    "wines": "Вино",
+    "sparkling": "Игристое",
+    "softDrinks": "Безалкогольные Напитки",
+    "hotCoffee": "Горячий Кофе",
+    "coldCoffee": "Холодный Кофе",
+    "breakfast": "Завтрак"
+  },
+  "items": {
+    "citrusBlend": {
+      "name": "Цитрусовый Бленд",
+      "desc": "Tanqueray Sevilla, Aperol, Italicus, Мандарин Бодрума, Лимонный Сок"
+    },
+    "lambEar": {
+      "name": "Бараний Ушко",
+      "desc": "Gordon's Gin, Свежий Бараний Ушко, Юзу, Лимонный Сок, Огурец"
+    }
+  },
+  "common": {
+    "glass": "Бокал",
+    "bottle": "Бутылка",
+    "red": "Красное",
+    "white": "Белое",
+    "rose": "Розовое",
+    "blush": "Блаш",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "retry": "Повторить"
+  }
+} 
