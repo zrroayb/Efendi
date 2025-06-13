@@ -11,6 +11,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FaInstagram } from "react-icons/fa";
 import { menuData } from "../data/menuData";
 import logo from "../efendi-logo.png";
+import Footer from "./Footer";
 
 const Menu = () => {
   const { t } = useTranslation();
@@ -111,6 +112,7 @@ const Menu = () => {
           ))}
         </div>
       </Container>
+      <Footer />
 
       {/* Instagram Link */}
       <div
