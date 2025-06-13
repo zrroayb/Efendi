@@ -55,9 +55,6 @@ function App() {
         <div className="language-selector-container">
           <LanguageSelector />
         </div>
-        <div className="menu-header">
-          <h1>{t("menu.title")}</h1>
-        </div>
         {menuData.map((category, idx) => (
           <Accordion
             key={category.id}
