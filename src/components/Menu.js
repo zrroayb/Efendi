@@ -16,65 +16,135 @@ const Menu = () => {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
 
-  const handleAccordionChange = (idx) => (event, isExpanded) => {
-    setExpanded(isExpanded ? idx : false);
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
   };
 
   return (
     <div
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "#1a1a1a",
+        color: "#ffffff",
+        paddingBottom: "60px",
+      }}
     >
       <div className="logo-background">
         <img src={logo} alt="Efendi Logo" className="logo" />
       </div>
-      <Container className="menu-container">
-        {menuData.map((category, idx) => (
-          <Accordion
-            key={category.id}
-            expanded={expanded === idx}
-            onChange={handleAccordionChange(idx)}
-            className="menu-accordion"
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`panel${idx}-content`}
-              id={`panel${idx}-header`}
+      <Container maxWidth="md" sx={{ flex: 1 }}>
+        <div className="menu-container">
+          {Object.entries(menuData).map(([category, data]) => (
+            <Accordion
+              key={category}
+              expanded={expanded === category}
+              onChange={handleChange(category)}
+              sx={{
+                backgroundColor: "#2a2a2a",
+                color: "#ffffff",
+                marginBottom: "8px",
+                "&:before": {
+                  display: "none",
+                },
+                "& .MuiAccordionSummary-root": {
+                  minHeight: "48px",
+                },
+                "& .MuiAccordionSummary-content": {
+                  margin: "8px 0",
+                },
+                "& .MuiAccordionDetails-root": {
+                  padding: "8px 16px 16px",
+                },
+              }}
             >
-              <div className="accordion-header">
-                {category.icon}
-                <Typography>{t(`menu.${category.id}`)}</Typography>
-              </div>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className="menu-items">
-                {category.items.map((item) => (
-                  <div key={item.id} className="menu-item">
-                    <div className="item-header">
-                      <h3>{t(`items.${item.id}.name`)}</h3>
-                      <span className="price">{item.price}</span>
-                    </div>
-                    {t(`items.${item.id}.desc`) && (
-                      <p className="item-description">
-                        {t(`items.${item.id}.desc`)}
-                      </p>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon sx={{ color: "#ffffff" }} />}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "#333333",
+                  },
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: "Playfair Display, serif",
+                    fontSize: "1.2rem",
+                    fontWeight: 500,
+                    color: "#ffffff",
+                  }}
+                >
+                  {t(`menu.${category}`)}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                {data.items.map((item, index) => (
+                  <div key={index} style={{ marginBottom: "12px" }}>
+                    <Typography
+                      sx={{
+                        fontFamily: "Playfair Display, serif",
+                        fontSize: "1.1rem",
+                        fontWeight: 500,
+                        color: "#ffffff",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {item.name} - {item.price} TL
+                    </Typography>
+                    {item.description && (
+                      <Typography
+                        sx={{
+                          fontSize: "0.9rem",
+                          color: "#cccccc",
+                          fontStyle: "italic",
+                        }}
+                      >
+                        {item.description}
+                      </Typography>
                     )}
                   </div>
                 ))}
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        ))}
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </div>
       </Container>
-      <footer className="footer">
+
+      {/* Footer */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          backgroundColor: "#2a2a2a",
+          padding: "12px 0",
+          textAlign: "center",
+          boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.2)",
+          zIndex: 1000,
+        }}
+      >
         <a
           href="https://www.instagram.com/efendibodrum"
           target="_blank"
           rel="noopener noreferrer"
+          style={{
+            color: "#ffffff",
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
+          }}
           aria-label={t("footer.instagram")}
         >
-          <FaInstagram /> {t("footer.instagram")}
+          <FaInstagram size={20} />
+          <span style={{ fontFamily: "Playfair Display, serif" }}>
+            {t("footer.instagram")}
+          </span>
         </a>
-      </footer>
+      </div>
     </div>
   );
 };
