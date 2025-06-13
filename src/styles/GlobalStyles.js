@@ -50,6 +50,7 @@ export const GlobalStyles = createGlobalStyle`
     max-width: 800px;
     margin: 0 auto;
     padding: 24px 16px 80px;
+    flex: 1;
   }
 
   .menu-accordion {
@@ -162,8 +163,10 @@ export const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.footerText};
     padding: 20px;
     text-align: center;
-    margin-top: auto;
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   }
