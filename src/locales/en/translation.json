@@ -20,7 +20,7 @@
     "classicCocktails": "Classic Cocktails",
     "beers": "Beers",
     "wines": "Wines",
-    "sparkling": "Sparkling Wines",
+    "sparkling": "Sparkling",
     "softDrinks": "Soft Drinks",
     "hotCoffee": "Hot Coffee",
     "coldCoffee": "Cold Coffee",
@@ -37,7 +37,7 @@
     },
     "rhubarb": {
       "name": "Rhubarb",
-      "desc": "Smirnoff Vodka, Douzico, Rhubarb Liqueur, Pomegranate Molasses, Lemon Juice"
+      "desc": "Smirnoff Vodka, Douzico, Rhubarb Liqueur, Pomegranate Sauce, Lemon Juice"
     },
     "drIndia": {
       "name": "Dr India",
@@ -73,7 +73,7 @@
     },
     "oldFashioned": {
       "name": "Old Fashioned",
-      "desc": "Woodford Reserve Whiskey, Angostura Bitters"
+      "desc": "Woodford Reserve Whiskey, Angostura Bitter"
     },
     "manhattan": {
       "name": "Manhattan",
@@ -88,7 +88,7 @@
       "desc": "Tanqueray, Campari, Sweet Vermouth"
     },
     "margaritaRocks": {
-      "name": "Margarita Rock's",
+      "name": "Margarita Rocks",
       "desc": "Casamigos, Cointreau, Lime Juice"
     },
     "mezcalMargarita": {
@@ -185,7 +185,7 @@
     },
     "vitruviusKombucha": {
       "name": "Vitruvius Kombucha",
-      "desc": "Apple&Spice, Chili, Celery&Pineapple"
+      "desc": "Apple&Spices, Chili, Celery&Pineapple"
     },
     "bitburger": {
       "name": "Bitburger",
@@ -246,7 +246,7 @@
     },
     "yankeeBreakfast": {
       "name": "Yankee Breakfast",
-      "desc": "Frankfurter Sausage, Beef Bacon, Roasted Potatoes, Salad, Fried Egg, Tomato Toast"
+      "desc": "Frankfurter Sausage, Beef Bacon, Baked Potato, Salad, Poached Egg, Tomato Toast"
     }
   },
   "common": {
