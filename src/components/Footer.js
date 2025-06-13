@@ -17,7 +17,7 @@ const Footer = () => {
       }}
     >
       <a
-        href="https://www.instagram.com/efendi_restaurant/"
+        href="https://www.instagram.com/efendi_nargile_pub/"
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -37,7 +37,7 @@ const Footer = () => {
         onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
         <FaInstagram style={{ fontSize: "1.5rem" }} />
-        <span>@efendi_restaurant</span>
+        <span>@efendi_nargile_pub</span>
       </a>
     </footer>
   );
