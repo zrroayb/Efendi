@@ -28,7 +28,7 @@
   "items": {
     "citrusBlend": {
       "name": "Цитрусовый Бленд",
-      "desc": "Tanqueray Sevilla, Aperol, Italicus, Мандарин Бодрума, Лимонный Сок"
+      "desc": "Tanqueray Sevilla, Aperol, Italicus, Bodrum Mandarin, Лимонный Сок"
     },
     "lambEar": {
       "name": "Бараний Ушко",
@@ -36,7 +36,7 @@
     },
     "rhubarb": {
       "name": "Ревень",
-      "desc": "Smirnoff Водка, Douzico, Ликер Ревеня, Гранатовый Сироп, Лимонный Сок"
+      "desc": "Smirnoff Vodka, Douzico, Ликер из Ревеня, Гранатовый Сироп, Лимонный Сок"
     },
     "drIndia": {
       "name": "Доктор Индия",
@@ -52,19 +52,19 @@
     },
     "chiliPassion": {
       "name": "Чили Страсть",
-      "desc": "Чили Инфьюзд Casamigos, Маракуйя, Лимонный Сок, Таджин Специи"
+      "desc": "Чили Инфьюзд Casamigos, Маракуйя, Лимонный Сок, Таджин Спайсд Нек"
     },
     "number10": {
       "name": "Номер 10",
-      "desc": "Gordon's Gin, Маракуйя, Свежий Мандарин Бодрума, Лимонный Сок, Коктейльная Пена"
+      "desc": "Gordon's Gin, Маракуйя, Свежий Bodrum Mandarin, Лимонный Сок, Коктейльная Пена"
     },
     "wakeUp": {
       "name": "Проснись",
-      "desc": "Кофейные Зерна Гватемалы Инфьюзд Captain Morgan Ром, Dede Mix, Коктейльная Пена"
+      "desc": "Гватемальские Кофейные Зерна Инфьюзд Captain Morgan Rum, Dede Mix, Коктейльная Пена"
     },
     "whiskeySour": {
       "name": "Виски Соур",
-      "desc": "Bulleit Bourbon Виски, Лимонный Сок, Простой Сироп, Ангостура Биттерс, Коктейльная Пена"
+      "desc": "Bulleit Bourbon Whiskey, Лимонный Сок, Простой Сироп, Ангостура Биттерс, Коктейльная Пена"
     },
     "bramble": {
       "name": "Брамбл",
@@ -72,7 +72,7 @@
     },
     "oldFashioned": {
       "name": "Олд Фэшн",
-      "desc": "Woodford Reserve Виски, Ангостура Биттерс"
+      "desc": "Woodford Reserve Whiskey, Ангостура Биттерс"
     },
     "manhattan": {
       "name": "Манхэттен",
@@ -80,22 +80,22 @@
     },
     "aperolSpritz": {
       "name": "Апероль Спритц",
-      "desc": "Апероль, Ruffino Просекко, Сода"
+      "desc": "Aperol, Ruffino Prosecco, Сода"
     },
     "barrelAgedNegroni": {
       "name": "Баррел-Эйджд Негрони",
-      "desc": "Tanqueray, Кампари, Сладкий Вермут"
+      "desc": "Tanqueray, Campari, Сладкий Вермут"
     },
     "margaritaRocks": {
       "name": "Маргарита Рокс",
-      "desc": "Casamigos, Куантро, Лаймовый Сок"
+      "desc": "Casamigos, Cointreau, Лаймовый Сок"
     },
     "mezcalMargarita": {
       "name": "Мезкаль Маргарита",
-      "desc": "Casamigos Мезкаль, Куантро, Лаймовый Сок"
+      "desc": "Casamigos Mezcal, Cointreau, Лаймовый Сок"
     },
     "belfastDraft": {
-      "name": "Белфаст Разливное 50cl"
+      "name": "Белфаст Драфт 50cl"
     },
     "efes": {
       "name": "Эфес 33cl"
@@ -122,16 +122,16 @@
       "name": "Эрдингер 33cl"
     },
     "duvel": {
-      "name": "Дувель 33cl"
+      "name": "Дувел 33cl"
     },
     "garaGuzu": {
       "name": "Гара Гузу Саммер АйПиЭй"
     },
     "torchBrewery": {
-      "name": "Торч Брювери АйПиЭй"
+      "name": "Торч Брюэри АйПиЭй"
     },
     "kayraVintage": {
-      "name": "Кайра Винтаж С. Совиньон",
+      "name": "Кайра Винтаж Каберне Совиньон",
       "desc": "Красное"
     },
     "morSalkimSyrah": {
@@ -147,7 +147,7 @@
       "desc": "Белое"
     },
     "morSalkimChardonnay": {
-      "name": "Мор Салким Бодрум Волате Шардоне",
+      "name": "Мор Салким Бодрум Воланте Шардоне",
       "desc": "Белое"
     },
     "cieloPinotGrigioBlush": {
@@ -155,7 +155,7 @@
       "desc": "Блаш"
     },
     "allureRose": {
-      "name": "Аллюр Белый Калечик Карасы",
+      "name": "Аллюр Уайт Калечик Карасы",
       "desc": "Розовое"
     },
     "morSalkimRose": {
@@ -227,7 +227,7 @@
       "name": "Фильтр Кофе"
     },
     "flavoredLatte": {
-      "name": "Ароматизированный Латте",
+      "name": "Латте со Вкусом",
       "desc": "Ваниль, Карамель"
     },
     "turkishCoffee": {
@@ -240,12 +240,12 @@
       "name": "Айс Латте"
     },
     "flavoredIceLatte": {
-      "name": "Ароматизированный Айс Латте",
+      "name": "Айс Латте со Вкусом",
       "desc": "Ваниль, Карамель"
     },
     "yankeeBreakfast": {
       "name": "Янки Завтрак",
-      "desc": "Франкфуртерская Колбаса, Говяжий Бекон, Запеченный Картофель, Салат, Яичница, Тост с Помидорами"
+      "desc": "Франкфуртская Колбаска, Говяжий Бекон, Жареный Картофель, Салат, Жареное Яйцо, Томатный Тост"
     }
   },
   "common": {
