@@ -19,7 +19,7 @@
     "classicCocktails": "Классические Коктейли",
     "beers": "Пиво",
     "wines": "Вино",
-    "sparkling": "Игристое",
+    "sparkling": "Игристое Вино",
     "softDrinks": "Безалкогольные Напитки",
     "hotCoffee": "Горячий Кофе",
     "coldCoffee": "Холодный Кофе",
@@ -33,6 +33,219 @@
     "lambEar": {
       "name": "Бараний Ушко",
       "desc": "Gordon's Gin, Свежий Бараний Ушко, Юзу, Лимонный Сок, Огурец"
+    },
+    "rhubarb": {
+      "name": "Ревень",
+      "desc": "Smirnoff Водка, Douzico, Ликер Ревеня, Гранатовый Сироп, Лимонный Сок"
+    },
+    "drIndia": {
+      "name": "Доктор Индия",
+      "desc": "Captain Morgan Spiced Gold, Имбирный Ликер, Корица, Лимонный Сок"
+    },
+    "peachSour": {
+      "name": "Персиковый Соур",
+      "desc": "Gordon's Gin, Персиковый Ликер, Свежий Персик, Лимонный Сок, Коктейльная Пена"
+    },
+    "goldenHarmony": {
+      "name": "Золотая Гармония",
+      "desc": "Singleton 12 Years, Luxardo Maraschino, Карамелизированный Свежий Персик, Лимонный Сок, Коктейльная Пена"
+    },
+    "chiliPassion": {
+      "name": "Чили Страсть",
+      "desc": "Чили Инфьюзд Casamigos, Маракуйя, Лимонный Сок, Таджин Специи"
+    },
+    "number10": {
+      "name": "Номер 10",
+      "desc": "Gordon's Gin, Маракуйя, Свежий Мандарин Бодрума, Лимонный Сок, Коктейльная Пена"
+    },
+    "wakeUp": {
+      "name": "Проснись",
+      "desc": "Кофейные Зерна Гватемалы Инфьюзд Captain Morgan Ром, Dede Mix, Коктейльная Пена"
+    },
+    "whiskeySour": {
+      "name": "Виски Соур",
+      "desc": "Bulleit Bourbon Виски, Лимонный Сок, Простой Сироп, Ангостура Биттерс, Коктейльная Пена"
+    },
+    "bramble": {
+      "name": "Брамбл",
+      "desc": "Gordon's Gin, Лесной Ягодный Ликер, Свежий Лимонный Сок"
+    },
+    "oldFashioned": {
+      "name": "Олд Фэшн",
+      "desc": "Woodford Reserve Виски, Ангостура Биттерс"
+    },
+    "manhattan": {
+      "name": "Манхэттен",
+      "desc": "Bulleit Bourbon, Cinzano 1757 Rosso, Вишня Мараскино"
+    },
+    "aperolSpritz": {
+      "name": "Апероль Спритц",
+      "desc": "Апероль, Ruffino Просекко, Сода"
+    },
+    "barrelAgedNegroni": {
+      "name": "Баррел-Эйджд Негрони",
+      "desc": "Tanqueray, Кампари, Сладкий Вермут"
+    },
+    "margaritaRocks": {
+      "name": "Маргарита Рокс",
+      "desc": "Casamigos, Куантро, Лаймовый Сок"
+    },
+    "mezcalMargarita": {
+      "name": "Мезкаль Маргарита",
+      "desc": "Casamigos Мезкаль, Куантро, Лаймовый Сок"
+    },
+    "belfastDraft": {
+      "name": "Белфаст Разливное 50cl"
+    },
+    "efes": {
+      "name": "Эфес 33cl"
+    },
+    "efesGlutenFree": {
+      "name": "Эфес Без Глютена"
+    },
+    "becks": {
+      "name": "Бекс 33cl"
+    },
+    "bud": {
+      "name": "Бад 33cl"
+    },
+    "corona": {
+      "name": "Корона 35cl"
+    },
+    "leffeBlonde": {
+      "name": "Леффе Блонд 33cl"
+    },
+    "hoegaarden": {
+      "name": "Хугарден 33cl"
+    },
+    "erdinger": {
+      "name": "Эрдингер 33cl"
+    },
+    "duvel": {
+      "name": "Дувель 33cl"
+    },
+    "garaGuzu": {
+      "name": "Гара Гузу Саммер АйПиЭй"
+    },
+    "torchBrewery": {
+      "name": "Торч Брювери АйПиЭй"
+    },
+    "kayraVintage": {
+      "name": "Кайра Винтаж С. Совиньон",
+      "desc": "Красное"
+    },
+    "morSalkimSyrah": {
+      "name": "Мор Салким Бодрум Кантабиле Сира",
+      "desc": "Красное"
+    },
+    "cieloPinotGrigio": {
+      "name": "Чьело Пино Гриджио",
+      "desc": "Белое"
+    },
+    "allureSauvignonBlanc": {
+      "name": "Аллюр Совиньон Блан",
+      "desc": "Белое"
+    },
+    "morSalkimChardonnay": {
+      "name": "Мор Салким Бодрум Волате Шардоне",
+      "desc": "Белое"
+    },
+    "cieloPinotGrigioBlush": {
+      "name": "Чьело Пино Гриджио",
+      "desc": "Блаш"
+    },
+    "allureRose": {
+      "name": "Аллюр Белый Калечик Карасы",
+      "desc": "Розовое"
+    },
+    "morSalkimRose": {
+      "name": "Мор Салким Бодрум Виваче Мерло Розе",
+      "desc": "Розовое"
+    },
+    "ruffinoProsecco": {
+      "name": "Руффино Просекко",
+      "desc": "Бокал"
+    },
+    "bottegaBrut": {
+      "name": "Боттега Брют",
+      "desc": "Бутылка"
+    },
+    "moetBrut": {
+      "name": "Моэ Брют",
+      "desc": "Бутылка"
+    },
+    "bottegaGold": {
+      "name": "Боттега Голд",
+      "desc": "Бутылка"
+    },
+    "chandonGardenSpritz": {
+      "name": "Шандон Гарден Спритц",
+      "desc": "Бутылка"
+    },
+    "vitruviusKombucha": {
+      "name": "Витрувиус Комбуча",
+      "desc": "Яблоко&Специи, Чили, Сельдерей&Ананас"
+    },
+    "bitburger": {
+      "name": "Битбургер",
+      "desc": "Безалкогольное Пиво"
+    },
+    "orangeJuice": {
+      "name": "Апельсиновый Сок"
+    },
+    "pellegrino": {
+      "name": "С.Пеллегрино Черчилль"
+    },
+    "mocktail": {
+      "name": "Моктейль"
+    },
+    "homemadeLemonade": {
+      "name": "Домашний Лимонад"
+    },
+    "water": {
+      "name": "Вода 33cl"
+    },
+    "cocaCola": {
+      "name": "Кока Кола & Кола Зеро"
+    },
+    "americano": {
+      "name": "Американо"
+    },
+    "doubleEspresso": {
+      "name": "Двойной Эспрессо"
+    },
+    "latte": {
+      "name": "Латте"
+    },
+    "cappuccino": {
+      "name": "Капучино"
+    },
+    "espresso": {
+      "name": "Эспрессо"
+    },
+    "filterCoffee": {
+      "name": "Фильтр Кофе"
+    },
+    "flavoredLatte": {
+      "name": "Ароматизированный Латте",
+      "desc": "Ваниль, Карамель"
+    },
+    "turkishCoffee": {
+      "name": "Турецкий Кофе"
+    },
+    "iceAmericano": {
+      "name": "Айс Американо"
+    },
+    "iceLatte": {
+      "name": "Айс Латте"
+    },
+    "flavoredIceLatte": {
+      "name": "Ароматизированный Айс Латте",
+      "desc": "Ваниль, Карамель"
+    },
+    "yankeeBreakfast": {
+      "name": "Янки Завтрак",
+      "desc": "Франкфуртерская Колбаса, Говяжий Бекон, Запеченный Картофель, Салат, Яичница, Тост с Помидорами"
     }
   },
   "common": {
@@ -44,6 +257,7 @@
     "blush": "Блаш",
     "loading": "Загрузка...",
     "error": "Произошла ошибка",
-    "retry": "Повторить"
+    "retry": "Повторить",
+    "currency": "₺"
   }
 } 

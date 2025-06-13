@@ -33,6 +33,219 @@
     "lambEar": {
       "name": "Kuzu Kulağı",
       "desc": "Gordon's Gin, Taze Kuzu Kulağı, Yuzu, Limon Suyu, Salatalık"
+    },
+    "rhubarb": {
+      "name": "Rhubarb",
+      "desc": "Smirnoff Vodka, Douzico, Rhubarb Likörü, Nar Ekşisi, Limon Suyu"
+    },
+    "drIndia": {
+      "name": "Dr India",
+      "desc": "Captain Morgan Spiced Gold, Zencefil Likörü, Tarçın, Limon Suyu"
+    },
+    "peachSour": {
+      "name": "Peach Sour",
+      "desc": "Gordon's Gin, Şeftali Likörü, Taze Şeftali, Limon Suyu, Cocktail Foam"
+    },
+    "goldenHarmony": {
+      "name": "Golden Harmony",
+      "desc": "Singleton 12 Years, Luxardo Maraschino, Karamelize Taze Şeftali, Limon Suyu, Cocktail Foam"
+    },
+    "chiliPassion": {
+      "name": "Chili Passion",
+      "desc": "Acı Biber Infused Casamigos, Passion Fruit, Limon Suyu, Tajin Baharatlı Gerdan"
+    },
+    "number10": {
+      "name": "10 Numara",
+      "desc": "Gordon's Gin, Passion Fruit, Taze Bodrum Mandalinası, Limon Suyu, Cocktail Foam"
+    },
+    "wakeUp": {
+      "name": "Wake Up",
+      "desc": "Guatemala Coffe Beans InfuSed Captain Morgan Rom, Dede Mix, Cocktail Foam"
+    },
+    "whiskeySour": {
+      "name": "Whiskey Sour",
+      "desc": "Bulleit Bourbon Viski, Limon Suyu, Simple Şurup, Angostura Bitters, Cocktail Foam"
+    },
+    "bramble": {
+      "name": "Bramble",
+      "desc": "Gordon's Gin, Orman Meyvesi Likörü, Taze Limon Suyu"
+    },
+    "oldFashioned": {
+      "name": "Old Fashioned",
+      "desc": "Woodford Reserve Viski, Angostura Bitter"
+    },
+    "manhattan": {
+      "name": "Manhattan",
+      "desc": "Bulleit Bourbon, Cinzano 1757 Rosso, Maraschino Cherries"
+    },
+    "aperolSpritz": {
+      "name": "Aperol Spritz",
+      "desc": "Aperol, Ruffino Prosecco, Soda"
+    },
+    "barrelAgedNegroni": {
+      "name": "Barrel-Aged Negroni",
+      "desc": "Tanqueray, Campari, Tatlı Vermut"
+    },
+    "margaritaRocks": {
+      "name": "Margarita Rock's",
+      "desc": "Casamigos, Cointreau, Lime Suyu"
+    },
+    "mezcalMargarita": {
+      "name": "Mezcal Margarita",
+      "desc": "Casamigos Mezcal, Cointreau, Lime Suyu"
+    },
+    "belfastDraft": {
+      "name": "Belfast Fıçı 50cl"
+    },
+    "efes": {
+      "name": "Efes 33cl"
+    },
+    "efesGlutenFree": {
+      "name": "Efes Glutensiz"
+    },
+    "becks": {
+      "name": "Becks 33cl"
+    },
+    "bud": {
+      "name": "Bud 33cl"
+    },
+    "corona": {
+      "name": "Corona 35cl"
+    },
+    "leffeBlonde": {
+      "name": "Leffe Blonde 33cl"
+    },
+    "hoegaarden": {
+      "name": "Hoegaarden 33cl"
+    },
+    "erdinger": {
+      "name": "Erdinger 33cl"
+    },
+    "duvel": {
+      "name": "Duvel 33cl"
+    },
+    "garaGuzu": {
+      "name": "Gara Guzu Summer Ipa"
+    },
+    "torchBrewery": {
+      "name": "Torch Brewery IPA"
+    },
+    "kayraVintage": {
+      "name": "Kayra Vintage C. Sauvignon",
+      "desc": "Kırmızı"
+    },
+    "morSalkimSyrah": {
+      "name": "Mor Salkım Bodrum Cantabile Syrah",
+      "desc": "Kırmızı"
+    },
+    "cieloPinotGrigio": {
+      "name": "Cielo Pinot Grigio",
+      "desc": "Beyaz"
+    },
+    "allureSauvignonBlanc": {
+      "name": "Allure Sauvignon Blanc",
+      "desc": "Beyaz"
+    },
+    "morSalkimChardonnay": {
+      "name": "Mor Salkım Bodrum Volante Chardonnay",
+      "desc": "Beyaz"
+    },
+    "cieloPinotGrigioBlush": {
+      "name": "Cielo Pinot Grigio",
+      "desc": "Blush"
+    },
+    "allureRose": {
+      "name": "Allure Beyaz Kalecik Karası",
+      "desc": "Rose"
+    },
+    "morSalkimRose": {
+      "name": "Mor Salkım Bodrum Vivace Merlot Rose",
+      "desc": "Rose"
+    },
+    "ruffinoProsecco": {
+      "name": "Ruffino Prossecco",
+      "desc": "Kadeh"
+    },
+    "bottegaBrut": {
+      "name": "Bottega Brut",
+      "desc": "Şişe"
+    },
+    "moetBrut": {
+      "name": "Moet Brut",
+      "desc": "Şişe"
+    },
+    "bottegaGold": {
+      "name": "Bottega Gold",
+      "desc": "Şişe"
+    },
+    "chandonGardenSpritz": {
+      "name": "Chandon Garden Spritz",
+      "desc": "Şişe"
+    },
+    "vitruviusKombucha": {
+      "name": "Vitruvius Kombucha",
+      "desc": "Elma&Baharat, Chili, Kereviz&Ananas"
+    },
+    "bitburger": {
+      "name": "Bitburger",
+      "desc": "Alkolsüz Bira"
+    },
+    "orangeJuice": {
+      "name": "Portakal Suyu"
+    },
+    "pellegrino": {
+      "name": "S.Pellegrino Churchill"
+    },
+    "mocktail": {
+      "name": "Mocktail"
+    },
+    "homemadeLemonade": {
+      "name": "Ev Yapımı Limonata"
+    },
+    "water": {
+      "name": "Su 33cl"
+    },
+    "cocaCola": {
+      "name": "Coca Cola & Cola Zero"
+    },
+    "americano": {
+      "name": "Americano"
+    },
+    "doubleEspresso": {
+      "name": "Double Espresso"
+    },
+    "latte": {
+      "name": "Latte"
+    },
+    "cappuccino": {
+      "name": "Cappucino"
+    },
+    "espresso": {
+      "name": "Espresso"
+    },
+    "filterCoffee": {
+      "name": "Filtre Kahve"
+    },
+    "flavoredLatte": {
+      "name": "Aromalı Latte",
+      "desc": "Vanilya, Karamel"
+    },
+    "turkishCoffee": {
+      "name": "Türk Kahvesi"
+    },
+    "iceAmericano": {
+      "name": "Ice Americano"
+    },
+    "iceLatte": {
+      "name": "Ice Latte"
+    },
+    "flavoredIceLatte": {
+      "name": "Aromalı Ice Latte",
+      "desc": "Vanilya, Karamel"
+    },
+    "yankeeBreakfast": {
+      "name": "Yankee Breakfast",
+      "desc": "Frankfurter Sosis, Dana Bacon, Fırın Patates, Salata, Göz Yumurta, Kızarmış Domatesli Ekmek."
     }
   },
   "common": {
@@ -44,6 +257,7 @@
     "blush": "Blush",
     "loading": "Yükleniyor...",
     "error": "Bir hata oluştu",
-    "retry": "Tekrar Dene"
+    "retry": "Tekrar Dene",
+    "currency": "₺"
   }
 } 

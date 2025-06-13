@@ -61,6 +61,191 @@
     "wakeUp": {
       "name": "Wake Up",
       "desc": "Guatemala Coffee Beans Infused Captain Morgan Rum, Dede Mix, Cocktail Foam"
+    },
+    "whiskeySour": {
+      "name": "Whiskey Sour",
+      "desc": "Bulleit Bourbon Whiskey, Lemon Juice, Simple Syrup, Angostura Bitters, Cocktail Foam"
+    },
+    "bramble": {
+      "name": "Bramble",
+      "desc": "Gordon's Gin, Forest Berry Liqueur, Fresh Lemon Juice"
+    },
+    "oldFashioned": {
+      "name": "Old Fashioned",
+      "desc": "Woodford Reserve Whiskey, Angostura Bitters"
+    },
+    "manhattan": {
+      "name": "Manhattan",
+      "desc": "Bulleit Bourbon, Cinzano 1757 Rosso, Maraschino Cherries"
+    },
+    "aperolSpritz": {
+      "name": "Aperol Spritz",
+      "desc": "Aperol, Ruffino Prosecco, Soda"
+    },
+    "barrelAgedNegroni": {
+      "name": "Barrel-Aged Negroni",
+      "desc": "Tanqueray, Campari, Sweet Vermouth"
+    },
+    "margaritaRocks": {
+      "name": "Margarita Rock's",
+      "desc": "Casamigos, Cointreau, Lime Juice"
+    },
+    "mezcalMargarita": {
+      "name": "Mezcal Margarita",
+      "desc": "Casamigos Mezcal, Cointreau, Lime Juice"
+    },
+    "belfastDraft": {
+      "name": "Belfast Draft 50cl"
+    },
+    "efes": {
+      "name": "Efes 33cl"
+    },
+    "efesGlutenFree": {
+      "name": "Efes Gluten Free"
+    },
+    "becks": {
+      "name": "Becks 33cl"
+    },
+    "bud": {
+      "name": "Bud 33cl"
+    },
+    "corona": {
+      "name": "Corona 35cl"
+    },
+    "leffeBlonde": {
+      "name": "Leffe Blonde 33cl"
+    },
+    "hoegaarden": {
+      "name": "Hoegaarden 33cl"
+    },
+    "erdinger": {
+      "name": "Erdinger 33cl"
+    },
+    "duvel": {
+      "name": "Duvel 33cl"
+    },
+    "garaGuzu": {
+      "name": "Gara Guzu Summer IPA"
+    },
+    "torchBrewery": {
+      "name": "Torch Brewery IPA"
+    },
+    "kayraVintage": {
+      "name": "Kayra Vintage C. Sauvignon",
+      "desc": "Red"
+    },
+    "morSalkimSyrah": {
+      "name": "Mor Salkım Bodrum Cantabile Syrah",
+      "desc": "Red"
+    },
+    "cieloPinotGrigio": {
+      "name": "Cielo Pinot Grigio",
+      "desc": "White"
+    },
+    "allureSauvignonBlanc": {
+      "name": "Allure Sauvignon Blanc",
+      "desc": "White"
+    },
+    "morSalkimChardonnay": {
+      "name": "Mor Salkım Bodrum Volante Chardonnay",
+      "desc": "White"
+    },
+    "cieloPinotGrigioBlush": {
+      "name": "Cielo Pinot Grigio",
+      "desc": "Blush"
+    },
+    "allureRose": {
+      "name": "Allure White Kalecik Karası",
+      "desc": "Rose"
+    },
+    "morSalkimRose": {
+      "name": "Mor Salkım Bodrum Vivace Merlot Rose",
+      "desc": "Rose"
+    },
+    "ruffinoProsecco": {
+      "name": "Ruffino Prosecco",
+      "desc": "Glass"
+    },
+    "bottegaBrut": {
+      "name": "Bottega Brut",
+      "desc": "Bottle"
+    },
+    "moetBrut": {
+      "name": "Moet Brut",
+      "desc": "Bottle"
+    },
+    "bottegaGold": {
+      "name": "Bottega Gold",
+      "desc": "Bottle"
+    },
+    "chandonGardenSpritz": {
+      "name": "Chandon Garden Spritz",
+      "desc": "Bottle"
+    },
+    "vitruviusKombucha": {
+      "name": "Vitruvius Kombucha",
+      "desc": "Apple&Spice, Chili, Celery&Pineapple"
+    },
+    "bitburger": {
+      "name": "Bitburger",
+      "desc": "Non-Alcoholic Beer"
+    },
+    "orangeJuice": {
+      "name": "Orange Juice"
+    },
+    "pellegrino": {
+      "name": "S.Pellegrino Churchill"
+    },
+    "mocktail": {
+      "name": "Mocktail"
+    },
+    "homemadeLemonade": {
+      "name": "Homemade Lemonade"
+    },
+    "water": {
+      "name": "Water 33cl"
+    },
+    "cocaCola": {
+      "name": "Coca Cola & Cola Zero"
+    },
+    "americano": {
+      "name": "Americano"
+    },
+    "doubleEspresso": {
+      "name": "Double Espresso"
+    },
+    "latte": {
+      "name": "Latte"
+    },
+    "cappuccino": {
+      "name": "Cappuccino"
+    },
+    "espresso": {
+      "name": "Espresso"
+    },
+    "filterCoffee": {
+      "name": "Filter Coffee"
+    },
+    "flavoredLatte": {
+      "name": "Flavored Latte",
+      "desc": "Vanilla, Caramel"
+    },
+    "turkishCoffee": {
+      "name": "Turkish Coffee"
+    },
+    "iceAmericano": {
+      "name": "Ice Americano"
+    },
+    "iceLatte": {
+      "name": "Ice Latte"
+    },
+    "flavoredIceLatte": {
+      "name": "Flavored Ice Latte",
+      "desc": "Vanilla, Caramel"
+    },
+    "yankeeBreakfast": {
+      "name": "Yankee Breakfast",
+      "desc": "Frankfurter Sausage, Beef Bacon, Roasted Potatoes, Salad, Fried Egg, Tomato Toast"
     }
   },
   "common": {
