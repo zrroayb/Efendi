@@ -17,6 +17,7 @@ import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
 import StarIcon from "@mui/icons-material/Star";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import logo from "./efendi-logo.png";
 
 const watermark = (
   <svg
@@ -335,7 +336,7 @@ function App() {
           }}
         >
           <img
-            src="/efendi-logo.png"
+            src={logo}
             alt="Efendi Bar Logo"
             style={{
               height: 96,
