@@ -7,20 +7,36 @@ body {
 
 body::before {
   content: '';
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./efendi-logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+  opacity: 0.08;
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: #111;
-  opacity: 0.85;
+  opacity: 0.92;
   z-index: -1;
 }
 
 .App {
   min-height: 100vh;
   padding: 0;
-  background: #111;
+  background: transparent;
   position: relative;
 }
 
