@@ -1,6 +1,7 @@
 {
   "menu": {
-    "title": "Menu",
+    "title": "Efendi Menu",
+    "subtitle": "Delicious drinks and food",
     "categories": {
       "starters": "Starters",
       "mainCourses": "Main Courses",

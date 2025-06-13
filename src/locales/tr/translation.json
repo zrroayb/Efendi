@@ -1,6 +1,7 @@
 {
   "menu": {
-    "title": "Menü",
+    "title": "Efendi Menü",
+    "subtitle": "Lezzetli içecekler ve yemekler",
     "categories": {
       "starters": "Başlangıçlar",
       "mainCourses": "Ana Yemekler",

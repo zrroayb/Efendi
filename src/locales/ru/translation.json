@@ -1,6 +1,7 @@
 {
   "menu": {
-    "title": "Меню",
+    "title": "Меню Эфенди",
+    "subtitle": "Вкусные напитки и еда",
     "categories": {
       "starters": "Закуски",
       "mainCourses": "Основные блюда",
