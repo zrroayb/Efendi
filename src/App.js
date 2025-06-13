@@ -310,30 +310,71 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Container
+      fluid
+      className="App"
+      style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}
+    >
       {watermark}
-      <Container>
-        <div className="App-header">
-          <h1>EFENDI BAR</h1>
+      <header
+        className="App-header"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          minHeight: "100vh",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            marginTop: 32,
+          }}
+        >
+          <img
+            src={logo}
+            alt="Efendi Bar Logo"
+            style={{
+              height: 96,
+              width: 96,
+              objectFit: "contain",
+              display: "block",
+            }}
+          />
+        </div>
+        <div style={{ marginTop: 40, width: "100%", maxWidth: 600 }}>
           {menu.map((section, idx) => (
             <Accordion
-              key={idx}
+              key={section.title}
               expanded={expanded === idx}
               onChange={handleAccordionChange(idx)}
+              sx={{
+                background: "rgba(24,24,24,0.95)",
+                mb: 2,
+                borderRadius: 2,
+                boxShadow: "0 2px 8px #000",
+              }}
             >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls={`panel${idx}-content`}
-                id={`panel${idx}-header`}
-              >
-                <Typography>
-                  {section.icon}
-                  {section.title}
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: "1.3rem",
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {section.icon} {section.title}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {section.items.map((item, itemIdx) => (
-                  <div key={itemIdx}>
+                {section.items.map((item, i) => (
+                  <div key={item.name} style={{ marginBottom: 18 }}>
                     <div className="menu-item-title">{item.name}</div>
                     {item.desc && (
                       <div className="menu-item-desc">{item.desc}</div>
@@ -344,7 +385,7 @@ function App() {
             </Accordion>
           ))}
         </div>
-      </Container>
+      </header>
       <footer
         style={{
           width: "100%",
@@ -382,7 +423,7 @@ function App() {
           @efendi_nargile_pub
         </a>
       </footer>
-    </div>
+    </Container>
   );
 }
 
