@@ -57,7 +57,6 @@ function App() {
         </div>
         <div className="menu-header">
           <h1>{t("menu.title")}</h1>
-          <p>{t("menu.subtitle")}</p>
         </div>
         {menuData.map((category, idx) => (
           <Accordion
