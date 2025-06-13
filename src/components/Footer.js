@@ -3,40 +3,43 @@ import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div
+    <footer
       style={{
         position: "fixed",
         bottom: 0,
         left: 0,
-        right: 0,
-        backgroundColor: "#2a2a2a",
-        padding: "12px",
+        width: "100%",
+        backgroundColor: "#000",
+        padding: "1rem",
         textAlign: "center",
-        boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.2)",
-        zIndex: 9999,
+        zIndex: 1000,
+        boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
       }}
     >
       <a
-        href="https://www.instagram.com/efendibodrum"
+        href="https://www.instagram.com/efendi_restaurant/"
         target="_blank"
         rel="noopener noreferrer"
         style={{
-          color: "#ffffff",
-          textDecoration: "none",
           display: "inline-flex",
           alignItems: "center",
-          gap: "8px",
-          padding: "8px 16px",
-          backgroundColor: "#333333",
-          borderRadius: "4px",
-          fontSize: "16px",
-          fontWeight: "bold",
+          gap: "0.5rem",
+          color: "#fff",
+          textDecoration: "none",
+          fontSize: "1.2rem",
+          padding: "0.5rem 1rem",
+          borderRadius: "8px",
+          background:
+            "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+          transition: "transform 0.2s ease-in-out",
         }}
+        onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+        onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
-        <FaInstagram size={24} />
-        @efendibodrum
+        <FaInstagram style={{ fontSize: "1.5rem" }} />
+        <span>@efendi_restaurant</span>
       </a>
-    </div>
+    </footer>
   );
 };
 
