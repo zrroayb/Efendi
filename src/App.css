@@ -106,14 +106,19 @@ body::after {
 }
 
 .MuiAccordion-root {
-  background: #181818 !important;
-  border: 1px solid #222 !important;
-  box-shadow: 0 2px 8px #000 !important;
+  background: rgba(24, 24, 24, 0.7) !important;
+  border: 1px solid rgba(34, 34, 34, 0.7) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
   border-radius: 12px !important;
+  backdrop-filter: blur(5px);
 }
 
 .MuiAccordionSummary-root {
-  border-bottom: 1px solid #222 !important;
+  border-bottom: 1px solid rgba(34, 34, 34, 0.7) !important;
+}
+
+.MuiAccordionDetails-root {
+  background: rgba(24, 24, 24, 0.5) !important;
 }
 
 .MuiTypography-root {
