@@ -96,40 +96,52 @@
       "desc": "Casamigos Mezcal, Cointreau, Lime Juice"
     },
     "belfastDraft": {
-      "name": "Belfast Draft 50cl"
+      "name": "Belfast Draft 50cl",
+      "desc": "Draft Beer"
     },
     "efes": {
-      "name": "Efes 33cl"
+      "name": "Efes 33cl",
+      "desc": "Local Beer"
     },
     "efesGlutenFree": {
-      "name": "Efes Gluten Free"
+      "name": "Efes Gluten Free",
+      "desc": "Gluten Free Beer"
     },
     "becks": {
-      "name": "Becks 33cl"
+      "name": "Becks 33cl",
+      "desc": "German Beer"
     },
     "bud": {
-      "name": "Bud 33cl"
+      "name": "Bud 33cl",
+      "desc": "American Beer"
     },
     "corona": {
-      "name": "Corona 35cl"
+      "name": "Corona 35cl",
+      "desc": "Mexican Beer"
     },
     "leffeBlonde": {
-      "name": "Leffe Blonde 33cl"
+      "name": "Leffe Blonde 33cl",
+      "desc": "Belgian Beer"
     },
     "hoegaarden": {
-      "name": "Hoegaarden 33cl"
+      "name": "Hoegaarden 33cl",
+      "desc": "Belgian Wheat Beer"
     },
     "erdinger": {
-      "name": "Erdinger 33cl"
+      "name": "Erdinger 33cl",
+      "desc": "German Wheat Beer"
     },
     "duvel": {
-      "name": "Duvel 33cl"
+      "name": "Duvel 33cl",
+      "desc": "Belgian Strong Beer"
     },
     "garaGuzu": {
-      "name": "Gara Guzu Summer IPA"
+      "name": "Gara Guzu Summer IPA",
+      "desc": "Local IPA"
     },
     "torchBrewery": {
-      "name": "Torch Brewery IPA"
+      "name": "Torch Brewery IPA",
+      "desc": "Local IPA"
     },
     "kayraVintage": {
       "name": "Kayra Vintage C. Sauvignon",
@@ -192,53 +204,68 @@
       "desc": "Non-Alcoholic Beer"
     },
     "orangeJuice": {
-      "name": "Orange Juice"
+      "name": "Orange Juice",
+      "desc": "Freshly Squeezed"
     },
     "pellegrino": {
-      "name": "S.Pellegrino Churchill"
+      "name": "S.Pellegrino Churchill",
+      "desc": "Mineral Water"
     },
     "mocktail": {
-      "name": "Mocktail"
+      "name": "Mocktail",
+      "desc": "Non-Alcoholic Cocktail"
     },
     "homemadeLemonade": {
-      "name": "Homemade Lemonade"
+      "name": "Homemade Lemonade",
+      "desc": "Freshly Squeezed"
     },
     "water": {
-      "name": "Water 33cl"
+      "name": "Water 33cl",
+      "desc": "Drinking Water"
     },
     "cocaCola": {
-      "name": "Coca Cola & Cola Zero"
+      "name": "Coca Cola & Cola Zero",
+      "desc": "Carbonated Drink"
     },
     "americano": {
-      "name": "Americano"
+      "name": "Americano",
+      "desc": "Hot Coffee"
     },
     "doubleEspresso": {
-      "name": "Double Espresso"
+      "name": "Double Espresso",
+      "desc": "Double Espresso"
     },
     "latte": {
-      "name": "Latte"
+      "name": "Latte",
+      "desc": "Milk Coffee"
     },
     "cappuccino": {
-      "name": "Cappuccino"
+      "name": "Cappuccino",
+      "desc": "Milk Coffee"
     },
     "espresso": {
-      "name": "Espresso"
+      "name": "Espresso",
+      "desc": "Espresso"
     },
     "filterCoffee": {
-      "name": "Filter Coffee"
+      "name": "Filter Coffee",
+      "desc": "Filter Coffee"
     },
     "flavoredLatte": {
       "name": "Flavored Latte",
       "desc": "Vanilla, Caramel"
     },
     "turkishCoffee": {
-      "name": "Turkish Coffee"
+      "name": "Turkish Coffee",
+      "desc": "Turkish Coffee"
     },
     "iceAmericano": {
-      "name": "Ice Americano"
+      "name": "Ice Americano",
+      "desc": "Cold Coffee"
     },
     "iceLatte": {
-      "name": "Ice Latte"
+      "name": "Ice Latte",
+      "desc": "Cold Milk Coffee"
     },
     "flavoredIceLatte": {
       "name": "Flavored Ice Latte",

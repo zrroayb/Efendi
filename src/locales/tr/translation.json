@@ -96,40 +96,52 @@
       "desc": "Casamigos Mezcal, Cointreau, Lime Suyu"
     },
     "belfastDraft": {
-      "name": "Belfast Fıçı 50cl"
+      "name": "Belfast Fıçı 50cl",
+      "desc": "Fıçı Bira"
     },
     "efes": {
-      "name": "Efes 33cl"
+      "name": "Efes 33cl",
+      "desc": "Yerli Bira"
     },
     "efesGlutenFree": {
-      "name": "Efes Glutensiz"
+      "name": "Efes Glutensiz",
+      "desc": "Glutensiz Bira"
     },
     "becks": {
-      "name": "Becks 33cl"
+      "name": "Becks 33cl",
+      "desc": "Alman Birası"
     },
     "bud": {
-      "name": "Bud 33cl"
+      "name": "Bud 33cl",
+      "desc": "Amerikan Birası"
     },
     "corona": {
-      "name": "Corona 35cl"
+      "name": "Corona 35cl",
+      "desc": "Meksika Birası"
     },
     "leffeBlonde": {
-      "name": "Leffe Blonde 33cl"
+      "name": "Leffe Blonde 33cl",
+      "desc": "Belçika Birası"
     },
     "hoegaarden": {
-      "name": "Hoegaarden 33cl"
+      "name": "Hoegaarden 33cl",
+      "desc": "Belçika Buğday Birası"
     },
     "erdinger": {
-      "name": "Erdinger 33cl"
+      "name": "Erdinger 33cl",
+      "desc": "Alman Buğday Birası"
     },
     "duvel": {
-      "name": "Duvel 33cl"
+      "name": "Duvel 33cl",
+      "desc": "Belçika Güçlü Birası"
     },
     "garaGuzu": {
-      "name": "Gara Guzu Summer Ipa"
+      "name": "Gara Guzu Summer Ipa",
+      "desc": "Yerli IPA"
     },
     "torchBrewery": {
-      "name": "Torch Brewery IPA"
+      "name": "Torch Brewery IPA",
+      "desc": "Yerli IPA"
     },
     "kayraVintage": {
       "name": "Kayra Vintage C. Sauvignon",
@@ -192,53 +204,68 @@
       "desc": "Alkolsüz Bira"
     },
     "orangeJuice": {
-      "name": "Portakal Suyu"
+      "name": "Portakal Suyu",
+      "desc": "Taze Sıkılmış"
     },
     "pellegrino": {
-      "name": "S.Pellegrino Churchill"
+      "name": "S.Pellegrino Churchill",
+      "desc": "Maden Suyu"
     },
     "mocktail": {
-      "name": "Mocktail"
+      "name": "Mocktail",
+      "desc": "Alkolsüz Kokteyl"
     },
     "homemadeLemonade": {
-      "name": "Ev Yapımı Limonata"
+      "name": "Ev Yapımı Limonata",
+      "desc": "Taze Sıkılmış"
     },
     "water": {
-      "name": "Su 33cl"
+      "name": "Su 33cl",
+      "desc": "İçme Suyu"
     },
     "cocaCola": {
-      "name": "Coca Cola & Cola Zero"
+      "name": "Coca Cola & Cola Zero",
+      "desc": "Gazlı İçecek"
     },
     "americano": {
-      "name": "Americano"
+      "name": "Americano",
+      "desc": "Sıcak Kahve"
     },
     "doubleEspresso": {
-      "name": "Double Espresso"
+      "name": "Double Espresso",
+      "desc": "Çift Espresso"
     },
     "latte": {
-      "name": "Latte"
+      "name": "Latte",
+      "desc": "Sütlü Kahve"
     },
     "cappuccino": {
-      "name": "Cappucino"
+      "name": "Cappucino",
+      "desc": "Sütlü Kahve"
     },
     "espresso": {
-      "name": "Espresso"
+      "name": "Espresso",
+      "desc": "Espresso"
     },
     "filterCoffee": {
-      "name": "Filtre Kahve"
+      "name": "Filtre Kahve",
+      "desc": "Filtre Kahve"
     },
     "flavoredLatte": {
       "name": "Aromalı Latte",
       "desc": "Vanilya, Karamel"
     },
     "turkishCoffee": {
-      "name": "Türk Kahvesi"
+      "name": "Türk Kahvesi",
+      "desc": "Türk Kahvesi"
     },
     "iceAmericano": {
-      "name": "Ice Americano"
+      "name": "Ice Americano",
+      "desc": "Soğuk Kahve"
     },
     "iceLatte": {
-      "name": "Ice Latte"
+      "name": "Ice Latte",
+      "desc": "Soğuk Sütlü Kahve"
     },
     "flavoredIceLatte": {
       "name": "Aromalı Ice Latte",
