@@ -187,3 +187,23 @@ body::after {
     letter-spacing: 2px !important;
   }
 }
+
+.menu-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.menu-item-info {
+  flex: 1;
+}
+
+.menu-item-price {
+  font-weight: 600;
+  color: #fff;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  margin-left: 1rem;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
