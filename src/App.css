@@ -73,12 +73,14 @@ body::after {
   font-size: 1.15rem;
   color: #fff;
   font-family: 'Georgia', 'Times New Roman', serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .menu-item-desc {
   font-size: 1rem;
-  color: #bbb;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1.2rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .App-logo {
@@ -106,19 +108,27 @@ body::after {
 }
 
 .MuiAccordion-root {
-  background: rgba(24, 24, 24, 0.7) !important;
-  border: 1px solid rgba(34, 34, 34, 0.7) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  background: rgba(24, 24, 24, 0.5) !important;
+  border: 1px solid rgba(34, 34, 34, 0.5) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
   border-radius: 12px !important;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease !important;
+}
+
+.MuiAccordion-root:hover {
+  background: rgba(24, 24, 24, 0.6) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 .MuiAccordionSummary-root {
-  border-bottom: 1px solid rgba(34, 34, 34, 0.7) !important;
+  border-bottom: 1px solid rgba(34, 34, 34, 0.5) !important;
+  transition: all 0.3s ease !important;
 }
 
 .MuiAccordionDetails-root {
-  background: rgba(24, 24, 24, 0.5) !important;
+  background: rgba(24, 24, 24, 0.3) !important;
+  transition: all 0.3s ease !important;
 }
 
 .MuiTypography-root {
