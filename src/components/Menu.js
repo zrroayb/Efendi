@@ -28,6 +28,7 @@ const Menu = () => {
         flexDirection: "column",
         backgroundColor: "#1a1a1a",
         color: "#ffffff",
+        position: "relative",
         paddingBottom: "60px",
       }}
     >
@@ -117,12 +118,15 @@ const Menu = () => {
           position: "fixed",
           bottom: 0,
           left: 0,
-          width: "100%",
+          right: 0,
           backgroundColor: "#2a2a2a",
           padding: "12px 0",
           textAlign: "center",
           boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.2)",
           zIndex: 1000,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <a
@@ -134,13 +138,23 @@ const Menu = () => {
             textDecoration: "none",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
             gap: "8px",
+            padding: "8px 16px",
+            borderRadius: "4px",
+            transition: "background-color 0.3s ease",
+            ":hover": {
+              backgroundColor: "#333333",
+            },
           }}
           aria-label={t("footer.instagram")}
         >
-          <FaInstagram size={20} />
-          <span style={{ fontFamily: "Playfair Display, serif" }}>
+          <FaInstagram size={24} />
+          <span
+            style={{
+              fontFamily: "Playfair Display, serif",
+              fontSize: "1.1rem",
+            }}
+          >
             {t("footer.instagram")}
           </span>
         </a>
