@@ -1,0 +1,22 @@
+{
+  "menu": {
+    "specialCocktails": "Özel Kokteyller",
+    "classicCocktails": "Klasik Kokteyller",
+    "beers": "Biralar",
+    "wines": "Şaraplar",
+    "sparkling": "Köpüklü Şaraplar",
+    "softDrinks": "Alkolsüz İçecekler",
+    "hotCoffee": "Sıcak Kahveler",
+    "coldCoffee": "Soğuk Kahveler",
+    "breakfast": "Kahvaltı"
+  },
+  "items": {
+    "specialCocktails": {
+      "name": "Özel Kokteyller",
+      "desc": "Özel tariflerimizle hazırlanan kokteyllerimiz"
+    }
+  },
+  "footer": {
+    "instagram": "@efendibodrum"
+  }
+} 

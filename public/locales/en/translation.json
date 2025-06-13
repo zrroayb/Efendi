@@ -1,0 +1,22 @@
+{
+  "menu": {
+    "specialCocktails": "Special Cocktails",
+    "classicCocktails": "Classic Cocktails",
+    "beers": "Beers",
+    "wines": "Wines",
+    "sparkling": "Sparkling Wines",
+    "softDrinks": "Soft Drinks",
+    "hotCoffee": "Hot Coffee",
+    "coldCoffee": "Cold Coffee",
+    "breakfast": "Breakfast"
+  },
+  "items": {
+    "specialCocktails": {
+      "name": "Special Cocktails",
+      "desc": "Our cocktails prepared with special recipes"
+    }
+  },
+  "footer": {
+    "instagram": "@efendibodrum"
+  }
+} 
