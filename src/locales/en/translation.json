@@ -19,7 +19,7 @@
     "classicCocktails": "Classic Cocktails",
     "beers": "Beers",
     "wines": "Wines",
-    "sparkling": "Sparkling",
+    "sparkling": "Sparkling Wines",
     "softDrinks": "Soft Drinks",
     "hotCoffee": "Hot Coffee",
     "coldCoffee": "Cold Coffee",
@@ -33,6 +33,34 @@
     "lambEar": {
       "name": "Lamb's Ear",
       "desc": "Gordon's Gin, Fresh Lamb's Ear, Yuzu, Lemon Juice, Cucumber"
+    },
+    "rhubarb": {
+      "name": "Rhubarb",
+      "desc": "Smirnoff Vodka, Douzico, Rhubarb Liqueur, Pomegranate Molasses, Lemon Juice"
+    },
+    "drIndia": {
+      "name": "Dr India",
+      "desc": "Captain Morgan Spiced Gold, Ginger Liqueur, Cinnamon, Lemon Juice"
+    },
+    "peachSour": {
+      "name": "Peach Sour",
+      "desc": "Gordon's Gin, Peach Liqueur, Fresh Peach, Lemon Juice, Cocktail Foam"
+    },
+    "goldenHarmony": {
+      "name": "Golden Harmony",
+      "desc": "Singleton 12 Years, Luxardo Maraschino, Caramelized Fresh Peach, Lemon Juice, Cocktail Foam"
+    },
+    "chiliPassion": {
+      "name": "Chili Passion",
+      "desc": "Chili Infused Casamigos, Passion Fruit, Lemon Juice, Tajin Spiced Neck"
+    },
+    "number10": {
+      "name": "Number 10",
+      "desc": "Gordon's Gin, Passion Fruit, Fresh Bodrum Mandarin, Lemon Juice, Cocktail Foam"
+    },
+    "wakeUp": {
+      "name": "Wake Up",
+      "desc": "Guatemala Coffee Beans Infused Captain Morgan Rum, Dede Mix, Cocktail Foam"
     }
   },
   "common": {
@@ -44,6 +72,7 @@
     "blush": "Blush",
     "loading": "Loading...",
     "error": "An error occurred",
-    "retry": "Retry"
+    "retry": "Retry",
+    "currency": "₺"
   }
 } 

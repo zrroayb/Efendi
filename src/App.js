@@ -329,133 +329,72 @@ const menu = [
 ];
 
 function App() {
-  const [expanded, setExpanded] = useState(false);
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(false);
 
   const handleAccordionChange = (idx) => (event, isExpanded) => {
     setExpanded(isExpanded ? idx : false);
   };
 
   return (
-    <Container
-      fluid
-      className="App"
-      style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}
-    >
+    <div className="App">
       <LanguageSelector />
-      <header
-        className="App-header"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          minHeight: "100vh",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            marginTop: 32,
-          }}
-        >
-          <img
-            src={logo}
-            alt="Efendi Bar Logo"
-            style={{
-              height: 96,
-              width: 96,
-              objectFit: "contain",
-              display: "block",
-            }}
-          />
+      <Container className="menu-container">
+        <div className="logo-background">
+          <img src={logo} alt="Logo" />
         </div>
-        <div style={{ marginTop: 40, width: "100%", maxWidth: 600 }}>
-          {menu.map((section, idx) => (
-            <Accordion
-              key={section.title}
-              expanded={expanded === idx}
-              onChange={handleAccordionChange(idx)}
-              sx={{
-                background: "rgba(24,24,24,0.95)",
-                mb: 2,
-                borderRadius: 2,
-                boxShadow: "0 2px 8px #000",
-              }}
+        {menu.map((section, idx) => (
+          <Accordion
+            key={idx}
+            expanded={expanded === idx}
+            onChange={handleAccordionChange(idx)}
+            className="menu-section"
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`panel${idx}-content`}
+              id={`panel${idx}-header`}
             >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: "1.3rem",
-                    color: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {section.icon} {section.title}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                {section.items.map((item, i) => (
-                  <div key={item.name} style={{ marginBottom: 18 }}>
-                    <div className="menu-item-container">
-                      <div className="menu-item-info">
-                        <div className="menu-item-title">{item.name}</div>
-                        {item.desc && (
-                          <div className="menu-item-desc">{item.desc}</div>
+              <Typography className="section-title">
+                {section.icon}
+                {t(`menu.${section.title.toLowerCase().replace(/\s+/g, "")}`)}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className="menu-items">
+                {section.items.map((item, itemIdx) => (
+                  <div key={itemIdx} className="menu-item">
+                    <div className="item-header">
+                      <Typography className="item-name">
+                        {t(
+                          `items.${item.name
+                            .toLowerCase()
+                            .replace(/\s+/g, "")}.name`,
+                          { defaultValue: item.name }
                         )}
-                      </div>
-                      <div className="menu-item-price">{item.price}</div>
+                      </Typography>
+                      <Typography className="item-price">
+                        {item.price}
+                      </Typography>
                     </div>
+                    {item.desc && (
+                      <Typography className="item-desc">
+                        {t(
+                          `items.${item.name
+                            .toLowerCase()
+                            .replace(/\s+/g, "")}.desc`,
+                          { defaultValue: item.desc }
+                        )}
+                      </Typography>
+                    )}
                   </div>
                 ))}
-              </AccordionDetails>
-            </Accordion>
-          ))}
-        </div>
-      </header>
-      <footer
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 48,
-          marginBottom: 24,
-        }}
-      >
-        <a
-          href="https://www.instagram.com/efendi_nargile_pub/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            color: "#fff",
-            textDecoration: "none",
-            fontWeight: 500,
-            fontSize: 18,
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-          }}
-        >
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 448 512"
-            fill="currentColor"
-            style={{ marginRight: 6 }}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M224 202.66A53.34 53.34 0 1 0 277.34 256 53.38 53.38 0 0 0 224 202.66Zm124.71-41a54 54 0 0 0-30.36-30.36C293.19 120 256.6 118.13 224 118.13s-69.19 1.87-94.35 13.17a54 54 0 0 0-30.36 30.36C120 162.81 118.13 199.4 118.13 232s1.87 69.19 13.17 94.35a54 54 0 0 0 30.36 30.36C162.81 392 199.4 393.87 232 393.87s69.19-1.87 94.35-13.17a54 54 0 0 0 30.36-30.36C392 349.19 393.87 312.6 393.87 280s-1.87-69.19-13.17-94.35ZM224 338a82 82 0 1 1 82-82 82 82 0 0 1-82 82Zm85.4-148.6a19.2 19.2 0 1 1-19.2-19.2 19.2 19.2 0 0 1 19.2 19.2ZM398.8 80A80 80 0 0 0 368 51.2C347.2 32.8 320.8 24 288 24H160c-32.8 0-59.2 8.8-80 27.2A80 80 0 0 0 49.2 80C32.8 100.8 24 127.2 24 160v128c0 32.8 8.8 59.2 27.2 80A80 80 0 0 0 80 432c20.8 18.4 47.2 27.2 80 27.2h128c32.8 0 59.2-8.8 80-27.2a80 80 0 0 0 27.2-80c18.4-20.8 27.2-47.2 27.2-80V160c0-32.8-8.8-59.2-27.2-80ZM224 338a114 114 0 1 1 114-114A114 114 0 0 1 224 338Zm146.4-186.4a32 32 0 1 1-32-32 32 32 0 0 1 32 32Z" />
-          </svg>
-          @efendi_nargile_pub
-        </a>
-      </footer>
-    </Container>
+              </div>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </Container>
+    </div>
   );
 }
 

@@ -35,9 +35,10 @@ body::after {
 
 .App {
   min-height: 100vh;
-  padding: 0;
-  background: transparent;
+  background-color: #121212;
+  color: #fff;
   position: relative;
+  overflow-x: hidden;
 }
 
 .App-header {
@@ -58,29 +59,79 @@ body::after {
   pointer-events: none;
 }
 
-.menu-section-title {
-  color: #fff;
-  font-weight: 700;
-  font-size: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  letter-spacing: 1px;
-  font-family: 'Georgia', 'Times New Roman', serif;
+.menu-container {
+  position: relative;
+  padding: 80px 20px 40px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.menu-item-title {
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: #fff;
-  font-family: 'Georgia', 'Times New Roman', serif;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+.logo-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
-.menu-item-desc {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1.2rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+.logo-background img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
+.menu-section {
+  background: rgba(24, 24, 24, 0.95) !important;
+  margin-bottom: 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  overflow: hidden;
+}
+
+.section-title {
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.menu-items {
+  padding: 8px 0;
+}
+
+.menu-item {
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.item-name {
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  color: #fff !important;
+  flex: 1;
+  margin-right: 16px;
+}
+
+.item-price {
+  font-weight: 600 !important;
+  color: #fff !important;
+  white-space: nowrap;
+}
+
+.item-desc {
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  line-height: 1.4 !important;
 }
 
 .App-logo {
@@ -140,16 +191,21 @@ body::after {
   .App-header {
     padding: 1rem 0 0 0;
   }
-  .menu-section-title {
-    font-size: 1.3rem;
-    margin-top: 1.2rem;
-    margin-bottom: 0.7rem;
+  .menu-container {
+    padding: 60px 12px 24px;
   }
-  .menu-item-title {
-    font-size: 1rem;
+  .logo-background img {
+    width: 300px;
+    height: 300px;
   }
-  .menu-item-desc {
-    font-size: 0.95rem;
+  .section-title {
+    font-size: 1.1rem !important;
+  }
+  .item-name {
+    font-size: 1rem !important;
+  }
+  .item-desc {
+    font-size: 0.85rem !important;
   }
   .MuiAccordion-root {
     border-radius: 8px !important;
@@ -170,13 +226,13 @@ body::after {
   .App-header {
     padding: 0.5rem 0 0 0;
   }
-  .menu-section-title {
+  .section-title {
     font-size: 1.05rem;
   }
-  .menu-item-title {
+  .item-name {
     font-size: 0.9rem;
   }
-  .menu-item-desc {
+  .item-desc {
     font-size: 0.85rem;
   }
   .App-header img {
