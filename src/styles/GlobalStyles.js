@@ -163,7 +163,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.footerText};
     padding: 20px;
     text-align: center;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     width: 100%;
