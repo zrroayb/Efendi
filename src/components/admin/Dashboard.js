@@ -186,18 +186,40 @@ const Dashboard = () => {
   );
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 4, px: { xs: 1, sm: 2, md: 4 } }}>
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
           justifyContent: "space-between",
           mb: 3,
-          alignItems: "center",
+          alignItems: { xs: "stretch", sm: "center" },
+          gap: { xs: 2, sm: 0 },
         }}
       >
-        <Typography variant="h4">Menu Management</Typography>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <FormControl sx={{ minWidth: 200, mr: 2 }} size="small">
+        <Typography
+          variant="h4"
+          sx={{ mb: { xs: 2, sm: 0 }, fontSize: { xs: "1.3rem", sm: "2rem" } }}
+        >
+          Menu Management
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: "center",
+            gap: 2,
+            width: { xs: "100%", sm: "auto" },
+          }}
+        >
+          <FormControl
+            sx={{
+              minWidth: { xs: "100%", sm: 200 },
+              mr: { sm: 2 },
+              mb: { xs: 1, sm: 0 },
+            }}
+            size="small"
+          >
             <InputLabel>Filter by Category</InputLabel>
             <Select
               value={categoryFilter}
@@ -216,7 +238,7 @@ const Dashboard = () => {
             variant="contained"
             startIcon={<CategoryIcon />}
             onClick={handleOpenCategoryDialog}
-            sx={{ mr: 2 }}
+            sx={{ width: { xs: "100%", sm: "auto" }, mb: { xs: 1, sm: 0 } }}
           >
             Add Category
           </Button>
@@ -224,6 +246,7 @@ const Dashboard = () => {
             variant="contained"
             startIcon={<AddIcon />}
             onClick={() => handleOpenDialog()}
+            sx={{ width: { xs: "100%", sm: "auto" } }}
           >
             Add New Item
           </Button>
@@ -232,9 +255,15 @@ const Dashboard = () => {
 
       <TableContainer
         component={Paper}
-        sx={{ borderRadius: 4, boxShadow: 4, mb: 4 }}
+        sx={{
+          borderRadius: 4,
+          boxShadow: 4,
+          mb: 4,
+          width: "100%",
+          overflowX: "auto",
+        }}
       >
-        <Table>
+        <Table sx={{ minWidth: 650 }}>
           <TableHead
             sx={{
               background: "linear-gradient(90deg, #1976d2 0%, #388e3c 100%)",
@@ -330,6 +359,9 @@ const Dashboard = () => {
         onClose={handleCloseDialog}
         maxWidth="md"
         fullWidth
+        PaperProps={{
+          sx: { maxWidth: { xs: "95vw", sm: 600 }, m: { xs: 1, sm: "auto" } },
+        }}
       >
         <DialogTitle>
           {selectedItem ? "Edit Menu Item" : "Add New Menu Item"}
@@ -442,6 +474,9 @@ const Dashboard = () => {
         onClose={handleCloseCategoryDialog}
         maxWidth="sm"
         fullWidth
+        PaperProps={{
+          sx: { maxWidth: { xs: "95vw", sm: 400 }, m: { xs: 1, sm: "auto" } },
+        }}
       >
         <DialogTitle>Add New Category</DialogTitle>
         <DialogContent>
