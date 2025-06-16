@@ -37,6 +37,26 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import CategoryIcon from "@mui/icons-material/Category";
+import { styled } from "@mui/material/styles";
+
+const LangBox = styled(Box)(({ bgcolor }) => ({
+  backgroundColor: bgcolor,
+  color: "#fff",
+  borderRadius: 6,
+  padding: "4px 12px",
+  display: "inline-block",
+  fontWeight: 700,
+  fontSize: "0.95rem",
+  marginBottom: 8,
+  marginRight: 8,
+  letterSpacing: 1,
+}));
+
+const langColors = {
+  en: "#1976d2",
+  tr: "#388e3c",
+  ru: "#d32f2f",
+};
 
 const Dashboard = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -187,34 +207,66 @@ const Dashboard = () => {
         </Box>
       </Box>
 
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        sx={{ borderRadius: 4, boxShadow: 4, mb: 4 }}
+      >
         <Table>
-          <TableHead>
+          <TableHead
+            sx={{
+              background: "linear-gradient(90deg, #1976d2 0%, #388e3c 100%)",
+            }}
+          >
             <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>English Name</TableCell>
-              <TableCell>Turkish Name</TableCell>
-              <TableCell>Russian Name</TableCell>
-              <TableCell>Actions</TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
+                Category
+              </TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
+                Price
+              </TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
+                English Name
+              </TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
+                Turkish Name
+              </TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
+                Russian Name
+              </TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
+                Actions
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {menuItems.map((item) => (
-              <TableRow key={item.id}>
+              <TableRow
+                key={item.id}
+                hover
+                sx={{
+                  transition: "0.2s",
+                  "&:hover": { backgroundColor: "#f5f5f5" },
+                }}
+              >
                 <TableCell>
                   {categories.find((cat) => cat.id === item.category)
                     ?.translations.en || item.category}
                 </TableCell>
-                <TableCell>{item.price}</TableCell>
+                <TableCell>{item.price ? `${item.price} ₺` : ""}</TableCell>
                 <TableCell>{item.translations.en.name}</TableCell>
                 <TableCell>{item.translations.tr.name}</TableCell>
                 <TableCell>{item.translations.ru.name}</TableCell>
                 <TableCell>
-                  <IconButton onClick={() => handleOpenDialog(item)}>
+                  <IconButton
+                    onClick={() => handleOpenDialog(item)}
+                    color="primary"
+                  >
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDelete(item.id)}>
+                  <IconButton
+                    onClick={() => handleDelete(item.id)}
+                    color="error"
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -256,15 +308,37 @@ const Dashboard = () => {
               label="Price"
               value={formData.price}
               onChange={(e) =>
-                setFormData({ ...formData, price: e.target.value })
+                setFormData({
+                  ...formData,
+                  price: e.target.value.replace(/[^0-9.,]/g, ""),
+                })
               }
+              InputProps={{
+                endAdornment: (
+                  <span
+                    style={{ color: "#1976d2", fontWeight: 700, marginLeft: 4 }}
+                  >
+                    ₺
+                  </span>
+                ),
+              }}
             />
 
             {["en", "tr", "ru"].map((lang) => (
-              <Box key={lang} sx={{ mt: 2 }}>
-                <Typography variant="h6" sx={{ mb: 1 }}>
-                  {lang.toUpperCase()} Translation
-                </Typography>
+              <Box
+                key={lang}
+                sx={{
+                  mt: 2,
+                  mb: 1,
+                  p: 2,
+                  borderRadius: 2,
+                  background: "#f7fafd",
+                  boxShadow: 1,
+                }}
+              >
+                <LangBox bgcolor={langColors[lang]}>
+                  {lang.toUpperCase()}
+                </LangBox>
                 <TextField
                   label="Name"
                   fullWidth
