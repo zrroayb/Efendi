@@ -139,7 +139,7 @@ function MenuPage() {
                             item.translations?.en?.name ||
                             item.id}
                         </h3>
-                        <span className="price">{item.price}</span>
+                        <span className="price">{item.price} ₺</span>
                       </div>
                       {item.translations?.[i18n.language]?.description && (
                         <p className="item-description">
