@@ -58,6 +58,23 @@ const langColors = {
   ru: "#d32f2f",
 };
 
+// Modern buton stili
+const ModernButton = styled(Button)(({ theme }) => ({
+  borderRadius: 24,
+  fontWeight: 700,
+  fontSize: "1rem",
+  padding: "10px 28px",
+  boxShadow: "0 2px 8px rgba(25, 118, 210, 0.08)",
+  background: "linear-gradient(90deg, #1976d2 0%, #388e3c 100%)",
+  color: "#fff",
+  textTransform: "none",
+  transition: "all 0.2s",
+  "&:hover": {
+    background: "linear-gradient(90deg, #388e3c 0%, #1976d2 100%)",
+    boxShadow: "0 4px 16px rgba(25, 118, 210, 0.15)",
+  },
+}));
+
 const Dashboard = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -234,22 +251,20 @@ const Dashboard = () => {
               ))}
             </Select>
           </FormControl>
-          <Button
-            variant="contained"
+          <ModernButton
             startIcon={<CategoryIcon />}
             onClick={handleOpenCategoryDialog}
             sx={{ width: { xs: "100%", sm: "auto" }, mb: { xs: 1, sm: 0 } }}
           >
             Add Category
-          </Button>
-          <Button
-            variant="contained"
+          </ModernButton>
+          <ModernButton
             startIcon={<AddIcon />}
             onClick={() => handleOpenDialog()}
             sx={{ width: { xs: "100%", sm: "auto" } }}
           >
             Add New Item
-          </Button>
+          </ModernButton>
         </Box>
       </Box>
 
@@ -360,13 +375,29 @@ const Dashboard = () => {
         maxWidth="md"
         fullWidth
         PaperProps={{
-          sx: { maxWidth: { xs: "95vw", sm: 600 }, m: { xs: 1, sm: "auto" } },
+          sx: {
+            maxWidth: { xs: "95vw", sm: 600 },
+            m: { xs: 1, sm: "auto" },
+            borderRadius: 4,
+            boxShadow: 8,
+            background: "linear-gradient(120deg, #f7fafd 60%, #e3f2fd 100%)",
+            p: 2,
+          },
         }}
       >
-        <DialogTitle>
+        <DialogTitle
+          sx={{
+            fontWeight: 700,
+            fontSize: "1.3rem",
+            color: "#1976d2",
+            letterSpacing: 1,
+            mb: 1,
+            textAlign: "center",
+          }}
+        >
           {selectedItem ? "Edit Menu Item" : "Add New Menu Item"}
         </DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ p: { xs: 1, sm: 3 } }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
             <FormControl fullWidth>
               <InputLabel>Category</InputLabel>
@@ -460,11 +491,15 @@ const Dashboard = () => {
             ))}
           </Box>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>Cancel</Button>
-          <Button onClick={handleSave} variant="contained">
-            Save
+        <DialogActions sx={{ justifyContent: "center", pb: 2 }}>
+          <Button
+            onClick={handleCloseDialog}
+            variant="outlined"
+            sx={{ borderRadius: 20, px: 4 }}
+          >
+            Cancel
           </Button>
+          <ModernButton onClick={handleSave}>Save</ModernButton>
         </DialogActions>
       </Dialog>
 
@@ -475,11 +510,29 @@ const Dashboard = () => {
         maxWidth="sm"
         fullWidth
         PaperProps={{
-          sx: { maxWidth: { xs: "95vw", sm: 400 }, m: { xs: 1, sm: "auto" } },
+          sx: {
+            maxWidth: { xs: "95vw", sm: 400 },
+            m: { xs: 1, sm: "auto" },
+            borderRadius: 4,
+            boxShadow: 8,
+            background: "linear-gradient(120deg, #f7fafd 60%, #e3f2fd 100%)",
+            p: 2,
+          },
         }}
       >
-        <DialogTitle>Add New Category</DialogTitle>
-        <DialogContent>
+        <DialogTitle
+          sx={{
+            fontWeight: 700,
+            fontSize: "1.2rem",
+            color: "#388e3c",
+            letterSpacing: 1,
+            mb: 1,
+            textAlign: "center",
+          }}
+        >
+          Add New Category
+        </DialogTitle>
+        <DialogContent sx={{ p: { xs: 1, sm: 3 } }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
             <TextField
               label="Category ID"
@@ -507,11 +560,15 @@ const Dashboard = () => {
             ))}
           </Box>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseCategoryDialog}>Cancel</Button>
-          <Button onClick={handleSaveCategory} variant="contained">
-            Save
+        <DialogActions sx={{ justifyContent: "center", pb: 2 }}>
+          <Button
+            onClick={handleCloseCategoryDialog}
+            variant="outlined"
+            sx={{ borderRadius: 20, px: 4 }}
+          >
+            Cancel
           </Button>
+          <ModernButton onClick={handleSaveCategory}>Save</ModernButton>
         </DialogActions>
       </Dialog>
     </Container>
