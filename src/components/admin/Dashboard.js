@@ -245,7 +245,7 @@ const Dashboard = () => {
                   setFormData({ ...formData, category: e.target.value })
                 }
               >
-                {categoriesWithItems.map((category) => (
+                {categories.map((category) => (
                   <MenuItem key={category.id} value={category.id}>
                     {category.translations.en}
                   </MenuItem>
