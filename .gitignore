@@ -25,3 +25,10 @@ yarn-error.log*
 # Firebase
 .firebase/
 firebase-debug.log
+
+# Google Firebase service account keys
+serviceAccountKey.json
+efendimenu-firebase-adminsdk-*.json
+# Migration scripts
+bulkMigrate.js
+src/data/menuData.migrate.js
