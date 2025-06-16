@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Container, CircularProgress } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -22,7 +22,8 @@ import { useTranslation } from "react-i18next";
 import "./i18n";
 import LanguageSelector from "./components/LanguageSelector";
 import Footer from "./components/Footer";
-import { menuData } from "./data/menuData";
+import { db } from "./firebase";
+import { collection, getDocs } from "firebase/firestore";
 import {
   BrowserRouter as Router,
   Routes,
@@ -53,12 +54,49 @@ const BarrelIcon = () => (
 );
 
 function MenuPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [expanded, setExpanded] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const catSnap = await getDocs(collection(db, "categories"));
+      const cats = catSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      const itemSnap = await getDocs(collection(db, "menuItems"));
+      const items = itemSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setCategories(cats);
+      setMenuItems(items);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const handleAccordionChange = (idx) => (event, isExpanded) => {
     setExpanded(isExpanded ? idx : false);
   };
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  // Sadece altında ürün olan kategoriler
+  const categoriesWithItems = categories.filter((cat) =>
+    menuItems.some((item) => item.category === cat.id)
+  );
 
   return (
     <div className="App">
@@ -69,7 +107,7 @@ function MenuPage() {
         <div className="language-selector-container">
           <LanguageSelector />
         </div>
-        {menuData.map((category, idx) => (
+        {categoriesWithItems.map((category, idx) => (
           <Accordion
             key={category.id}
             expanded={expanded === idx}
@@ -82,25 +120,34 @@ function MenuPage() {
               id={`panel${idx}-header`}
             >
               <div className="accordion-header">
-                {category.icon}
-                <Typography>{t(`menu.${category.id}`)}</Typography>
+                <Typography>
+                  {category.translations?.[i18n.language] ||
+                    category.translations?.en ||
+                    category.id}
+                </Typography>
               </div>
             </AccordionSummary>
             <AccordionDetails>
               <div className="menu-items">
-                {category.items.map((item) => (
-                  <div key={item.id} className="menu-item">
-                    <div className="item-header">
-                      <h3>{t(`items.${item.id}.name`)}</h3>
-                      <span className="price">{item.price}</span>
+                {menuItems
+                  .filter((item) => item.category === category.id)
+                  .map((item) => (
+                    <div key={item.id} className="menu-item">
+                      <div className="item-header">
+                        <h3>
+                          {item.translations?.[i18n.language]?.name ||
+                            item.translations?.en?.name ||
+                            item.id}
+                        </h3>
+                        <span className="price">{item.price}</span>
+                      </div>
+                      {item.translations?.[i18n.language]?.description && (
+                        <p className="item-description">
+                          {item.translations[i18n.language].description}
+                        </p>
+                      )}
                     </div>
-                    {t(`items.${item.id}.desc`) && (
-                      <p className="item-description">
-                        {t(`items.${item.id}.desc`)}
-                      </p>
-                    )}
-                  </div>
-                ))}
+                  ))}
               </div>
             </AccordionDetails>
           </Accordion>
