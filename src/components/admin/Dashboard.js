@@ -350,7 +350,13 @@ const Dashboard = () => {
                     boxShadow: 1,
                   }}
                 >
-                  <TableCell>
+                  <TableCell
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: "1.1rem",
+                      color: "#1976d2",
+                    }}
+                  >
                     {categories.find((cat) => cat.id === item.category)
                       ?.translations.en || item.category}
                   </TableCell>
