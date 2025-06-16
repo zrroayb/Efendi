@@ -81,6 +81,7 @@ const Dashboard = () => {
       ru: "",
     },
   });
+  const [categoryFilter, setCategoryFilter] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -186,9 +187,31 @@ const Dashboard = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          mb: 3,
+          alignItems: "center",
+        }}
+      >
         <Typography variant="h4">Menu Management</Typography>
-        <Box>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <FormControl sx={{ minWidth: 200, mr: 2 }} size="small">
+            <InputLabel>Filter by Category</InputLabel>
+            <Select
+              value={categoryFilter}
+              label="Filter by Category"
+              onChange={(e) => setCategoryFilter(e.target.value)}
+            >
+              <MenuItem value="">All Categories</MenuItem>
+              {categories.map((cat) => (
+                <MenuItem key={cat.id} value={cat.id}>
+                  {cat.translations.en}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <Button
             variant="contained"
             startIcon={<CategoryIcon />}
@@ -243,9 +266,11 @@ const Dashboard = () => {
           </TableHead>
           <TableBody>
             {menuItems
+              .filter(
+                (item) => !categoryFilter || item.category === categoryFilter
+              )
               .slice()
               .sort((a, b) => {
-                // Önce kategoriye göre sırala, sonra ada göre
                 if (a.category < b.category) return -1;
                 if (a.category > b.category) return 1;
                 const aName = a.translations.en.name || "";
