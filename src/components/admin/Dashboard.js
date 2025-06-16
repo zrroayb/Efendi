@@ -31,17 +31,20 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Grid,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import CategoryIcon from "@mui/icons-material/Category";
 
 const Dashboard = () => {
   const [menuItems, setMenuItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
+  const [openCategoryDialog, setOpenCategoryDialog] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [formData, setFormData] = useState({
-    id: "",
     category: "",
     price: "",
     translations: {
@@ -50,10 +53,19 @@ const Dashboard = () => {
       ru: { name: "", description: "" },
     },
   });
+  const [newCategory, setNewCategory] = useState({
+    id: "",
+    translations: {
+      en: "",
+      tr: "",
+      ru: "",
+    },
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchMenuItems();
+    fetchCategories();
   }, []);
 
   const fetchMenuItems = async () => {
@@ -65,6 +77,15 @@ const Dashboard = () => {
     setMenuItems(items);
   };
 
+  const fetchCategories = async () => {
+    const querySnapshot = await getDocs(collection(db, "categories"));
+    const cats = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setCategories(cats);
+  };
+
   const handleOpenDialog = (item = null) => {
     if (item) {
       setSelectedItem(item);
@@ -72,7 +93,6 @@ const Dashboard = () => {
     } else {
       setSelectedItem(null);
       setFormData({
-        id: "",
         category: "",
         price: "",
         translations: {
@@ -85,9 +105,25 @@ const Dashboard = () => {
     setOpenDialog(true);
   };
 
+  const handleOpenCategoryDialog = () => {
+    setNewCategory({
+      id: "",
+      translations: {
+        en: "",
+        tr: "",
+        ru: "",
+      },
+    });
+    setOpenCategoryDialog(true);
+  };
+
   const handleCloseDialog = () => {
     setOpenDialog(false);
     setSelectedItem(null);
+  };
+
+  const handleCloseCategoryDialog = () => {
+    setOpenCategoryDialog(false);
   };
 
   const handleSave = async () => {
@@ -104,6 +140,16 @@ const Dashboard = () => {
     }
   };
 
+  const handleSaveCategory = async () => {
+    try {
+      await addDoc(collection(db, "categories"), newCategory);
+      handleCloseCategoryDialog();
+      fetchCategories();
+    } catch (error) {
+      console.error("Error saving category:", error);
+    }
+  };
+
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "menuItems", id));
@@ -113,24 +159,38 @@ const Dashboard = () => {
     }
   };
 
+  // Kategorileri ve ürünleri filtrele
+  const categoriesWithItems = categories.filter((category) =>
+    menuItems.some((item) => item.category === category.id)
+  );
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
         <Typography variant="h4">Menu Management</Typography>
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          onClick={() => handleOpenDialog()}
-        >
-          Add New Item
-        </Button>
+        <Box>
+          <Button
+            variant="contained"
+            startIcon={<CategoryIcon />}
+            onClick={handleOpenCategoryDialog}
+            sx={{ mr: 2 }}
+          >
+            Add Category
+          </Button>
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            onClick={() => handleOpenDialog()}
+          >
+            Add New Item
+          </Button>
+        </Box>
       </Box>
 
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
               <TableCell>Category</TableCell>
               <TableCell>Price</TableCell>
               <TableCell>English Name</TableCell>
@@ -142,8 +202,10 @@ const Dashboard = () => {
           <TableBody>
             {menuItems.map((item) => (
               <TableRow key={item.id}>
-                <TableCell>{item.id}</TableCell>
-                <TableCell>{item.category}</TableCell>
+                <TableCell>
+                  {categories.find((cat) => cat.id === item.category)
+                    ?.translations.en || item.category}
+                </TableCell>
                 <TableCell>{item.price}</TableCell>
                 <TableCell>{item.translations.en.name}</TableCell>
                 <TableCell>{item.translations.tr.name}</TableCell>
@@ -162,6 +224,7 @@ const Dashboard = () => {
         </Table>
       </TableContainer>
 
+      {/* Menu Item Dialog */}
       <Dialog
         open={openDialog}
         onClose={handleCloseDialog}
@@ -173,18 +236,22 @@ const Dashboard = () => {
         </DialogTitle>
         <DialogContent>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
-            <TextField
-              label="ID"
-              value={formData.id}
-              onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-            />
-            <TextField
-              label="Category"
-              value={formData.category}
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
-            />
+            <FormControl fullWidth>
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={formData.category}
+                label="Category"
+                onChange={(e) =>
+                  setFormData({ ...formData, category: e.target.value })
+                }
+              >
+                {categoriesWithItems.map((category) => (
+                  <MenuItem key={category.id} value={category.id}>
+                    {category.translations.en}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <TextField
               label="Price"
               value={formData.price}
@@ -242,6 +309,50 @@ const Dashboard = () => {
         <DialogActions>
           <Button onClick={handleCloseDialog}>Cancel</Button>
           <Button onClick={handleSave} variant="contained">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Category Dialog */}
+      <Dialog
+        open={openCategoryDialog}
+        onClose={handleCloseCategoryDialog}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>Add New Category</DialogTitle>
+        <DialogContent>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+            <TextField
+              label="Category ID"
+              value={newCategory.id}
+              onChange={(e) =>
+                setNewCategory({ ...newCategory, id: e.target.value })
+              }
+              helperText="Enter a unique identifier for the category (e.g., 'specialCocktails')"
+            />
+            {["en", "tr", "ru"].map((lang) => (
+              <TextField
+                key={lang}
+                label={`${lang.toUpperCase()} Name`}
+                value={newCategory.translations[lang]}
+                onChange={(e) =>
+                  setNewCategory({
+                    ...newCategory,
+                    translations: {
+                      ...newCategory.translations,
+                      [lang]: e.target.value,
+                    },
+                  })
+                }
+              />
+            ))}
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseCategoryDialog}>Cancel</Button>
+          <Button onClick={handleSaveCategory} variant="contained">
             Save
           </Button>
         </DialogActions>
