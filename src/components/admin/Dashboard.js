@@ -228,6 +228,9 @@ const Dashboard = () => {
                 English Name
               </TableCell>
               <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
+                Description
+              </TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
                 Turkish Name
               </TableCell>
               <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
@@ -239,39 +242,59 @@ const Dashboard = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {menuItems.map((item) => (
-              <TableRow
-                key={item.id}
-                hover
-                sx={{
-                  transition: "0.2s",
-                  "&:hover": { backgroundColor: "#f5f5f5" },
-                }}
-              >
-                <TableCell>
-                  {categories.find((cat) => cat.id === item.category)
-                    ?.translations.en || item.category}
-                </TableCell>
-                <TableCell>{item.price ? `${item.price} ₺` : ""}</TableCell>
-                <TableCell>{item.translations.en.name}</TableCell>
-                <TableCell>{item.translations.tr.name}</TableCell>
-                <TableCell>{item.translations.ru.name}</TableCell>
-                <TableCell>
-                  <IconButton
-                    onClick={() => handleOpenDialog(item)}
-                    color="primary"
+            {menuItems
+              .slice()
+              .sort((a, b) => {
+                // Önce kategoriye göre sırala, sonra ada göre
+                if (a.category < b.category) return -1;
+                if (a.category > b.category) return 1;
+                const aName = a.translations.en.name || "";
+                const bName = b.translations.en.name || "";
+                return aName.localeCompare(bName);
+              })
+              .map((item) => (
+                <TableRow
+                  key={item.id}
+                  hover
+                  sx={{
+                    transition: "0.2s",
+                    "&:hover": { backgroundColor: "#f5f5f5" },
+                  }}
+                >
+                  <TableCell>
+                    {categories.find((cat) => cat.id === item.category)
+                      ?.translations.en || item.category}
+                  </TableCell>
+                  <TableCell>{item.price ? `${item.price} ₺` : ""}</TableCell>
+                  <TableCell>{item.translations.en.name}</TableCell>
+                  <TableCell
+                    sx={{
+                      maxWidth: 220,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
                   >
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => handleDelete(item.id)}
-                    color="error"
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
+                    {item.translations.en.description}
+                  </TableCell>
+                  <TableCell>{item.translations.tr.name}</TableCell>
+                  <TableCell>{item.translations.ru.name}</TableCell>
+                  <TableCell>
+                    <IconButton
+                      onClick={() => handleOpenDialog(item)}
+                      color="primary"
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => handleDelete(item.id)}
+                      color="error"
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
