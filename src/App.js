@@ -23,6 +23,15 @@ import "./i18n";
 import LanguageSelector from "./components/LanguageSelector";
 import Footer from "./components/Footer";
 import { menuData } from "./data/menuData";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Login from "./components/admin/Login";
+import Dashboard from "./components/admin/Dashboard";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 const BarrelIcon = () => (
   <svg
@@ -43,7 +52,7 @@ const BarrelIcon = () => (
   </svg>
 );
 
-function App() {
+function MenuPage() {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
 
@@ -99,6 +108,26 @@ function App() {
       </Container>
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MenuPage />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }
 
