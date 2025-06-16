@@ -75,6 +75,22 @@ const ModernButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+const IconBtn = styled(IconButton)(({ colorname }) => ({
+  borderRadius: 16,
+  padding: 8,
+  margin: 2,
+  fontSize: 22,
+  background: "transparent",
+  transition: "background 0.2s",
+  "&:hover": {
+    background:
+      colorname === "edit"
+        ? "rgba(25, 118, 210, 0.12)"
+        : "rgba(211, 47, 47, 0.12)",
+    color: colorname === "edit" ? "#1976d2" : "#d32f2f",
+  },
+}));
+
 const Dashboard = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -276,12 +292,14 @@ const Dashboard = () => {
           mb: 4,
           width: "100%",
           overflowX: "auto",
+          background: "#f7fafd",
         }}
       >
         <Table sx={{ minWidth: 650 }}>
           <TableHead
             sx={{
               background: "linear-gradient(90deg, #1976d2 0%, #388e3c 100%)",
+              "& th": { fontSize: "1.05rem", letterSpacing: 0.5 },
             }}
           >
             <TableRow>
@@ -327,7 +345,9 @@ const Dashboard = () => {
                   hover
                   sx={{
                     transition: "0.2s",
-                    "&:hover": { backgroundColor: "#f5f5f5" },
+                    "&:hover": { backgroundColor: "#e3f2fd" },
+                    borderRadius: 3,
+                    boxShadow: 1,
                   }}
                 >
                   <TableCell>
@@ -349,18 +369,18 @@ const Dashboard = () => {
                   <TableCell>{item.translations.tr.name}</TableCell>
                   <TableCell>{item.translations.ru.name}</TableCell>
                   <TableCell>
-                    <IconButton
+                    <IconBtn
                       onClick={() => handleOpenDialog(item)}
-                      color="primary"
+                      colorname="edit"
                     >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
+                      <EditIcon sx={{ fontSize: 22 }} />
+                    </IconBtn>
+                    <IconBtn
                       onClick={() => handleDelete(item.id)}
-                      color="error"
+                      colorname="delete"
                     >
-                      <DeleteIcon />
-                    </IconButton>
+                      <DeleteIcon sx={{ fontSize: 22 }} />
+                    </IconBtn>
                   </TableCell>
                 </TableRow>
               ))}
@@ -393,11 +413,13 @@ const Dashboard = () => {
             letterSpacing: 1,
             mb: 1,
             textAlign: "center",
+            borderBottom: "1px solid #e3f2fd",
+            pb: 2,
           }}
         >
           {selectedItem ? "Edit Menu Item" : "Add New Menu Item"}
         </DialogTitle>
-        <DialogContent sx={{ p: { xs: 1, sm: 3 } }}>
+        <DialogContent sx={{ p: { xs: 1, sm: 3 }, mt: 1 }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
             <FormControl fullWidth>
               <InputLabel>Category</InputLabel>
@@ -491,7 +513,14 @@ const Dashboard = () => {
             ))}
           </Box>
         </DialogContent>
-        <DialogActions sx={{ justifyContent: "center", pb: 2 }}>
+        <DialogActions
+          sx={{
+            justifyContent: "center",
+            pb: 2,
+            pt: 1,
+            borderTop: "1px solid #e3f2fd",
+          }}
+        >
           <Button
             onClick={handleCloseDialog}
             variant="outlined"
@@ -528,11 +557,13 @@ const Dashboard = () => {
             letterSpacing: 1,
             mb: 1,
             textAlign: "center",
+            borderBottom: "1px solid #e3f2fd",
+            pb: 2,
           }}
         >
           Add New Category
         </DialogTitle>
-        <DialogContent sx={{ p: { xs: 1, sm: 3 } }}>
+        <DialogContent sx={{ p: { xs: 1, sm: 3 }, mt: 1 }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
             <TextField
               label="Category ID"
@@ -560,7 +591,14 @@ const Dashboard = () => {
             ))}
           </Box>
         </DialogContent>
-        <DialogActions sx={{ justifyContent: "center", pb: 2 }}>
+        <DialogActions
+          sx={{
+            justifyContent: "center",
+            pb: 2,
+            pt: 1,
+            borderTop: "1px solid #e3f2fd",
+          }}
+        >
           <Button
             onClick={handleCloseCategoryDialog}
             variant="outlined"
