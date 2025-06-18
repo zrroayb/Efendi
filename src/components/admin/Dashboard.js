@@ -132,22 +132,27 @@ const StyledAccordion = styled(Accordion)(({ theme }) => ({
 }));
 
 // Ek: Menüdeki gibi ürün kartı stili
-const ProductCard = styled(Box)(({ theme }) => ({
-  background: "#232323",
+const ProductCard = styled(Box)(({ theme, isdragging }) => ({
+  background: isdragging ? "#333" : "#232323",
   color: "#fff",
   borderRadius: 12,
-  boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+  boxShadow: isdragging
+    ? "0 8px 24px rgba(0,0,0,0.18)"
+    : "0 2px 8px rgba(0,0,0,0.12)",
   padding: "18px 20px",
   marginBottom: 14,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   minHeight: 64,
-  transition: "box-shadow 0.2s, background 0.2s",
+  transition: "box-shadow 0.2s, background 0.2s, transform 0.2s",
   fontFamily: "Playfair Display, serif",
   fontSize: "1.1rem",
   fontWeight: 500,
-  border: "1px solid #333",
+  border: isdragging ? "2px solid #ffd700" : "1px solid #333",
+  transform: isdragging ? "scale(1.04)" : "none",
+  zIndex: isdragging ? 10 : 1,
+  cursor: isdragging ? "grabbing" : "grab",
   "&:hover": {
     boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
     background: "#292929",
@@ -367,10 +372,12 @@ const Dashboard = () => {
     // Ürün sıralama
     else if (type.startsWith("PRODUCT-")) {
       const categoryId = type.replace("PRODUCT-", "");
-      const categoryItems = menuItems.filter(
-        (item) => item.category === categoryId
-      );
-      const reorderedItems = Array.from(categoryItems);
+      // Ekranda görünen ürün sırasını al
+      const sortedItems = menuItems
+        .filter((item) => item.category === categoryId)
+        .slice()
+        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+      const reorderedItems = Array.from(sortedItems);
       const [removed] = reorderedItems.splice(source.index, 1);
       reorderedItems.splice(destination.index, 0, removed);
 
@@ -540,6 +547,7 @@ const Dashboard = () => {
                                             ref={prodProvided.innerRef}
                                             {...prodProvided.draggableProps}
                                             {...prodProvided.dragHandleProps}
+                                            isdragging={prodSnapshot.isDragging}
                                             sx={{
                                               background:
                                                 prodSnapshot.isDragging
