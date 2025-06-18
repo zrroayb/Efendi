@@ -553,18 +553,18 @@ const Dashboard = () => {
                                             {...prodProvided.dragHandleProps}
                                             isdragging={prodSnapshot.isDragging}
                                             sx={{
-                                              background:
-                                                prodSnapshot.isDragging
-                                                  ? "#333"
-                                                  : "#232323",
-                                              color: "#fff",
-                                              border: "1px solid #333",
-                                              boxShadow: prodSnapshot.isDragging
-                                                ? "0 8px 24px rgba(0,0,0,0.18)"
-                                                : "0 2px 8px rgba(0,0,0,0.12)",
-                                              transform: prodSnapshot.isDragging
-                                                ? "scale(1.02)"
-                                                : "none",
+                                              ...(prodSnapshot.isDragging &&
+                                                prodSnapshot.clientOffset && {
+                                                  position: "fixed",
+                                                  top: prodSnapshot.clientOffset
+                                                    .y,
+                                                  left: prodSnapshot
+                                                    .clientOffset.x,
+                                                  width: "calc(100% - 32px)",
+                                                  pointerEvents: "none",
+                                                  margin: 0,
+                                                  zIndex: 9999,
+                                                }),
                                             }}
                                           >
                                             <Box>
