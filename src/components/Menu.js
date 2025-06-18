@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import {
@@ -9,13 +9,28 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FaInstagram } from "react-icons/fa";
-import { menuData } from "../data/menuData";
 import logo from "../efendi-logo.png";
 import Footer from "./Footer";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const Menu = () => {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [menuItems, setMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const catSnap = await getDocs(collection(db, "categories"));
+      const cats = catSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setCategories(cats.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
+      const itemSnap = await getDocs(collection(db, "menuItems"));
+      const items = itemSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setMenuItems(items);
+    };
+    fetchData();
+  }, []);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -38,11 +53,11 @@ const Menu = () => {
       </div>
       <Container maxWidth="md" sx={{ flex: 1 }}>
         <div className="menu-container" style={{ marginBottom: "80px" }}>
-          {Object.entries(menuData).map(([category, data]) => (
+          {categories.map((category) => (
             <Accordion
-              key={category}
-              expanded={expanded === category}
-              onChange={handleChange(category)}
+              key={category.id}
+              expanded={expanded === category.id}
+              onChange={handleChange(category.id)}
               sx={{
                 backgroundColor: "#2a2a2a",
                 color: "#ffffff",
@@ -77,36 +92,43 @@ const Menu = () => {
                     color: "#ffffff",
                   }}
                 >
-                  {t(`menu.${category}`)}
+                  {category.translations?.en || t(`menu.${category.id}`)}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {data.items.map((item, index) => (
-                  <div key={index} style={{ marginBottom: "12px" }}>
-                    <Typography
-                      sx={{
-                        fontFamily: "Playfair Display, serif",
-                        fontSize: "1.1rem",
-                        fontWeight: 500,
-                        color: "#ffffff",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {item.name} - {item.price} TL
-                    </Typography>
-                    {item.description && (
+                {menuItems
+                  .filter((item) => item.category === category.id)
+                  .slice()
+                  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+                  .map((item, index) => (
+                    <div key={item.id} style={{ marginBottom: "12px" }}>
                       <Typography
                         sx={{
-                          fontSize: "0.9rem",
-                          color: "#cccccc",
-                          fontStyle: "italic",
+                          fontFamily: "Playfair Display, serif",
+                          fontSize: "1.1rem",
+                          fontWeight: 500,
+                          color: "#ffffff",
+                          marginBottom: "4px",
                         }}
                       >
-                        {item.description}
+                        {item.translations?.en?.name || item.name} -{" "}
+                        {item.price} TL
                       </Typography>
-                    )}
-                  </div>
-                ))}
+                      {(item.translations?.en?.description ||
+                        item.description) && (
+                        <Typography
+                          sx={{
+                            fontSize: "0.9rem",
+                            color: "#cccccc",
+                            fontStyle: "italic",
+                          }}
+                        >
+                          {item.translations?.en?.description ||
+                            item.description}
+                        </Typography>
+                      )}
+                    </div>
+                  ))}
               </AccordionDetails>
             </Accordion>
           ))}
