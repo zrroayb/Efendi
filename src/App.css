@@ -256,6 +256,15 @@ body::after {
     width: 300px;
     height: 300px;
   }
+
+  .language-selector-container {
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    background: rgba(24,24,24,0.7);
+    border-radius: 6px;
+    padding: 2px 4px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -290,6 +299,15 @@ body::after {
   }
   .menu-container {
     padding: 40px 8px 80px;
+  }
+
+  .language-selector-container {
+    top: 4px;
+    right: 4px;
+    z-index: 1;
+    background: rgba(24,24,24,0.6);
+    border-radius: 4px;
+    padding: 1px 2px;
   }
 }
 
