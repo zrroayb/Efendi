@@ -553,25 +553,15 @@ const Dashboard = () => {
                                             {...prodProvided.dragHandleProps}
                                             isdragging={prodSnapshot.isDragging}
                                             sx={{
-                                              width: "100%",
-                                              margin: prodSnapshot.isDragging
-                                                ? "0"
-                                                : "0 0 14px 0",
-                                              padding: prodSnapshot.isDragging
-                                                ? "12px 16px"
-                                                : "18px 20px",
-                                              opacity: prodSnapshot.isDragging
-                                                ? 0.95
-                                                : 1,
-                                              zIndex: prodSnapshot.isDragging
-                                                ? 100
-                                                : 1,
                                               boxShadow: prodSnapshot.isDragging
                                                 ? "0 12px 32px 4px rgba(0,0,0,0.25)"
                                                 : "0 2px 8px rgba(0,0,0,0.12)",
                                               border: prodSnapshot.isDragging
                                                 ? "2px solid #ffd700"
                                                 : "1px solid #333",
+                                              opacity: prodSnapshot.isDragging
+                                                ? 0.97
+                                                : 1,
                                               cursor: prodSnapshot.isDragging
                                                 ? "grabbing"
                                                 : "grab",
