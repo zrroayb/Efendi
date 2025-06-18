@@ -38,7 +38,6 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Orders from "./Orders";
 
 // Luxury theme colors
 const theme = {
@@ -181,7 +180,6 @@ const Dashboard = () => {
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [openCategoryEditDialog, setOpenCategoryEditDialog] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [activeTab, setActiveTab] = useState("menu");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -383,626 +381,393 @@ const Dashboard = () => {
     <Box sx={{ p: 3 }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider", mb: 3 }}>
         <Button
-          variant={activeTab === "menu" ? "contained" : "text"}
-          onClick={() => setActiveTab("menu")}
+          variant={openDialog ? "contained" : "text"}
+          onClick={() => handleOpenDialog()}
           sx={{ mr: 2 }}
         >
           Menu Management
         </Button>
-        <Button
-          variant={activeTab === "orders" ? "contained" : "text"}
-          onClick={() => setActiveTab("orders")}
-        >
-          Orders
-        </Button>
       </Box>
 
-      {activeTab === "menu" ? (
-        <Container
-          maxWidth="lg"
-          sx={{ mt: 4, mb: 4, px: { xs: 1, sm: 2, md: 4 } }}
-        >
-          <Box sx={{ mb: 4, display: "flex", gap: 2, flexWrap: "wrap" }}>
-            <ModernButton
-              startIcon={<AddIcon />}
-              onClick={() => handleOpenDialog()}
-              sx={{
-                background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`,
-              }}
-            >
-              Add Menu Item
-            </ModernButton>
-            <ModernButton
-              startIcon={<CategoryIcon />}
-              onClick={handleOpenCategoryDialog}
-              sx={{
-                background: `linear-gradient(135deg, ${theme.secondary} 0%, ${theme.primary} 100%)`,
-              }}
-            >
-              Add Category
-            </ModernButton>
-          </Box>
-
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="categories" type="CATEGORY">
-              {(provided) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
-                  {categories
-                    .slice()
-                    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-                    .map((category, catIdx) => (
-                      <Draggable
-                        key={category.id}
-                        draggableId={category.id}
-                        index={catIdx}
-                      >
-                        {(catProvided, catSnapshot) => (
-                          <StyledAccordion
-                            expanded={expandedCategory === category.id}
-                            onChange={() =>
-                              setExpandedCategory(
-                                expandedCategory === category.id
-                                  ? null
-                                  : category.id
-                              )
-                            }
-                            ref={catProvided.innerRef}
-                            {...catProvided.draggableProps}
-                            sx={{
-                              transform: catSnapshot.isDragging
-                                ? "scale(1.02)"
-                                : "none",
-                              transition: "transform 0.2s ease",
-                            }}
-                          >
-                            <AccordionSummary
-                              expandIcon={
-                                <ExpandMoreIcon sx={{ color: theme.white }} />
-                              }
-                              {...catProvided.dragHandleProps}
-                            >
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  width: "100%",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <Typography
-                                  sx={{
-                                    fontWeight: 700,
-                                    fontSize: "1.3rem",
-                                    letterSpacing: 0.5,
-                                    color: theme.white,
-                                  }}
-                                >
-                                  {category.translations.en}
-                                </Typography>
-                                <Box sx={{ display: "flex", gap: 1 }}>
-                                  <IconBtn
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleOpenCategoryEditDialog(category);
-                                    }}
-                                    colorname="edit"
-                                  >
-                                    <EditIcon sx={{ fontSize: 24 }} />
-                                  </IconBtn>
-                                  <IconBtn
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleDeleteCategory(category.id);
-                                    }}
-                                    colorname="delete"
-                                  >
-                                    <DeleteIcon sx={{ fontSize: 24 }} />
-                                  </IconBtn>
-                                </Box>
-                              </Box>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                              <Droppable
-                                droppableId={`products-${category.id}`}
-                                type={`PRODUCT-${category.id}`}
-                              >
-                                {(prodProvided) => (
-                                  <div
-                                    ref={prodProvided.innerRef}
-                                    {...prodProvided.droppableProps}
-                                  >
-                                    {menuItems
-                                      .filter(
-                                        (item) => item.category === category.id
-                                      )
-                                      .slice()
-                                      .sort(
-                                        (a, b) =>
-                                          (a.order ?? 0) - (b.order ?? 0)
-                                      )
-                                      .map((item, prodIdx) => (
-                                        <Draggable
-                                          key={item.id}
-                                          draggableId={item.id}
-                                          index={prodIdx}
-                                        >
-                                          {(prodProvided, prodSnapshot) => (
-                                            <ProductCard
-                                              ref={prodProvided.innerRef}
-                                              {...prodProvided.draggableProps}
-                                              {...prodProvided.dragHandleProps}
-                                              sx={{
-                                                background:
-                                                  prodSnapshot.isDragging
-                                                    ? "#333"
-                                                    : "#232323",
-                                                color: "#fff",
-                                                border: "1px solid #333",
-                                                boxShadow:
-                                                  prodSnapshot.isDragging
-                                                    ? "0 8px 24px rgba(0,0,0,0.18)"
-                                                    : "0 2px 8px rgba(0,0,0,0.12)",
-                                                transform:
-                                                  prodSnapshot.isDragging
-                                                    ? "scale(1.02)"
-                                                    : "none",
-                                              }}
-                                            >
-                                              <Box>
-                                                <Typography
-                                                  sx={{
-                                                    fontFamily:
-                                                      "Playfair Display, serif",
-                                                    fontSize: "1.1rem",
-                                                    fontWeight: 600,
-                                                    color: "#fff",
-                                                    mb: 0.5,
-                                                  }}
-                                                >
-                                                  {item.translations?.en
-                                                    ?.name || "İsimsiz Ürün"}
-                                                </Typography>
-                                                <Typography
-                                                  sx={{
-                                                    fontSize: "1rem",
-                                                    color: "#ffd700",
-                                                    fontWeight: 500,
-                                                    mb: 0.5,
-                                                  }}
-                                                >
-                                                  {item.price
-                                                    ? `${item.price} ₺`
-                                                    : "Fiyat yok"}
-                                                </Typography>
-                                                <Typography
-                                                  sx={{
-                                                    fontSize: "0.95rem",
-                                                    color: "#cccccc",
-                                                    fontStyle: "italic",
-                                                  }}
-                                                >
-                                                  {item.translations?.en
-                                                    ?.description ||
-                                                    "Açıklama yok"}
-                                                </Typography>
-                                              </Box>
-                                              <Box
-                                                sx={{ display: "flex", gap: 1 }}
-                                              >
-                                                <IconBtn
-                                                  onClick={() =>
-                                                    handleOpenDialog(item)
-                                                  }
-                                                  colorname="edit"
-                                                >
-                                                  <EditIcon
-                                                    sx={{ fontSize: 24 }}
-                                                  />
-                                                </IconBtn>
-                                                <IconBtn
-                                                  onClick={() =>
-                                                    handleDelete(item.id)
-                                                  }
-                                                  colorname="delete"
-                                                >
-                                                  <DeleteIcon
-                                                    sx={{ fontSize: 24 }}
-                                                  />
-                                                </IconBtn>
-                                              </Box>
-                                            </ProductCard>
-                                          )}
-                                        </Draggable>
-                                      ))}
-                                    {prodProvided.placeholder}
-                                  </div>
-                                )}
-                              </Droppable>
-                            </AccordionDetails>
-                          </StyledAccordion>
-                        )}
-                      </Draggable>
-                    ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
-
-          {/* Menu Item Dialog */}
-          <Dialog
-            open={openDialog}
-            onClose={handleCloseDialog}
-            maxWidth="md"
-            fullWidth
-            PaperProps={{
-              sx: {
-                maxWidth: { xs: "95vw", sm: 600 },
-                m: { xs: 1, sm: "auto" },
-                borderRadius: 4,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-                background: theme.white,
-                p: 2,
-              },
+      <Container
+        maxWidth="lg"
+        sx={{ mt: 4, mb: 4, px: { xs: 1, sm: 2, md: 4 } }}
+      >
+        <Box sx={{ mb: 4, display: "flex", gap: 2, flexWrap: "wrap" }}>
+          <ModernButton
+            startIcon={<AddIcon />}
+            onClick={() => handleOpenDialog()}
+            sx={{
+              background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`,
             }}
           >
-            <DialogTitle
-              sx={{
-                fontWeight: 700,
-                fontSize: "1.4rem",
-                color: theme.primary,
-                letterSpacing: 1,
-                mb: 1,
-                textAlign: "center",
-                borderBottom: "2px solid rgba(26, 35, 126, 0.1)",
-                pb: 2,
-              }}
-            >
-              {selectedItem ? "Edit Menu Item" : "Add New Menu Item"}
-            </DialogTitle>
-            <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                <FormControl fullWidth>
-                  <InputLabel sx={{ color: theme.primary }}>
-                    Category
-                  </InputLabel>
-                  <Select
-                    value={formData.category}
-                    label="Category"
-                    onChange={(e) =>
-                      setFormData({ ...formData, category: e.target.value })
-                    }
-                    sx={{
-                      borderRadius: 2,
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "rgba(26, 35, 126, 0.2)",
-                      },
-                      "& .MuiSelect-select": {
-                        color: theme.text,
-                      },
-                    }}
-                  >
-                    {categories.map((category) => (
-                      <MenuItem key={category.id} value={category.id}>
-                        {category.translations.en}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-                <TextField
-                  label="Price"
-                  value={formData.price}
+            Add Menu Item
+          </ModernButton>
+          <ModernButton
+            startIcon={<CategoryIcon />}
+            onClick={handleOpenCategoryDialog}
+            sx={{
+              background: `linear-gradient(135deg, ${theme.secondary} 0%, ${theme.primary} 100%)`,
+            }}
+          >
+            Add Category
+          </ModernButton>
+        </Box>
+
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="categories" type="CATEGORY">
+            {(provided) => (
+              <div ref={provided.innerRef} {...provided.droppableProps}>
+                {categories
+                  .slice()
+                  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+                  .map((category, catIdx) => (
+                    <Draggable
+                      key={category.id}
+                      draggableId={category.id}
+                      index={catIdx}
+                    >
+                      {(catProvided, catSnapshot) => (
+                        <StyledAccordion
+                          expanded={expandedCategory === category.id}
+                          onChange={() =>
+                            setExpandedCategory(
+                              expandedCategory === category.id
+                                ? null
+                                : category.id
+                            )
+                          }
+                          ref={catProvided.innerRef}
+                          {...catProvided.draggableProps}
+                          sx={{
+                            transform: catSnapshot.isDragging
+                              ? "scale(1.02)"
+                              : "none",
+                            transition: "transform 0.2s ease",
+                          }}
+                        >
+                          <AccordionSummary
+                            expandIcon={
+                              <ExpandMoreIcon sx={{ color: theme.white }} />
+                            }
+                            {...catProvided.dragHandleProps}
+                          >
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                width: "100%",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  fontWeight: 700,
+                                  fontSize: "1.3rem",
+                                  letterSpacing: 0.5,
+                                  color: theme.white,
+                                }}
+                              >
+                                {category.translations.en}
+                              </Typography>
+                              <Box sx={{ display: "flex", gap: 1 }}>
+                                <IconBtn
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleOpenCategoryEditDialog(category);
+                                  }}
+                                  colorname="edit"
+                                >
+                                  <EditIcon sx={{ fontSize: 24 }} />
+                                </IconBtn>
+                                <IconBtn
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteCategory(category.id);
+                                  }}
+                                  colorname="delete"
+                                >
+                                  <DeleteIcon sx={{ fontSize: 24 }} />
+                                </IconBtn>
+                              </Box>
+                            </Box>
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <Droppable
+                              droppableId={`products-${category.id}`}
+                              type={`PRODUCT-${category.id}`}
+                            >
+                              {(prodProvided) => (
+                                <div
+                                  ref={prodProvided.innerRef}
+                                  {...prodProvided.droppableProps}
+                                >
+                                  {menuItems
+                                    .filter(
+                                      (item) => item.category === category.id
+                                    )
+                                    .slice()
+                                    .sort(
+                                      (a, b) => (a.order ?? 0) - (b.order ?? 0)
+                                    )
+                                    .map((item, prodIdx) => (
+                                      <Draggable
+                                        key={item.id}
+                                        draggableId={item.id}
+                                        index={prodIdx}
+                                      >
+                                        {(prodProvided, prodSnapshot) => (
+                                          <ProductCard
+                                            ref={prodProvided.innerRef}
+                                            {...prodProvided.draggableProps}
+                                            {...prodProvided.dragHandleProps}
+                                            sx={{
+                                              background:
+                                                prodSnapshot.isDragging
+                                                  ? "#333"
+                                                  : "#232323",
+                                              color: "#fff",
+                                              border: "1px solid #333",
+                                              boxShadow: prodSnapshot.isDragging
+                                                ? "0 8px 24px rgba(0,0,0,0.18)"
+                                                : "0 2px 8px rgba(0,0,0,0.12)",
+                                              transform: prodSnapshot.isDragging
+                                                ? "scale(1.02)"
+                                                : "none",
+                                            }}
+                                          >
+                                            <Box>
+                                              <Typography
+                                                sx={{
+                                                  fontFamily:
+                                                    "Playfair Display, serif",
+                                                  fontSize: "1.1rem",
+                                                  fontWeight: 600,
+                                                  color: "#fff",
+                                                  mb: 0.5,
+                                                }}
+                                              >
+                                                {item.translations?.en?.name ||
+                                                  "İsimsiz Ürün"}
+                                              </Typography>
+                                              <Typography
+                                                sx={{
+                                                  fontSize: "1rem",
+                                                  color: "#ffd700",
+                                                  fontWeight: 500,
+                                                  mb: 0.5,
+                                                }}
+                                              >
+                                                {item.price
+                                                  ? `${item.price} ₺`
+                                                  : "Fiyat yok"}
+                                              </Typography>
+                                              <Typography
+                                                sx={{
+                                                  fontSize: "0.95rem",
+                                                  color: "#cccccc",
+                                                  fontStyle: "italic",
+                                                }}
+                                              >
+                                                {item.translations?.en
+                                                  ?.description ||
+                                                  "Açıklama yok"}
+                                              </Typography>
+                                            </Box>
+                                            <Box
+                                              sx={{ display: "flex", gap: 1 }}
+                                            >
+                                              <IconBtn
+                                                onClick={() =>
+                                                  handleOpenDialog(item)
+                                                }
+                                                colorname="edit"
+                                              >
+                                                <EditIcon
+                                                  sx={{ fontSize: 24 }}
+                                                />
+                                              </IconBtn>
+                                              <IconBtn
+                                                onClick={() =>
+                                                  handleDelete(item.id)
+                                                }
+                                                colorname="delete"
+                                              >
+                                                <DeleteIcon
+                                                  sx={{ fontSize: 24 }}
+                                                />
+                                              </IconBtn>
+                                            </Box>
+                                          </ProductCard>
+                                        )}
+                                      </Draggable>
+                                    ))}
+                                  {prodProvided.placeholder}
+                                </div>
+                              )}
+                            </Droppable>
+                          </AccordionDetails>
+                        </StyledAccordion>
+                      )}
+                    </Draggable>
+                  ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+
+        {/* Menu Item Dialog */}
+        <Dialog
+          open={openDialog}
+          onClose={handleCloseDialog}
+          maxWidth="md"
+          fullWidth
+          PaperProps={{
+            sx: {
+              maxWidth: { xs: "95vw", sm: 600 },
+              m: { xs: 1, sm: "auto" },
+              borderRadius: 4,
+              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+              background: theme.white,
+              p: 2,
+            },
+          }}
+        >
+          <DialogTitle
+            sx={{
+              fontWeight: 700,
+              fontSize: "1.4rem",
+              color: theme.primary,
+              letterSpacing: 1,
+              mb: 1,
+              textAlign: "center",
+              borderBottom: "2px solid rgba(26, 35, 126, 0.1)",
+              pb: 2,
+            }}
+          >
+            {selectedItem ? "Edit Menu Item" : "Add New Menu Item"}
+          </DialogTitle>
+          <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              <FormControl fullWidth>
+                <InputLabel sx={{ color: theme.primary }}>Category</InputLabel>
+                <Select
+                  value={formData.category}
+                  label="Category"
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      price: e.target.value.replace(/[^0-9.,]/g, ""),
-                    })
+                    setFormData({ ...formData, category: e.target.value })
                   }
-                  InputProps={{
-                    endAdornment: (
-                      <span
-                        style={{
-                          color: theme.primary,
-                          fontWeight: 700,
-                          marginLeft: 8,
-                        }}
-                      >
-                        ₺
-                      </span>
-                    ),
-                  }}
                   sx={{
                     borderRadius: 2,
                     "& .MuiOutlinedInput-notchedOutline": {
                       borderColor: "rgba(26, 35, 126, 0.2)",
                     },
-                    "& .MuiInputLabel-root": {
-                      color: theme.primary,
-                    },
-                    "& .MuiInputBase-input": {
+                    "& .MuiSelect-select": {
                       color: theme.text,
                     },
                   }}
-                />
-
-                {["en", "tr", "ru"].map((lang) => (
-                  <Box
-                    key={lang}
-                    sx={{
-                      p: 3,
-                      borderRadius: 3,
-                      background: "#f8f9fa",
-                      boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
-                    }}
-                  >
-                    <LangBox bgcolor={langColors[lang]}>
-                      {lang.toUpperCase()}
-                    </LangBox>
-                    <TextField
-                      label="Name"
-                      fullWidth
-                      value={formData.translations[lang].name}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          translations: {
-                            ...formData.translations,
-                            [lang]: {
-                              ...formData.translations[lang],
-                              name: e.target.value,
-                            },
-                          },
-                        })
-                      }
-                      sx={{
-                        mb: 2,
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(26, 35, 126, 0.2)",
-                        },
-                        "& .MuiInputLabel-root": {
-                          color: theme.primary,
-                        },
-                        "& .MuiInputBase-input": {
-                          color: theme.text,
-                        },
+                >
+                  {categories.map((category) => (
+                    <MenuItem key={category.id} value={category.id}>
+                      {category.translations.en}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <TextField
+                label="Price"
+                value={formData.price}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    price: e.target.value.replace(/[^0-9.,]/g, ""),
+                  })
+                }
+                InputProps={{
+                  endAdornment: (
+                    <span
+                      style={{
+                        color: theme.primary,
+                        fontWeight: 700,
+                        marginLeft: 8,
                       }}
-                    />
-                    <TextField
-                      label="Description"
-                      fullWidth
-                      multiline
-                      rows={3}
-                      value={formData.translations[lang].description}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          translations: {
-                            ...formData.translations,
-                            [lang]: {
-                              ...formData.translations[lang],
-                              description: e.target.value,
-                            },
-                          },
-                        })
-                      }
-                      sx={{
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(26, 35, 126, 0.2)",
-                        },
-                        "& .MuiInputLabel-root": {
-                          color: theme.primary,
-                        },
-                        "& .MuiInputBase-input": {
-                          color: theme.text,
-                        },
-                      }}
-                    />
-                  </Box>
-                ))}
-              </Box>
-            </DialogContent>
-            <DialogActions
-              sx={{
-                justifyContent: "center",
-                pb: 3,
-                pt: 2,
-                borderTop: "2px solid rgba(26, 35, 126, 0.1)",
-              }}
-            >
-              <Button
-                onClick={handleCloseDialog}
-                variant="outlined"
+                    >
+                      ₺
+                    </span>
+                  ),
+                }}
                 sx={{
-                  borderRadius: 20,
-                  px: 4,
-                  borderColor: theme.primary,
-                  color: theme.primary,
-                  "&:hover": {
-                    borderColor: theme.secondary,
-                    color: theme.secondary,
+                  borderRadius: 2,
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(26, 35, 126, 0.2)",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: theme.primary,
+                  },
+                  "& .MuiInputBase-input": {
+                    color: theme.text,
                   },
                 }}
-              >
-                Cancel
-              </Button>
-              <ModernButton onClick={handleSave}>Save</ModernButton>
-            </DialogActions>
-          </Dialog>
+              />
 
-          {/* Category Dialog */}
-          <Dialog
-            open={openCategoryDialog}
-            onClose={handleCloseCategoryDialog}
-            maxWidth="sm"
-            fullWidth
-            PaperProps={{
-              sx: {
-                maxWidth: { xs: "95vw", sm: 400 },
-                m: { xs: 1, sm: "auto" },
-                borderRadius: 4,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-                background: theme.white,
-                p: 2,
-              },
-            }}
-          >
-            <DialogTitle
-              sx={{
-                fontWeight: 700,
-                fontSize: "1.3rem",
-                color: theme.secondary,
-                letterSpacing: 1,
-                mb: 1,
-                textAlign: "center",
-                borderBottom: "2px solid rgba(194, 24, 91, 0.1)",
-                pb: 2,
-              }}
-            >
-              Add New Category
-            </DialogTitle>
-            <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                <TextField
-                  label="Category ID"
-                  value={newCategory.id}
-                  onChange={(e) =>
-                    setNewCategory({ ...newCategory, id: e.target.value })
-                  }
-                  helperText="Enter a unique identifier for the category (e.g., 'specialCocktails')"
+              {["en", "tr", "ru"].map((lang) => (
+                <Box
+                  key={lang}
                   sx={{
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(194, 24, 91, 0.2)",
-                    },
-                    "& .MuiInputLabel-root": {
-                      color: theme.secondary,
-                    },
-                    "& .MuiInputBase-input": {
-                      color: theme.text,
-                    },
-                    "& .MuiFormHelperText-root": {
-                      color: theme.text,
-                      opacity: 0.7,
-                    },
+                    p: 3,
+                    borderRadius: 3,
+                    background: "#f8f9fa",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
                   }}
-                />
-                {["en", "tr", "ru"].map((lang) => (
+                >
+                  <LangBox bgcolor={langColors[lang]}>
+                    {lang.toUpperCase()}
+                  </LangBox>
                   <TextField
-                    key={lang}
-                    label={`${lang.toUpperCase()} Name`}
-                    value={newCategory.translations[lang]}
+                    label="Name"
+                    fullWidth
+                    value={formData.translations[lang].name}
                     onChange={(e) =>
-                      setNewCategory({
-                        ...newCategory,
+                      setFormData({
+                        ...formData,
                         translations: {
-                          ...newCategory.translations,
-                          [lang]: e.target.value,
+                          ...formData.translations,
+                          [lang]: {
+                            ...formData.translations[lang],
+                            name: e.target.value,
+                          },
                         },
                       })
                     }
                     sx={{
+                      mb: 2,
                       "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "rgba(194, 24, 91, 0.2)",
+                        borderColor: "rgba(26, 35, 126, 0.2)",
                       },
                       "& .MuiInputLabel-root": {
-                        color: theme.secondary,
+                        color: theme.primary,
                       },
                       "& .MuiInputBase-input": {
                         color: theme.text,
                       },
                     }}
                   />
-                ))}
-              </Box>
-            </DialogContent>
-            <DialogActions
-              sx={{
-                justifyContent: "center",
-                pb: 3,
-                pt: 2,
-                borderTop: "2px solid rgba(194, 24, 91, 0.1)",
-              }}
-            >
-              <Button
-                onClick={handleCloseCategoryDialog}
-                variant="outlined"
-                sx={{
-                  borderRadius: 20,
-                  px: 4,
-                  borderColor: theme.secondary,
-                  color: theme.secondary,
-                  "&:hover": {
-                    borderColor: theme.primary,
-                    color: theme.primary,
-                  },
-                }}
-              >
-                Cancel
-              </Button>
-              <ModernButton onClick={handleSaveCategory}>Save</ModernButton>
-            </DialogActions>
-          </Dialog>
-
-          {/* Category Edit Dialog */}
-          <Dialog
-            open={openCategoryEditDialog}
-            onClose={handleCloseCategoryEditDialog}
-            maxWidth="sm"
-            fullWidth
-            PaperProps={{
-              sx: {
-                maxWidth: { xs: "95vw", sm: 400 },
-                m: { xs: 1, sm: "auto" },
-                borderRadius: 4,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-                background: theme.white,
-                p: 2,
-              },
-            }}
-          >
-            <DialogTitle
-              sx={{
-                fontWeight: 700,
-                fontSize: "1.3rem",
-                color: theme.primary,
-                letterSpacing: 1,
-                mb: 1,
-                textAlign: "center",
-                borderBottom: "2px solid rgba(26, 35, 126, 0.1)",
-                pb: 2,
-              }}
-            >
-              Edit Category
-            </DialogTitle>
-            <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-                <TextField
-                  label="Category ID"
-                  value={newCategory.id}
-                  disabled
-                  sx={{
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "rgba(26, 35, 126, 0.2)",
-                    },
-                    "& .MuiInputLabel-root": {
-                      color: theme.primary,
-                    },
-                    "& .MuiInputBase-input": {
-                      color: theme.text,
-                      opacity: 0.7,
-                    },
-                  }}
-                />
-                {["en", "tr", "ru"].map((lang) => (
                   <TextField
-                    key={lang}
-                    label={`${lang.toUpperCase()} Name`}
-                    value={newCategory.translations[lang]}
+                    label="Description"
+                    fullWidth
+                    multiline
+                    rows={3}
+                    value={formData.translations[lang].description}
                     onChange={(e) =>
-                      setNewCategory({
-                        ...newCategory,
+                      setFormData({
+                        ...formData,
                         translations: {
-                          ...newCategory.translations,
-                          [lang]: e.target.value,
+                          ...formData.translations,
+                          [lang]: {
+                            ...formData.translations[lang],
+                            description: e.target.value,
+                          },
                         },
                       })
                     }
@@ -1018,40 +783,235 @@ const Dashboard = () => {
                       },
                     }}
                   />
-                ))}
-              </Box>
-            </DialogContent>
-            <DialogActions
+                </Box>
+              ))}
+            </Box>
+          </DialogContent>
+          <DialogActions
+            sx={{
+              justifyContent: "center",
+              pb: 3,
+              pt: 2,
+              borderTop: "2px solid rgba(26, 35, 126, 0.1)",
+            }}
+          >
+            <Button
+              onClick={handleCloseDialog}
+              variant="outlined"
               sx={{
-                justifyContent: "center",
-                pb: 3,
-                pt: 2,
-                borderTop: "2px solid rgba(26, 35, 126, 0.1)",
+                borderRadius: 20,
+                px: 4,
+                borderColor: theme.primary,
+                color: theme.primary,
+                "&:hover": {
+                  borderColor: theme.secondary,
+                  color: theme.secondary,
+                },
               }}
             >
-              <Button
-                onClick={handleCloseCategoryEditDialog}
-                variant="outlined"
-                sx={{
-                  borderRadius: 20,
-                  px: 4,
+              Cancel
+            </Button>
+            <ModernButton onClick={handleSave}>Save</ModernButton>
+          </DialogActions>
+        </Dialog>
+
+        {/* Category Dialog */}
+        <Dialog
+          open={openCategoryDialog}
+          onClose={handleCloseCategoryDialog}
+          maxWidth="sm"
+          fullWidth
+          PaperProps={{
+            sx: {
+              maxWidth: { xs: "95vw", sm: 400 },
+              m: { xs: 1, sm: "auto" },
+              borderRadius: 4,
+              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+              background: theme.white,
+              p: 2,
+            },
+          }}
+        >
+          <DialogTitle
+            sx={{
+              fontWeight: 700,
+              fontSize: "1.3rem",
+              color: theme.secondary,
+              letterSpacing: 1,
+              mb: 1,
+              textAlign: "center",
+              borderBottom: "2px solid rgba(194, 24, 91, 0.1)",
+              pb: 2,
+            }}
+          >
+            Add New Category
+          </DialogTitle>
+          <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              {["en", "tr", "ru"].map((lang) => (
+                <TextField
+                  key={lang}
+                  label={`${lang.toUpperCase()} Name`}
+                  value={newCategory.translations[lang]}
+                  onChange={(e) =>
+                    setNewCategory({
+                      ...newCategory,
+                      translations: {
+                        ...newCategory.translations,
+                        [lang]: e.target.value,
+                      },
+                    })
+                  }
+                  sx={{
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(194, 24, 91, 0.2)",
+                    },
+                    "& .MuiInputLabel-root": {
+                      color: theme.secondary,
+                    },
+                    "& .MuiInputBase-input": {
+                      color: theme.text,
+                    },
+                  }}
+                />
+              ))}
+            </Box>
+          </DialogContent>
+          <DialogActions
+            sx={{
+              justifyContent: "center",
+              pb: 3,
+              pt: 2,
+              borderTop: "2px solid rgba(194, 24, 91, 0.1)",
+            }}
+          >
+            <Button
+              onClick={handleCloseCategoryDialog}
+              variant="outlined"
+              sx={{
+                borderRadius: 20,
+                px: 4,
+                borderColor: theme.secondary,
+                color: theme.secondary,
+                "&:hover": {
                   borderColor: theme.primary,
                   color: theme.primary,
-                  "&:hover": {
-                    borderColor: theme.secondary,
-                    color: theme.secondary,
+                },
+              }}
+            >
+              Cancel
+            </Button>
+            <ModernButton onClick={handleSaveCategory}>Save</ModernButton>
+          </DialogActions>
+        </Dialog>
+
+        {/* Category Edit Dialog */}
+        <Dialog
+          open={openCategoryEditDialog}
+          onClose={handleCloseCategoryEditDialog}
+          maxWidth="sm"
+          fullWidth
+          PaperProps={{
+            sx: {
+              maxWidth: { xs: "95vw", sm: 400 },
+              m: { xs: 1, sm: "auto" },
+              borderRadius: 4,
+              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+              background: theme.white,
+              p: 2,
+            },
+          }}
+        >
+          <DialogTitle
+            sx={{
+              fontWeight: 700,
+              fontSize: "1.3rem",
+              color: theme.primary,
+              letterSpacing: 1,
+              mb: 1,
+              textAlign: "center",
+              borderBottom: "2px solid rgba(26, 35, 126, 0.1)",
+              pb: 2,
+            }}
+          >
+            Edit Category
+          </DialogTitle>
+          <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              <TextField
+                label="Category ID"
+                value={newCategory.id}
+                disabled
+                sx={{
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(26, 35, 126, 0.2)",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: theme.primary,
+                  },
+                  "& .MuiInputBase-input": {
+                    color: theme.text,
+                    opacity: 0.7,
                   },
                 }}
-              >
-                Cancel
-              </Button>
-              <ModernButton onClick={handleSaveCategoryEdit}>Save</ModernButton>
-            </DialogActions>
-          </Dialog>
-        </Container>
-      ) : (
-        <Orders />
-      )}
+              />
+              {["en", "tr", "ru"].map((lang) => (
+                <TextField
+                  key={lang}
+                  label={`${lang.toUpperCase()} Name`}
+                  value={newCategory.translations[lang]}
+                  onChange={(e) =>
+                    setNewCategory({
+                      ...newCategory,
+                      translations: {
+                        ...newCategory.translations,
+                        [lang]: e.target.value,
+                      },
+                    })
+                  }
+                  sx={{
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(26, 35, 126, 0.2)",
+                    },
+                    "& .MuiInputLabel-root": {
+                      color: theme.primary,
+                    },
+                    "& .MuiInputBase-input": {
+                      color: theme.text,
+                    },
+                  }}
+                />
+              ))}
+            </Box>
+          </DialogContent>
+          <DialogActions
+            sx={{
+              justifyContent: "center",
+              pb: 3,
+              pt: 2,
+              borderTop: "2px solid rgba(26, 35, 126, 0.1)",
+            }}
+          >
+            <Button
+              onClick={handleCloseCategoryEditDialog}
+              variant="outlined"
+              sx={{
+                borderRadius: 20,
+                px: 4,
+                borderColor: theme.primary,
+                color: theme.primary,
+                "&:hover": {
+                  borderColor: theme.secondary,
+                  color: theme.secondary,
+                },
+              }}
+            >
+              Cancel
+            </Button>
+            <ModernButton onClick={handleSaveCategoryEdit}>Save</ModernButton>
+          </DialogActions>
+        </Dialog>
+      </Container>
     </Box>
   );
 };
