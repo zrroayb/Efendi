@@ -24,7 +24,15 @@ const Menu = () => {
     const fetchData = async () => {
       const catSnap = await getDocs(collection(db, "categories"));
       const cats = catSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setCategories(cats.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
+      // Kategorileri order'a göre sırala
+      setCategories(
+        cats.sort((a, b) => {
+          const orderA = a.order !== undefined ? Number(a.order) : 999999;
+          const orderB = b.order !== undefined ? Number(b.order) : 999999;
+          return orderA - orderB;
+        })
+      );
+
       const itemSnap = await getDocs(collection(db, "menuItems"));
       const items = itemSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setMenuItems(items);
@@ -37,9 +45,11 @@ const Menu = () => {
   };
 
   // Kategoriler order'a göre sıralanıyor
-  const sortedCategories = categories
-    .slice()
-    .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
+  const sortedCategories = categories.slice().sort((a, b) => {
+    const orderA = a.order !== undefined ? Number(a.order) : 999999;
+    const orderB = b.order !== undefined ? Number(b.order) : 999999;
+    return orderA - orderB;
+  });
   console.log(
     "Kategoriler:",
     sortedCategories.map((c) => ({
@@ -70,7 +80,11 @@ const Menu = () => {
             const items = menuItems
               .filter((item) => item.category === category.id)
               .slice()
-              .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
+              .sort((a, b) => {
+                const orderA = a.order !== undefined ? Number(a.order) : 999999;
+                const orderB = b.order !== undefined ? Number(b.order) : 999999;
+                return orderA - orderB;
+              });
             console.log(
               `Kategori: ${category.translations?.en || category.id}`
             );
