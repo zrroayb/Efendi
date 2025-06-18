@@ -36,6 +36,15 @@ const Menu = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  // Kategorileri map'lemeden hemen önce log ekle
+  console.log(
+    "Kategoriler sıralı:",
+    categories.map((c) => ({
+      name: c.translations?.en || c.id,
+      order: c.order,
+    }))
+  );
+
   return (
     <div
       style={{
