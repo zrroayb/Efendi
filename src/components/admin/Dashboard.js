@@ -343,7 +343,11 @@ const Dashboard = () => {
 
     // Kategori sıralama
     if (type === "CATEGORY") {
-      const reorderedCategories = Array.from(categories);
+      // Ekranda görünen sıralamayı al
+      const sortedCategories = categories
+        .slice()
+        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+      const reorderedCategories = Array.from(sortedCategories);
       const [removed] = reorderedCategories.splice(source.index, 1);
       reorderedCategories.splice(destination.index, 0, removed);
 
