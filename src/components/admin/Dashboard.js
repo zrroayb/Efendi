@@ -540,99 +540,121 @@ const Dashboard = () => {
                                     .sort(
                                       (a, b) => (a.order ?? 0) - (b.order ?? 0)
                                     )
-                                    .map((item, prodIdx) => (
-                                      <Draggable
-                                        key={item.id}
-                                        draggableId={item.id}
-                                        index={prodIdx}
-                                      >
-                                        {(prodProvided, prodSnapshot) => (
-                                          <ProductCard
-                                            ref={prodProvided.innerRef}
-                                            {...prodProvided.draggableProps}
-                                            {...prodProvided.dragHandleProps}
-                                            isdragging={prodSnapshot.isDragging}
+                                    .map((item, prodIdx, arr) => (
+                                      <ProductCard key={item.id}>
+                                        <Box>
+                                          <Typography
                                             sx={{
-                                              boxShadow: prodSnapshot.isDragging
-                                                ? "0 12px 32px 4px rgba(0,0,0,0.25)"
-                                                : "0 2px 8px rgba(0,0,0,0.12)",
-                                              border: prodSnapshot.isDragging
-                                                ? "2px solid #ffd700"
-                                                : "1px solid #333",
-                                              opacity: prodSnapshot.isDragging
-                                                ? 0.97
-                                                : 1,
-                                              cursor: prodSnapshot.isDragging
-                                                ? "grabbing"
-                                                : "grab",
-                                              transition: "all 0.2s",
+                                              fontFamily:
+                                                "Playfair Display, serif",
+                                              fontSize: "1.1rem",
+                                              fontWeight: 600,
+                                              color: "#fff",
+                                              mb: 0.5,
                                             }}
                                           >
-                                            <Box>
-                                              <Typography
-                                                sx={{
-                                                  fontFamily:
-                                                    "Playfair Display, serif",
-                                                  fontSize: "1.1rem",
-                                                  fontWeight: 600,
-                                                  color: "#fff",
-                                                  mb: 0.5,
-                                                }}
-                                              >
-                                                {item.translations?.en?.name ||
-                                                  "İsimsiz Ürün"}
-                                              </Typography>
-                                              <Typography
-                                                sx={{
-                                                  fontSize: "1rem",
-                                                  color: "#ffd700",
-                                                  fontWeight: 500,
-                                                  mb: 0.5,
-                                                }}
-                                              >
-                                                {item.price
-                                                  ? `${item.price} ₺`
-                                                  : "Fiyat yok"}
-                                              </Typography>
-                                              <Typography
-                                                sx={{
-                                                  fontSize: "0.95rem",
-                                                  color: "#cccccc",
-                                                  fontStyle: "italic",
-                                                }}
-                                              >
-                                                {item.translations?.en
-                                                  ?.description ||
-                                                  "Açıklama yok"}
-                                              </Typography>
-                                            </Box>
-                                            <Box
-                                              sx={{ display: "flex", gap: 1 }}
-                                            >
-                                              <IconBtn
-                                                onClick={() =>
-                                                  handleOpenDialog(item)
-                                                }
-                                                colorname="edit"
-                                              >
-                                                <EditIcon
-                                                  sx={{ fontSize: 24 }}
-                                                />
-                                              </IconBtn>
-                                              <IconBtn
-                                                onClick={() =>
-                                                  handleDelete(item.id)
-                                                }
-                                                colorname="delete"
-                                              >
-                                                <DeleteIcon
-                                                  sx={{ fontSize: 24 }}
-                                                />
-                                              </IconBtn>
-                                            </Box>
-                                          </ProductCard>
-                                        )}
-                                      </Draggable>
+                                            {item.translations?.en?.name ||
+                                              "İsimsiz Ürün"}
+                                          </Typography>
+                                          <Typography
+                                            sx={{
+                                              fontSize: "1rem",
+                                              color: "#ffd700",
+                                              fontWeight: 500,
+                                              mb: 0.5,
+                                            }}
+                                          >
+                                            {item.price
+                                              ? `${item.price} ₺`
+                                              : "Fiyat yok"}
+                                          </Typography>
+                                          <Typography
+                                            sx={{
+                                              fontSize: "0.95rem",
+                                              color: "#cccccc",
+                                              fontStyle: "italic",
+                                            }}
+                                          >
+                                            {item.translations?.en
+                                              ?.description || "Açıklama yok"}
+                                          </Typography>
+                                        </Box>
+                                        <Box
+                                          sx={{
+                                            display: "flex",
+                                            gap: 1,
+                                            alignItems: "center",
+                                          }}
+                                        >
+                                          <IconBtn
+                                            onClick={async () => {
+                                              // Yukarı taşı
+                                              if (prodIdx === 0) return;
+                                              const prevItem = arr[prodIdx - 1];
+                                              await updateDoc(
+                                                doc(db, "menuItems", item.id),
+                                                { order: prevItem.order }
+                                              );
+                                              await updateDoc(
+                                                doc(
+                                                  db,
+                                                  "menuItems",
+                                                  prevItem.id
+                                                ),
+                                                { order: item.order }
+                                              );
+                                              await fetchMenuItems();
+                                            }}
+                                            colorname="edit"
+                                            disabled={prodIdx === 0}
+                                          >
+                                            ▲
+                                          </IconBtn>
+                                          <IconBtn
+                                            onClick={async () => {
+                                              // Aşağı taşı
+                                              if (prodIdx === arr.length - 1)
+                                                return;
+                                              const nextItem = arr[prodIdx + 1];
+                                              await updateDoc(
+                                                doc(db, "menuItems", item.id),
+                                                { order: nextItem.order }
+                                              );
+                                              await updateDoc(
+                                                doc(
+                                                  db,
+                                                  "menuItems",
+                                                  nextItem.id
+                                                ),
+                                                { order: item.order }
+                                              );
+                                              await fetchMenuItems();
+                                            }}
+                                            colorname="edit"
+                                            disabled={
+                                              prodIdx === arr.length - 1
+                                            }
+                                          >
+                                            ▼
+                                          </IconBtn>
+                                          <IconBtn
+                                            onClick={() =>
+                                              handleOpenDialog(item)
+                                            }
+                                            colorname="edit"
+                                          >
+                                            <EditIcon sx={{ fontSize: 24 }} />
+                                          </IconBtn>
+                                          <IconBtn
+                                            onClick={() =>
+                                              handleDelete(item.id)
+                                            }
+                                            colorname="delete"
+                                          >
+                                            <DeleteIcon sx={{ fontSize: 24 }} />
+                                          </IconBtn>
+                                        </Box>
+                                      </ProductCard>
                                     ))}
                                   {prodProvided.placeholder}
                                 </div>
