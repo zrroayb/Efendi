@@ -356,6 +356,8 @@ const Dashboard = () => {
       setCategories(
         reorderedCategories.map((cat, i) => ({ ...cat, order: i }))
       );
+      // Firestore ile kesin senkronizasyon için tekrar çek
+      await fetchCategories();
     }
     // Ürün sıralama
     else if (type.startsWith("PRODUCT-")) {
@@ -385,6 +387,8 @@ const Dashboard = () => {
             : item
         )
       );
+      // Firestore ile kesin senkronizasyon için tekrar çek
+      await fetchMenuItems();
     }
   };
 
