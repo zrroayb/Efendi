@@ -225,7 +225,7 @@ body::after {
 
 @media (max-width: 768px) {
   .menu-container {
-    padding: 60px 12px 24px;
+    padding: 60px 12px 60px;
   }
 
   .menu-header h1 {
@@ -287,6 +287,9 @@ body::after {
   h1 {
     font-size: 1.2rem !important;
     letter-spacing: 3px !important;
+  }
+  .menu-container {
+    padding: 40px 8px 80px;
   }
 }
 
