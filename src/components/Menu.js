@@ -36,10 +36,13 @@ const Menu = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  // Kategorileri map'lemeden hemen önce log ekle
+  // Kategoriler order'a göre sıralanıyor
+  const sortedCategories = categories
+    .slice()
+    .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
   console.log(
-    "Kategoriler sıralı:",
-    categories.map((c) => ({
+    "Kategoriler:",
+    sortedCategories.map((c) => ({
       name: c.translations?.en || c.id,
       order: c.order,
     }))
@@ -62,34 +65,12 @@ const Menu = () => {
       </div>
       <Container maxWidth="md" sx={{ flex: 1 }}>
         <div className="menu-container" style={{ marginBottom: "80px" }}>
-          {categories.map((category) => {
-            // Kategoriye ait ürünleri çek
-            let items = menuItems.filter(
-              (item) => item.category === category.id
-            );
-            // order alanı eksik veya çakışık ise düzelt
-            const seenOrders = new Set();
-            let needsFix = false;
-            items.forEach((item) => {
-              if (
-                item.order === undefined ||
-                seenOrders.has(Number(item.order))
-              ) {
-                needsFix = true;
-              }
-              seenOrders.add(Number(item.order));
-            });
-            if (needsFix) {
-              items = items
-                .slice()
-                .sort((a, b) => (a.name || "").localeCompare(b.name || ""))
-                .map((item, idx) => ({ ...item, order: idx }));
-            } else {
-              items = items
-                .slice()
-                .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
-            }
-            // Logla
+          {sortedCategories.map((category) => {
+            // Sadece bu kategoriye ait ürünleri order'a göre sırala
+            const items = menuItems
+              .filter((item) => item.category === category.id)
+              .slice()
+              .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
             console.log(
               `Kategori: ${category.translations?.en || category.id}`
             );
