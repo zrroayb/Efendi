@@ -38,6 +38,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import CategoryIcon from "@mui/icons-material/Category";
 import { styled } from "@mui/material/styles";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const LangBox = styled(Box)(({ bgcolor }) => ({
   backgroundColor: bgcolor,
@@ -115,6 +120,7 @@ const Dashboard = () => {
     },
   });
   const [categoryFilter, setCategoryFilter] = useState("");
+  const [expandedCategory, setExpandedCategory] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -213,186 +219,202 @@ const Dashboard = () => {
     }
   };
 
-  // Kategorileri ve ürünleri filtrele
-  const categoriesWithItems = categories.filter((category) =>
-    menuItems.some((item) => item.category === category.id)
-  );
+  const onDragEnd = async (result) => {
+    if (!result.destination) return;
+    // Kategori sıralama
+    if (result.type === "CATEGORY") {
+      const reordered = Array.from(categories);
+      const [removed] = reordered.splice(result.source.index, 1);
+      reordered.splice(result.destination.index, 0, removed);
+      // Firestore'a sırayı kaydet
+      for (let i = 0; i < reordered.length; i++) {
+        if (reordered[i].order !== i) {
+          await updateDoc(doc(db, "categories", reordered[i].id), { order: i });
+        }
+      }
+      setCategories(reordered.map((cat, i) => ({ ...cat, order: i })));
+    }
+    // Ürün sıralama
+    if (result.type.startsWith("PRODUCT-")) {
+      const catId = result.type.replace("PRODUCT-", "");
+      const filtered = menuItems.filter((item) => item.category === catId);
+      const reordered = Array.from(filtered);
+      const [removed] = reordered.splice(result.source.index, 1);
+      reordered.splice(result.destination.index, 0, removed);
+      // Firestore'a sırayı kaydet
+      for (let i = 0; i < reordered.length; i++) {
+        if (reordered[i].order !== i) {
+          await updateDoc(doc(db, "menuItems", reordered[i].id), { order: i });
+        }
+      }
+      // Localde güncelle
+      setMenuItems((items) =>
+        items.map((item) =>
+          item.category === catId
+            ? { ...item, order: reordered.findIndex((x) => x.id === item.id) }
+            : item
+        )
+      );
+    }
+  };
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4, px: { xs: 1, sm: 2, md: 4 } }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          justifyContent: "space-between",
-          mb: 3,
-          alignItems: { xs: "stretch", sm: "center" },
-          gap: { xs: 2, sm: 0 },
-        }}
-      >
-        <Typography
-          variant="h4"
-          sx={{ mb: { xs: 2, sm: 0 }, fontSize: { xs: "1.3rem", sm: "2rem" } }}
-        >
-          Menu Management
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            alignItems: "center",
-            gap: 2,
-            width: { xs: "100%", sm: "auto" },
-          }}
-        >
-          <FormControl
-            sx={{
-              minWidth: { xs: "100%", sm: 200 },
-              mr: { sm: 2 },
-              mb: { xs: 1, sm: 0 },
-            }}
-            size="small"
-          >
-            <InputLabel>Filter by Category</InputLabel>
-            <Select
-              value={categoryFilter}
-              label="Filter by Category"
-              onChange={(e) => setCategoryFilter(e.target.value)}
-            >
-              <MenuItem value="">All Categories</MenuItem>
-              {categories.map((cat) => (
-                <MenuItem key={cat.id} value={cat.id}>
-                  {cat.translations.en}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <ModernButton
-            startIcon={<CategoryIcon />}
-            onClick={handleOpenCategoryDialog}
-            sx={{ width: { xs: "100%", sm: "auto" }, mb: { xs: 1, sm: 0 } }}
-          >
-            Add Category
-          </ModernButton>
-          <ModernButton
-            startIcon={<AddIcon />}
-            onClick={() => handleOpenDialog()}
-            sx={{ width: { xs: "100%", sm: "auto" } }}
-          >
-            Add New Item
-          </ModernButton>
-        </Box>
-      </Box>
-
-      <TableContainer
-        component={Paper}
-        sx={{
-          borderRadius: 4,
-          boxShadow: 4,
-          mb: 4,
-          width: "100%",
-          overflowX: "auto",
-          background: "#f7fafd",
-        }}
-      >
-        <Table sx={{ minWidth: 650 }}>
-          <TableHead
-            sx={{
-              background: "linear-gradient(90deg, #1976d2 0%, #388e3c 100%)",
-              "& th": { fontSize: "1.05rem", letterSpacing: 0.5 },
-            }}
-          >
-            <TableRow>
-              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-                Category
-              </TableCell>
-              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-                Price
-              </TableCell>
-              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-                English Name
-              </TableCell>
-              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-                Description
-              </TableCell>
-              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-                Turkish Name
-              </TableCell>
-              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-                Russian Name
-              </TableCell>
-              <TableCell sx={{ color: "#fff", fontWeight: 700 }}>
-                Actions
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {menuItems
-              .filter(
-                (item) => !categoryFilter || item.category === categoryFilter
-              )
-              .slice()
-              .sort((a, b) => {
-                if (a.category < b.category) return -1;
-                if (a.category > b.category) return 1;
-                const aName = a.translations.en.name || "";
-                const bName = b.translations.en.name || "";
-                return aName.localeCompare(bName);
-              })
-              .map((item) => (
-                <TableRow
-                  key={item.id}
-                  hover
-                  sx={{
-                    transition: "0.2s",
-                    "&:hover": { backgroundColor: "#e3f2fd" },
-                    borderRadius: 3,
-                    boxShadow: 1,
-                  }}
-                >
-                  <TableCell
-                    sx={{
-                      fontWeight: 700,
-                      fontSize: "1.1rem",
-                      color: "#1976d2",
-                    }}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="categories-droppable" type="CATEGORY">
+          {(provided) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              {categories
+                .slice()
+                .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+                .map((category, catIdx) => (
+                  <Draggable
+                    key={category.id}
+                    draggableId={category.id}
+                    index={catIdx}
                   >
-                    {categories.find((cat) => cat.id === item.category)
-                      ?.translations.en || item.category}
-                  </TableCell>
-                  <TableCell>{item.price ? `${item.price} ₺` : ""}</TableCell>
-                  <TableCell>{item.translations.en.name}</TableCell>
-                  <TableCell
-                    sx={{
-                      maxWidth: 220,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {item.translations.en.description}
-                  </TableCell>
-                  <TableCell>{item.translations.tr.name}</TableCell>
-                  <TableCell>{item.translations.ru.name}</TableCell>
-                  <TableCell>
-                    <IconBtn
-                      onClick={() => handleOpenDialog(item)}
-                      colorname="edit"
-                    >
-                      <EditIcon sx={{ fontSize: 22 }} />
-                    </IconBtn>
-                    <IconBtn
-                      onClick={() => handleDelete(item.id)}
-                      colorname="delete"
-                    >
-                      <DeleteIcon sx={{ fontSize: 22 }} />
-                    </IconBtn>
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                    {(catProvided, catSnapshot) => (
+                      <Accordion
+                        expanded={expandedCategory === category.id}
+                        onChange={() =>
+                          setExpandedCategory(
+                            expandedCategory === category.id
+                              ? null
+                              : category.id
+                          )
+                        }
+                        ref={catProvided.innerRef}
+                        {...catProvided.draggableProps}
+                        sx={{
+                          mb: 2,
+                          boxShadow: catSnapshot.isDragging ? 6 : 2,
+                          borderRadius: 3,
+                        }}
+                      >
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          {...catProvided.dragHandleProps}
+                          sx={{
+                            fontWeight: 700,
+                            fontSize: "1.2rem",
+                            color: "#1976d2",
+                            background: "#f7fafd",
+                          }}
+                        >
+                          {category.translations.en}
+                        </AccordionSummary>
+                        <AccordionDetails sx={{ background: "#fff" }}>
+                          <Droppable
+                            droppableId={`products-${category.id}`}
+                            type={`PRODUCT-${category.id}`}
+                          >
+                            {(prodProvided) => (
+                              <div
+                                ref={prodProvided.innerRef}
+                                {...prodProvided.droppableProps}
+                              >
+                                {menuItems
+                                  .filter(
+                                    (item) => item.category === category.id
+                                  )
+                                  .slice()
+                                  .sort(
+                                    (a, b) => (a.order ?? 0) - (b.order ?? 0)
+                                  )
+                                  .map((item, prodIdx) => (
+                                    <Draggable
+                                      key={item.id}
+                                      draggableId={item.id}
+                                      index={prodIdx}
+                                    >
+                                      {(prodProvided, prodSnapshot) => (
+                                        <Box
+                                          ref={prodProvided.innerRef}
+                                          {...prodProvided.draggableProps}
+                                          {...prodProvided.dragHandleProps}
+                                          sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                            p: 2,
+                                            mb: 1,
+                                            borderRadius: 2,
+                                            boxShadow: prodSnapshot.isDragging
+                                              ? 4
+                                              : 1,
+                                            background: prodSnapshot.isDragging
+                                              ? "#e3f2fd"
+                                              : "#f7fafd",
+                                            transition: "box-shadow 0.2s",
+                                          }}
+                                        >
+                                          <Box>
+                                            <Typography
+                                              sx={{
+                                                fontWeight: 700,
+                                                fontSize: "1.1rem",
+                                                color: "#1976d2",
+                                              }}
+                                            >
+                                              {item.translations.en.name}
+                                            </Typography>
+                                            <Typography
+                                              sx={{
+                                                fontSize: "0.98rem",
+                                                color: "#333",
+                                              }}
+                                            >
+                                              {item.price
+                                                ? `${item.price} ₺`
+                                                : ""}
+                                            </Typography>
+                                            <Typography
+                                              sx={{
+                                                fontSize: "0.95rem",
+                                                color: "#888",
+                                              }}
+                                            >
+                                              {item.translations.en.description}
+                                            </Typography>
+                                          </Box>
+                                          <Box>
+                                            <IconBtn
+                                              onClick={() =>
+                                                handleOpenDialog(item)
+                                              }
+                                              colorname="edit"
+                                            >
+                                              <EditIcon sx={{ fontSize: 22 }} />
+                                            </IconBtn>
+                                            <IconBtn
+                                              onClick={() =>
+                                                handleDelete(item.id)
+                                              }
+                                              colorname="delete"
+                                            >
+                                              <DeleteIcon
+                                                sx={{ fontSize: 22 }}
+                                              />
+                                            </IconBtn>
+                                          </Box>
+                                        </Box>
+                                      )}
+                                    </Draggable>
+                                  ))}
+                                {prodProvided.placeholder}
+                              </div>
+                            )}
+                          </Droppable>
+                        </AccordionDetails>
+                      </Accordion>
+                    )}
+                  </Draggable>
+                ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
 
       {/* Menu Item Dialog */}
       <Dialog
