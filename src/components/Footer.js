@@ -5,15 +5,13 @@ const Footer = () => {
   return (
     <footer
       style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
         width: "100%",
         backgroundColor: "#000",
         padding: "1rem",
         textAlign: "center",
         zIndex: 1000,
         boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+        marginTop: "40px",
       }}
     >
       <a
