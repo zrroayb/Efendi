@@ -137,22 +137,26 @@ const ProductCard = styled(Box)(({ theme, isdragging }) => ({
   color: "#fff",
   borderRadius: 12,
   boxShadow: isdragging
-    ? "0 8px 24px rgba(0,0,0,0.18)"
+    ? "0 12px 32px 4px rgba(0,0,0,0.25)"
     : "0 2px 8px rgba(0,0,0,0.12)",
-  padding: "18px 20px",
-  marginBottom: 14,
+  padding: isdragging ? "12px 16px" : "18px 20px",
+  marginBottom: isdragging ? 0 : 14,
+  marginTop: isdragging ? 0 : 0,
+  opacity: isdragging ? 0.92 : 1,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   minHeight: 64,
-  transition: "box-shadow 0.2s, background 0.2s, transform 0.2s",
+  transition:
+    "box-shadow 0.2s, background 0.2s, transform 0.2s, opacity 0.2s, padding 0.2s, margin 0.2s",
   fontFamily: "Playfair Display, serif",
   fontSize: "1.1rem",
   fontWeight: 500,
   border: isdragging ? "2px solid #ffd700" : "1px solid #333",
   transform: isdragging ? "scale(1.04)" : "none",
-  zIndex: isdragging ? 10 : 1,
+  zIndex: isdragging ? 100 : 1,
   cursor: isdragging ? "grabbing" : "grab",
+  position: isdragging ? "relative" : "static",
   "&:hover": {
     boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
     background: "#292929",
