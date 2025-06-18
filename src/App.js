@@ -67,7 +67,13 @@ function MenuPage() {
       const cats = catSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       const itemSnap = await getDocs(collection(db, "menuItems"));
       const items = itemSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setCategories(cats);
+      setCategories(
+        cats.sort((a, b) => {
+          const orderA = a.order !== undefined ? Number(a.order) : 999999;
+          const orderB = b.order !== undefined ? Number(b.order) : 999999;
+          return orderA - orderB;
+        })
+      );
       setMenuItems(items);
       setLoading(false);
     };
@@ -131,6 +137,14 @@ function MenuPage() {
               <div className="menu-items">
                 {menuItems
                   .filter((item) => item.category === category.id)
+                  .slice()
+                  .sort((a, b) => {
+                    const orderA =
+                      a.order !== undefined ? Number(a.order) : 999999;
+                    const orderB =
+                      b.order !== undefined ? Number(b.order) : 999999;
+                    return orderA - orderB;
+                  })
                   .map((item) => (
                     <div key={item.id} className="menu-item">
                       <div className="item-header">
