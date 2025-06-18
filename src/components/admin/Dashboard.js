@@ -155,6 +155,8 @@ const Dashboard = () => {
     },
   });
   const [expandedCategory, setExpandedCategory] = useState(null);
+  const [openCategoryEditDialog, setOpenCategoryEditDialog] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -250,6 +252,52 @@ const Dashboard = () => {
       fetchMenuItems();
     } catch (error) {
       console.error("Error deleting menu item:", error);
+    }
+  };
+
+  const handleOpenCategoryEditDialog = (category) => {
+    setSelectedCategory(category);
+    setNewCategory({
+      id: category.id,
+      translations: { ...category.translations },
+    });
+    setOpenCategoryEditDialog(true);
+  };
+
+  const handleCloseCategoryEditDialog = () => {
+    setOpenCategoryEditDialog(false);
+    setSelectedCategory(null);
+  };
+
+  const handleSaveCategoryEdit = async () => {
+    try {
+      await updateDoc(doc(db, "categories", selectedCategory.id), newCategory);
+      handleCloseCategoryEditDialog();
+      fetchCategories();
+    } catch (error) {
+      console.error("Error updating category:", error);
+    }
+  };
+
+  const handleDeleteCategory = async (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this category? All items in this category will also be deleted."
+      )
+    ) {
+      try {
+        // Delete all items in this category first
+        const categoryItems = menuItems.filter((item) => item.category === id);
+        for (const item of categoryItems) {
+          await deleteDoc(doc(db, "menuItems", item.id));
+        }
+        // Then delete the category
+        await deleteDoc(doc(db, "categories", id));
+        fetchCategories();
+        fetchMenuItems();
+      } catch (error) {
+        console.error("Error deleting category:", error);
+      }
     }
   };
 
@@ -367,15 +415,45 @@ const Dashboard = () => {
                           }
                           {...catProvided.dragHandleProps}
                         >
-                          <Typography
+                          <Box
                             sx={{
-                              fontWeight: 700,
-                              fontSize: "1.3rem",
-                              letterSpacing: 0.5,
+                              display: "flex",
+                              alignItems: "center",
+                              width: "100%",
+                              justifyContent: "space-between",
                             }}
                           >
-                            {category.translations.en}
-                          </Typography>
+                            <Typography
+                              sx={{
+                                fontWeight: 700,
+                                fontSize: "1.3rem",
+                                letterSpacing: 0.5,
+                                color: theme.white,
+                              }}
+                            >
+                              {category.translations.en}
+                            </Typography>
+                            <Box sx={{ display: "flex", gap: 1 }}>
+                              <IconBtn
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleOpenCategoryEditDialog(category);
+                                }}
+                                colorname="edit"
+                              >
+                                <EditIcon sx={{ fontSize: 24 }} />
+                              </IconBtn>
+                              <IconBtn
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDeleteCategory(category.id);
+                                }}
+                                colorname="delete"
+                              >
+                                <DeleteIcon sx={{ fontSize: 24 }} />
+                              </IconBtn>
+                            </Box>
+                          </Box>
                         </AccordionSummary>
                         <AccordionDetails>
                           <Droppable
@@ -513,7 +591,7 @@ const Dashboard = () => {
             m: { xs: 1, sm: "auto" },
             borderRadius: 4,
             boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-            background: "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)",
+            background: theme.white,
             p: 2,
           },
         }}
@@ -535,7 +613,7 @@ const Dashboard = () => {
         <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
             <FormControl fullWidth>
-              <InputLabel>Category</InputLabel>
+              <InputLabel sx={{ color: theme.primary }}>Category</InputLabel>
               <Select
                 value={formData.category}
                 label="Category"
@@ -546,6 +624,9 @@ const Dashboard = () => {
                   borderRadius: 2,
                   "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: "rgba(26, 35, 126, 0.2)",
+                  },
+                  "& .MuiSelect-select": {
+                    color: theme.text,
                   },
                 }}
               >
@@ -583,6 +664,12 @@ const Dashboard = () => {
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderColor: "rgba(26, 35, 126, 0.2)",
                 },
+                "& .MuiInputLabel-root": {
+                  color: theme.primary,
+                },
+                "& .MuiInputBase-input": {
+                  color: theme.text,
+                },
               }}
             />
 
@@ -592,7 +679,7 @@ const Dashboard = () => {
                 sx={{
                   p: 3,
                   borderRadius: 3,
-                  background: theme.white,
+                  background: "#f8f9fa",
                   boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
                 }}
               >
@@ -620,6 +707,12 @@ const Dashboard = () => {
                     "& .MuiOutlinedInput-notchedOutline": {
                       borderColor: "rgba(26, 35, 126, 0.2)",
                     },
+                    "& .MuiInputLabel-root": {
+                      color: theme.primary,
+                    },
+                    "& .MuiInputBase-input": {
+                      color: theme.text,
+                    },
                   }}
                 />
                 <TextField
@@ -643,6 +736,12 @@ const Dashboard = () => {
                   sx={{
                     "& .MuiOutlinedInput-notchedOutline": {
                       borderColor: "rgba(26, 35, 126, 0.2)",
+                    },
+                    "& .MuiInputLabel-root": {
+                      color: theme.primary,
+                    },
+                    "& .MuiInputBase-input": {
+                      color: theme.text,
                     },
                   }}
                 />
@@ -690,7 +789,7 @@ const Dashboard = () => {
             m: { xs: 1, sm: "auto" },
             borderRadius: 4,
             boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-            background: "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)",
+            background: theme.white,
             p: 2,
           },
         }}
@@ -722,6 +821,16 @@ const Dashboard = () => {
                 "& .MuiOutlinedInput-notchedOutline": {
                   borderColor: "rgba(194, 24, 91, 0.2)",
                 },
+                "& .MuiInputLabel-root": {
+                  color: theme.secondary,
+                },
+                "& .MuiInputBase-input": {
+                  color: theme.text,
+                },
+                "& .MuiFormHelperText-root": {
+                  color: theme.text,
+                  opacity: 0.7,
+                },
               }}
             />
             {["en", "tr", "ru"].map((lang) => (
@@ -741,6 +850,12 @@ const Dashboard = () => {
                 sx={{
                   "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: "rgba(194, 24, 91, 0.2)",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: theme.secondary,
+                  },
+                  "& .MuiInputBase-input": {
+                    color: theme.text,
                   },
                 }}
               />
@@ -772,6 +887,113 @@ const Dashboard = () => {
             Cancel
           </Button>
           <ModernButton onClick={handleSaveCategory}>Save</ModernButton>
+        </DialogActions>
+      </Dialog>
+
+      {/* Category Edit Dialog */}
+      <Dialog
+        open={openCategoryEditDialog}
+        onClose={handleCloseCategoryEditDialog}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: {
+            maxWidth: { xs: "95vw", sm: 400 },
+            m: { xs: 1, sm: "auto" },
+            borderRadius: 4,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+            background: theme.white,
+            p: 2,
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            fontWeight: 700,
+            fontSize: "1.3rem",
+            color: theme.primary,
+            letterSpacing: 1,
+            mb: 1,
+            textAlign: "center",
+            borderBottom: "2px solid rgba(26, 35, 126, 0.1)",
+            pb: 2,
+          }}
+        >
+          Edit Category
+        </DialogTitle>
+        <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+            <TextField
+              label="Category ID"
+              value={newCategory.id}
+              disabled
+              sx={{
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "rgba(26, 35, 126, 0.2)",
+                },
+                "& .MuiInputLabel-root": {
+                  color: theme.primary,
+                },
+                "& .MuiInputBase-input": {
+                  color: theme.text,
+                  opacity: 0.7,
+                },
+              }}
+            />
+            {["en", "tr", "ru"].map((lang) => (
+              <TextField
+                key={lang}
+                label={`${lang.toUpperCase()} Name`}
+                value={newCategory.translations[lang]}
+                onChange={(e) =>
+                  setNewCategory({
+                    ...newCategory,
+                    translations: {
+                      ...newCategory.translations,
+                      [lang]: e.target.value,
+                    },
+                  })
+                }
+                sx={{
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(26, 35, 126, 0.2)",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: theme.primary,
+                  },
+                  "& .MuiInputBase-input": {
+                    color: theme.text,
+                  },
+                }}
+              />
+            ))}
+          </Box>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            justifyContent: "center",
+            pb: 3,
+            pt: 2,
+            borderTop: "2px solid rgba(26, 35, 126, 0.1)",
+          }}
+        >
+          <Button
+            onClick={handleCloseCategoryEditDialog}
+            variant="outlined"
+            sx={{
+              borderRadius: 20,
+              px: 4,
+              borderColor: theme.primary,
+              color: theme.primary,
+              "&:hover": {
+                borderColor: theme.secondary,
+                color: theme.secondary,
+              },
+            }}
+          >
+            Cancel
+          </Button>
+          <ModernButton onClick={handleSaveCategoryEdit}>Save</ModernButton>
         </DialogActions>
       </Dialog>
     </Container>
