@@ -26,6 +26,7 @@ import {
   FormControl,
   InputLabel,
   Grid,
+  useTheme,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -38,9 +39,23 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+// Luxury theme colors
+const theme = {
+  primary: "#1a237e", // Deep indigo
+  secondary: "#c2185b", // Deep pink
+  accent: "#ffd700", // Gold
+  background: "#f5f5f5",
+  text: "#333333",
+  white: "#ffffff",
+  success: "#2e7d32",
+  error: "#c62828",
+  warning: "#f57f17",
+  info: "#1565c0",
+};
+
 const LangBox = styled(Box)(({ bgcolor }) => ({
   backgroundColor: bgcolor,
-  color: "#fff",
+  color: theme.white,
   borderRadius: 6,
   padding: "4px 12px",
   display: "inline-block",
@@ -49,12 +64,13 @@ const LangBox = styled(Box)(({ bgcolor }) => ({
   marginBottom: 8,
   marginRight: 8,
   letterSpacing: 1,
+  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
 }));
 
 const langColors = {
-  en: "#1976d2",
-  tr: "#388e3c",
-  ru: "#d32f2f",
+  en: theme.primary,
+  tr: theme.success,
+  ru: theme.error,
 };
 
 // Modern buton stili
@@ -62,31 +78,56 @@ const ModernButton = styled(Button)(({ theme }) => ({
   borderRadius: 24,
   fontWeight: 700,
   fontSize: "1rem",
-  padding: "10px 28px",
-  boxShadow: "0 2px 8px rgba(25, 118, 210, 0.08)",
-  background: "linear-gradient(90deg, #1976d2 0%, #388e3c 100%)",
-  color: "#fff",
+  padding: "12px 32px",
+  boxShadow: "0 4px 12px rgba(26, 35, 126, 0.15)",
+  background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`,
+  color: theme.white,
   textTransform: "none",
-  transition: "all 0.2s",
+  transition: "all 0.3s ease",
   "&:hover": {
-    background: "linear-gradient(90deg, #388e3c 0%, #1976d2 100%)",
-    boxShadow: "0 4px 16px rgba(25, 118, 210, 0.15)",
+    background: `linear-gradient(135deg, ${theme.secondary} 0%, ${theme.primary} 100%)`,
+    boxShadow: "0 6px 16px rgba(26, 35, 126, 0.25)",
+    transform: "translateY(-2px)",
   },
 }));
 
 const IconBtn = styled(IconButton)(({ colorname }) => ({
   borderRadius: 16,
-  padding: 8,
-  margin: 2,
+  padding: 10,
+  margin: 4,
   fontSize: 22,
   background: "transparent",
-  transition: "background 0.2s",
+  transition: "all 0.3s ease",
   "&:hover": {
     background:
       colorname === "edit"
-        ? "rgba(25, 118, 210, 0.12)"
-        : "rgba(211, 47, 47, 0.12)",
-    color: colorname === "edit" ? "#1976d2" : "#d32f2f",
+        ? "rgba(26, 35, 126, 0.12)"
+        : "rgba(198, 40, 40, 0.12)",
+    color: colorname === "edit" ? theme.primary : theme.error,
+    transform: "scale(1.1)",
+  },
+}));
+
+const StyledAccordion = styled(Accordion)(({ theme }) => ({
+  marginBottom: 16,
+  borderRadius: 12,
+  boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+  "&:before": {
+    display: "none",
+  },
+  "& .MuiAccordionSummary-root": {
+    minHeight: 64,
+    padding: "0 24px",
+    background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`,
+    color: theme.white,
+    borderRadius: "12px 12px 0 0",
+  },
+  "& .MuiAccordionSummary-content": {
+    margin: "12px 0",
+  },
+  "& .MuiAccordionDetails-root": {
+    padding: "24px",
+    background: theme.white,
   },
 }));
 
@@ -267,16 +308,22 @@ const Dashboard = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4, px: { xs: 1, sm: 2, md: 4 } }}>
-      <Box sx={{ mb: 3, display: "flex", gap: 2 }}>
+      <Box sx={{ mb: 4, display: "flex", gap: 2, flexWrap: "wrap" }}>
         <ModernButton
           startIcon={<AddIcon />}
           onClick={() => handleOpenDialog()}
+          sx={{
+            background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.secondary} 100%)`,
+          }}
         >
           Add Menu Item
         </ModernButton>
         <ModernButton
           startIcon={<CategoryIcon />}
           onClick={handleOpenCategoryDialog}
+          sx={{
+            background: `linear-gradient(135deg, ${theme.secondary} 0%, ${theme.primary} 100%)`,
+          }}
         >
           Add Category
         </ModernButton>
@@ -296,7 +343,7 @@ const Dashboard = () => {
                     index={catIdx}
                   >
                     {(catProvided, catSnapshot) => (
-                      <Accordion
+                      <StyledAccordion
                         expanded={expandedCategory === category.id}
                         onChange={() =>
                           setExpandedCategory(
@@ -308,24 +355,29 @@ const Dashboard = () => {
                         ref={catProvided.innerRef}
                         {...catProvided.draggableProps}
                         sx={{
-                          mb: 2,
-                          boxShadow: catSnapshot.isDragging ? 6 : 2,
-                          borderRadius: 3,
+                          transform: catSnapshot.isDragging
+                            ? "scale(1.02)"
+                            : "none",
+                          transition: "transform 0.2s ease",
                         }}
                       >
                         <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
+                          expandIcon={
+                            <ExpandMoreIcon sx={{ color: theme.white }} />
+                          }
                           {...catProvided.dragHandleProps}
-                          sx={{
-                            fontWeight: 700,
-                            fontSize: "1.2rem",
-                            color: "#1976d2",
-                            background: "#f7fafd",
-                          }}
                         >
-                          {category.translations.en}
+                          <Typography
+                            sx={{
+                              fontWeight: 700,
+                              fontSize: "1.3rem",
+                              letterSpacing: 0.5,
+                            }}
+                          >
+                            {category.translations.en}
+                          </Typography>
                         </AccordionSummary>
-                        <AccordionDetails sx={{ background: "#fff" }}>
+                        <AccordionDetails>
                           <Droppable
                             droppableId={`products-${category.id}`}
                             type={`PRODUCT-${category.id}`}
@@ -358,32 +410,42 @@ const Dashboard = () => {
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "space-between",
-                                            p: 2,
-                                            mb: 1,
-                                            borderRadius: 2,
+                                            p: 3,
+                                            mb: 2,
+                                            borderRadius: 3,
                                             boxShadow: prodSnapshot.isDragging
-                                              ? 4
-                                              : 1,
+                                              ? "0 8px 24px rgba(0,0,0,0.12)"
+                                              : "0 4px 12px rgba(0,0,0,0.05)",
                                             background: prodSnapshot.isDragging
-                                              ? "#e3f2fd"
-                                              : "#f7fafd",
-                                            transition: "box-shadow 0.2s",
+                                              ? "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)"
+                                              : theme.white,
+                                            transition: "all 0.3s ease",
+                                            transform: prodSnapshot.isDragging
+                                              ? "scale(1.02)"
+                                              : "none",
+                                            "&:hover": {
+                                              boxShadow:
+                                                "0 6px 16px rgba(0,0,0,0.08)",
+                                            },
                                           }}
                                         >
                                           <Box>
                                             <Typography
                                               sx={{
                                                 fontWeight: 700,
-                                                fontSize: "1.1rem",
-                                                color: "#1976d2",
+                                                fontSize: "1.2rem",
+                                                color: theme.primary,
+                                                mb: 0.5,
                                               }}
                                             >
                                               {item.translations.en.name}
                                             </Typography>
                                             <Typography
                                               sx={{
-                                                fontSize: "0.98rem",
-                                                color: "#333",
+                                                fontSize: "1.1rem",
+                                                color: theme.secondary,
+                                                fontWeight: 600,
+                                                mb: 1,
                                               }}
                                             >
                                               {item.price
@@ -392,21 +454,22 @@ const Dashboard = () => {
                                             </Typography>
                                             <Typography
                                               sx={{
-                                                fontSize: "0.95rem",
-                                                color: "#888",
+                                                fontSize: "1rem",
+                                                color: theme.text,
+                                                opacity: 0.8,
                                               }}
                                             >
                                               {item.translations.en.description}
                                             </Typography>
                                           </Box>
-                                          <Box>
+                                          <Box sx={{ display: "flex", gap: 1 }}>
                                             <IconBtn
                                               onClick={() =>
                                                 handleOpenDialog(item)
                                               }
                                               colorname="edit"
                                             >
-                                              <EditIcon sx={{ fontSize: 22 }} />
+                                              <EditIcon sx={{ fontSize: 24 }} />
                                             </IconBtn>
                                             <IconBtn
                                               onClick={() =>
@@ -415,7 +478,7 @@ const Dashboard = () => {
                                               colorname="delete"
                                             >
                                               <DeleteIcon
-                                                sx={{ fontSize: 22 }}
+                                                sx={{ fontSize: 24 }}
                                               />
                                             </IconBtn>
                                           </Box>
@@ -428,7 +491,7 @@ const Dashboard = () => {
                             )}
                           </Droppable>
                         </AccordionDetails>
-                      </Accordion>
+                      </StyledAccordion>
                     )}
                   </Draggable>
                 ))}
@@ -449,8 +512,8 @@ const Dashboard = () => {
             maxWidth: { xs: "95vw", sm: 600 },
             m: { xs: 1, sm: "auto" },
             borderRadius: 4,
-            boxShadow: 8,
-            background: "linear-gradient(120deg, #f7fafd 60%, #e3f2fd 100%)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+            background: "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)",
             p: 2,
           },
         }}
@@ -458,19 +521,19 @@ const Dashboard = () => {
         <DialogTitle
           sx={{
             fontWeight: 700,
-            fontSize: "1.3rem",
-            color: "#1976d2",
+            fontSize: "1.4rem",
+            color: theme.primary,
             letterSpacing: 1,
             mb: 1,
             textAlign: "center",
-            borderBottom: "1px solid #e3f2fd",
+            borderBottom: "2px solid rgba(26, 35, 126, 0.1)",
             pb: 2,
           }}
         >
           {selectedItem ? "Edit Menu Item" : "Add New Menu Item"}
         </DialogTitle>
-        <DialogContent sx={{ p: { xs: 1, sm: 3 }, mt: 1 }}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+        <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
             <FormControl fullWidth>
               <InputLabel>Category</InputLabel>
               <Select
@@ -479,6 +542,12 @@ const Dashboard = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
                 }
+                sx={{
+                  borderRadius: 2,
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(26, 35, 126, 0.2)",
+                  },
+                }}
               >
                 {categories.map((category) => (
                   <MenuItem key={category.id} value={category.id}>
@@ -499,11 +568,21 @@ const Dashboard = () => {
               InputProps={{
                 endAdornment: (
                   <span
-                    style={{ color: "#1976d2", fontWeight: 700, marginLeft: 4 }}
+                    style={{
+                      color: theme.primary,
+                      fontWeight: 700,
+                      marginLeft: 8,
+                    }}
                   >
                     ₺
                   </span>
                 ),
+              }}
+              sx={{
+                borderRadius: 2,
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "rgba(26, 35, 126, 0.2)",
+                },
               }}
             />
 
@@ -511,12 +590,10 @@ const Dashboard = () => {
               <Box
                 key={lang}
                 sx={{
-                  mt: 2,
-                  mb: 1,
-                  p: 2,
-                  borderRadius: 2,
-                  background: "#f7fafd",
-                  boxShadow: 1,
+                  p: 3,
+                  borderRadius: 3,
+                  background: theme.white,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
                 }}
               >
                 <LangBox bgcolor={langColors[lang]}>
@@ -538,13 +615,18 @@ const Dashboard = () => {
                       },
                     })
                   }
-                  sx={{ mb: 1 }}
+                  sx={{
+                    mb: 2,
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(26, 35, 126, 0.2)",
+                    },
+                  }}
                 />
                 <TextField
                   label="Description"
                   fullWidth
                   multiline
-                  rows={2}
+                  rows={3}
                   value={formData.translations[lang].description}
                   onChange={(e) =>
                     setFormData({
@@ -558,6 +640,11 @@ const Dashboard = () => {
                       },
                     })
                   }
+                  sx={{
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(26, 35, 126, 0.2)",
+                    },
+                  }}
                 />
               </Box>
             ))}
@@ -566,15 +653,24 @@ const Dashboard = () => {
         <DialogActions
           sx={{
             justifyContent: "center",
-            pb: 2,
-            pt: 1,
-            borderTop: "1px solid #e3f2fd",
+            pb: 3,
+            pt: 2,
+            borderTop: "2px solid rgba(26, 35, 126, 0.1)",
           }}
         >
           <Button
             onClick={handleCloseDialog}
             variant="outlined"
-            sx={{ borderRadius: 20, px: 4 }}
+            sx={{
+              borderRadius: 20,
+              px: 4,
+              borderColor: theme.primary,
+              color: theme.primary,
+              "&:hover": {
+                borderColor: theme.secondary,
+                color: theme.secondary,
+              },
+            }}
           >
             Cancel
           </Button>
@@ -593,8 +689,8 @@ const Dashboard = () => {
             maxWidth: { xs: "95vw", sm: 400 },
             m: { xs: 1, sm: "auto" },
             borderRadius: 4,
-            boxShadow: 8,
-            background: "linear-gradient(120deg, #f7fafd 60%, #e3f2fd 100%)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+            background: "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)",
             p: 2,
           },
         }}
@@ -602,19 +698,19 @@ const Dashboard = () => {
         <DialogTitle
           sx={{
             fontWeight: 700,
-            fontSize: "1.2rem",
-            color: "#388e3c",
+            fontSize: "1.3rem",
+            color: theme.secondary,
             letterSpacing: 1,
             mb: 1,
             textAlign: "center",
-            borderBottom: "1px solid #e3f2fd",
+            borderBottom: "2px solid rgba(194, 24, 91, 0.1)",
             pb: 2,
           }}
         >
           Add New Category
         </DialogTitle>
-        <DialogContent sx={{ p: { xs: 1, sm: 3 }, mt: 1 }}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+        <DialogContent sx={{ p: { xs: 2, sm: 4 }, mt: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
             <TextField
               label="Category ID"
               value={newCategory.id}
@@ -622,6 +718,11 @@ const Dashboard = () => {
                 setNewCategory({ ...newCategory, id: e.target.value })
               }
               helperText="Enter a unique identifier for the category (e.g., 'specialCocktails')"
+              sx={{
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "rgba(194, 24, 91, 0.2)",
+                },
+              }}
             />
             {["en", "tr", "ru"].map((lang) => (
               <TextField
@@ -637,6 +738,11 @@ const Dashboard = () => {
                     },
                   })
                 }
+                sx={{
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(194, 24, 91, 0.2)",
+                  },
+                }}
               />
             ))}
           </Box>
@@ -644,15 +750,24 @@ const Dashboard = () => {
         <DialogActions
           sx={{
             justifyContent: "center",
-            pb: 2,
-            pt: 1,
-            borderTop: "1px solid #e3f2fd",
+            pb: 3,
+            pt: 2,
+            borderTop: "2px solid rgba(194, 24, 91, 0.1)",
           }}
         >
           <Button
             onClick={handleCloseCategoryDialog}
             variant="outlined"
-            sx={{ borderRadius: 20, px: 4 }}
+            sx={{
+              borderRadius: 20,
+              px: 4,
+              borderColor: theme.secondary,
+              color: theme.secondary,
+              "&:hover": {
+                borderColor: theme.primary,
+                color: theme.primary,
+              },
+            }}
           >
             Cancel
           </Button>
