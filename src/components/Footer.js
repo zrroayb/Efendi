@@ -26,12 +26,12 @@ const Footer = () => {
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: "0.5rem",
+          gap: "0.3rem",
           color: "#fff",
           textDecoration: "none",
-          fontSize: "1.2rem",
-          padding: "0.5rem 1rem",
-          borderRadius: "8px",
+          fontSize: "0.95rem",
+          padding: "0.2rem 0.5rem",
+          borderRadius: "4px",
           background:
             "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
           transition: "transform 0.2s ease-in-out",
@@ -39,8 +39,8 @@ const Footer = () => {
         onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
         onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
-        <FaInstagram style={{ fontSize: "1.5rem" }} />
-        <span>@efendi_nargile_pub</span>
+        <FaInstagram style={{ fontSize: "1.1rem" }} />
+        <span style={{ fontSize: "0.95rem" }}>@efendi_nargile_pub</span>
       </a>
     </footer>
   );
