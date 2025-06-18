@@ -250,7 +250,11 @@ const Dashboard = () => {
       if (selectedItem) {
         await updateDoc(doc(db, "menuItems", selectedItem.id), formData);
       } else {
-        await addDoc(collection(db, "menuItems"), formData);
+        await addDoc(collection(db, "menuItems"), {
+          ...formData,
+          order: menuItems.filter((i) => i.category === formData.category)
+            .length,
+        });
       }
       handleCloseDialog();
       fetchMenuItems();
@@ -261,7 +265,14 @@ const Dashboard = () => {
 
   const handleSaveCategory = async () => {
     try {
-      await addDoc(collection(db, "categories"), newCategory);
+      await addDoc(collection(db, "categories"), {
+        translations: {
+          en: newCategory.translations.en,
+          tr: newCategory.translations.tr,
+          ru: newCategory.translations.ru,
+        },
+        order: categories.length,
+      });
       handleCloseCategoryDialog();
       fetchCategories();
     } catch (error) {
