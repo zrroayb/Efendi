@@ -131,6 +131,29 @@ const StyledAccordion = styled(Accordion)(({ theme }) => ({
   },
 }));
 
+// Ek: Menüdeki gibi ürün kartı stili
+const ProductCard = styled(Box)(({ theme }) => ({
+  background: "#232323",
+  color: "#fff",
+  borderRadius: 12,
+  boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+  padding: "18px 20px",
+  marginBottom: 14,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  minHeight: 64,
+  transition: "box-shadow 0.2s, background 0.2s",
+  fontFamily: "Playfair Display, serif",
+  fontSize: "1.1rem",
+  fontWeight: 500,
+  border: "1px solid #333",
+  "&:hover": {
+    boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+    background: "#292929",
+  },
+}));
+
 const Dashboard = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -480,64 +503,59 @@ const Dashboard = () => {
                                       index={prodIdx}
                                     >
                                       {(prodProvided, prodSnapshot) => (
-                                        <Box
+                                        <ProductCard
                                           ref={prodProvided.innerRef}
                                           {...prodProvided.draggableProps}
                                           {...prodProvided.dragHandleProps}
                                           sx={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                            p: 3,
-                                            mb: 2,
-                                            borderRadius: 3,
-                                            boxShadow: prodSnapshot.isDragging
-                                              ? "0 8px 24px rgba(0,0,0,0.12)"
-                                              : "0 4px 12px rgba(0,0,0,0.05)",
                                             background: prodSnapshot.isDragging
-                                              ? "linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%)"
-                                              : theme.white,
-                                            transition: "all 0.3s ease",
+                                              ? "#333"
+                                              : "#232323",
+                                            color: "#fff",
+                                            border: "1px solid #333",
+                                            boxShadow: prodSnapshot.isDragging
+                                              ? "0 8px 24px rgba(0,0,0,0.18)"
+                                              : "0 2px 8px rgba(0,0,0,0.12)",
                                             transform: prodSnapshot.isDragging
                                               ? "scale(1.02)"
                                               : "none",
-                                            "&:hover": {
-                                              boxShadow:
-                                                "0 6px 16px rgba(0,0,0,0.08)",
-                                            },
                                           }}
                                         >
                                           <Box>
                                             <Typography
                                               sx={{
-                                                fontWeight: 700,
-                                                fontSize: "1.2rem",
-                                                color: theme.primary,
+                                                fontFamily:
+                                                  "Playfair Display, serif",
+                                                fontSize: "1.1rem",
+                                                fontWeight: 600,
+                                                color: "#fff",
                                                 mb: 0.5,
                                               }}
                                             >
-                                              {item.translations.en.name}
-                                            </Typography>
-                                            <Typography
-                                              sx={{
-                                                fontSize: "1.1rem",
-                                                color: theme.secondary,
-                                                fontWeight: 600,
-                                                mb: 1,
-                                              }}
-                                            >
-                                              {item.price
-                                                ? `${item.price} ₺`
-                                                : ""}
+                                              {item.translations?.en?.name ||
+                                                "İsimsiz Ürün"}
                                             </Typography>
                                             <Typography
                                               sx={{
                                                 fontSize: "1rem",
-                                                color: theme.text,
-                                                opacity: 0.8,
+                                                color: "#ffd700",
+                                                fontWeight: 500,
+                                                mb: 0.5,
                                               }}
                                             >
-                                              {item.translations.en.description}
+                                              {item.price
+                                                ? `${item.price} ₺`
+                                                : "Fiyat yok"}
+                                            </Typography>
+                                            <Typography
+                                              sx={{
+                                                fontSize: "0.95rem",
+                                                color: "#cccccc",
+                                                fontStyle: "italic",
+                                              }}
+                                            >
+                                              {item.translations?.en
+                                                ?.description || "Açıklama yok"}
                                             </Typography>
                                           </Box>
                                           <Box sx={{ display: "flex", gap: 1 }}>
@@ -560,7 +578,7 @@ const Dashboard = () => {
                                               />
                                             </IconBtn>
                                           </Box>
-                                        </Box>
+                                        </ProductCard>
                                       )}
                                     </Draggable>
                                   ))}
