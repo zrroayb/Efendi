@@ -15,12 +15,6 @@ import {
   Container,
   Typography,
   Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   IconButton,
   Dialog,
   DialogTitle,
@@ -119,7 +113,6 @@ const Dashboard = () => {
       ru: "",
     },
   });
-  const [categoryFilter, setCategoryFilter] = useState("");
   const [expandedCategory, setExpandedCategory] = useState(null);
   const navigate = useNavigate();
 
@@ -221,37 +214,51 @@ const Dashboard = () => {
 
   const onDragEnd = async (result) => {
     if (!result.destination) return;
+
+    const { source, destination, type } = result;
+
     // Kategori sıralama
-    if (result.type === "CATEGORY") {
-      const reordered = Array.from(categories);
-      const [removed] = reordered.splice(result.source.index, 1);
-      reordered.splice(result.destination.index, 0, removed);
+    if (type === "CATEGORY") {
+      const reorderedCategories = Array.from(categories);
+      const [removed] = reorderedCategories.splice(source.index, 1);
+      reorderedCategories.splice(destination.index, 0, removed);
+
       // Firestore'a sırayı kaydet
-      for (let i = 0; i < reordered.length; i++) {
-        if (reordered[i].order !== i) {
-          await updateDoc(doc(db, "categories", reordered[i].id), { order: i });
-        }
+      for (let i = 0; i < reorderedCategories.length; i++) {
+        await updateDoc(doc(db, "categories", reorderedCategories[i].id), {
+          order: i,
+        });
       }
-      setCategories(reordered.map((cat, i) => ({ ...cat, order: i })));
+
+      setCategories(
+        reorderedCategories.map((cat, i) => ({ ...cat, order: i }))
+      );
     }
     // Ürün sıralama
-    if (result.type.startsWith("PRODUCT-")) {
-      const catId = result.type.replace("PRODUCT-", "");
-      const filtered = menuItems.filter((item) => item.category === catId);
-      const reordered = Array.from(filtered);
-      const [removed] = reordered.splice(result.source.index, 1);
-      reordered.splice(result.destination.index, 0, removed);
+    else if (type.startsWith("PRODUCT-")) {
+      const categoryId = type.replace("PRODUCT-", "");
+      const categoryItems = menuItems.filter(
+        (item) => item.category === categoryId
+      );
+      const reorderedItems = Array.from(categoryItems);
+      const [removed] = reorderedItems.splice(source.index, 1);
+      reorderedItems.splice(destination.index, 0, removed);
+
       // Firestore'a sırayı kaydet
-      for (let i = 0; i < reordered.length; i++) {
-        if (reordered[i].order !== i) {
-          await updateDoc(doc(db, "menuItems", reordered[i].id), { order: i });
-        }
+      for (let i = 0; i < reorderedItems.length; i++) {
+        await updateDoc(doc(db, "menuItems", reorderedItems[i].id), {
+          order: i,
+        });
       }
-      // Localde güncelle
-      setMenuItems((items) =>
-        items.map((item) =>
-          item.category === catId
-            ? { ...item, order: reordered.findIndex((x) => x.id === item.id) }
+
+      // Local state'i güncelle
+      setMenuItems((prevItems) =>
+        prevItems.map((item) =>
+          item.category === categoryId
+            ? {
+                ...item,
+                order: reorderedItems.findIndex((x) => x.id === item.id),
+              }
             : item
         )
       );
@@ -260,8 +267,23 @@ const Dashboard = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4, px: { xs: 1, sm: 2, md: 4 } }}>
+      <Box sx={{ mb: 3, display: "flex", gap: 2 }}>
+        <ModernButton
+          startIcon={<AddIcon />}
+          onClick={() => handleOpenDialog()}
+        >
+          Add Menu Item
+        </ModernButton>
+        <ModernButton
+          startIcon={<CategoryIcon />}
+          onClick={handleOpenCategoryDialog}
+        >
+          Add Category
+        </ModernButton>
+      </Box>
+
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="categories-droppable" type="CATEGORY">
+        <Droppable droppableId="categories" type="CATEGORY">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {categories
