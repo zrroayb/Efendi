@@ -53,95 +53,118 @@ const Menu = () => {
       </div>
       <Container maxWidth="md" sx={{ flex: 1 }}>
         <div className="menu-container" style={{ marginBottom: "80px" }}>
-          {categories.map((category) => (
-            <Accordion
-              key={category.id}
-              expanded={expanded === category.id}
-              onChange={handleChange(category.id)}
-              sx={{
-                backgroundColor: "#2a2a2a",
-                color: "#ffffff",
-                marginBottom: "8px",
-                "&:before": {
-                  display: "none",
-                },
-                "& .MuiAccordionSummary-root": {
-                  minHeight: "48px",
-                },
-                "& .MuiAccordionSummary-content": {
-                  margin: "8px 0",
-                },
-                "& .MuiAccordionDetails-root": {
-                  padding: "8px 16px 16px",
-                },
-              }}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon sx={{ color: "#ffffff" }} />}
+          {categories.map((category) => {
+            // Kategoriye ait ürünleri çek
+            let items = menuItems.filter(
+              (item) => item.category === category.id
+            );
+            // order alanı eksik veya çakışık ise düzelt
+            const seenOrders = new Set();
+            let needsFix = false;
+            items.forEach((item) => {
+              if (
+                item.order === undefined ||
+                seenOrders.has(Number(item.order))
+              ) {
+                needsFix = true;
+              }
+              seenOrders.add(Number(item.order));
+            });
+            if (needsFix) {
+              items = items
+                .slice()
+                .sort((a, b) => (a.name || "").localeCompare(b.name || ""))
+                .map((item, idx) => ({ ...item, order: idx }));
+            } else {
+              items = items
+                .slice()
+                .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0));
+            }
+            // Logla
+            console.log(
+              `Kategori: ${category.translations?.en || category.id}`
+            );
+            items.forEach((i) =>
+              console.log(
+                `  ${i.translations?.en?.name || i.name} (order: ${i.order})`
+              )
+            );
+            return (
+              <Accordion
+                key={category.id}
+                expanded={expanded === category.id}
+                onChange={handleChange(category.id)}
                 sx={{
-                  "&:hover": {
-                    backgroundColor: "#333333",
+                  backgroundColor: "#2a2a2a",
+                  color: "#ffffff",
+                  marginBottom: "8px",
+                  "&:before": {
+                    display: "none",
+                  },
+                  "& .MuiAccordionSummary-root": {
+                    minHeight: "48px",
+                  },
+                  "& .MuiAccordionSummary-content": {
+                    margin: "8px 0",
+                  },
+                  "& .MuiAccordionDetails-root": {
+                    padding: "8px 16px 16px",
                   },
                 }}
               >
-                <Typography
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#ffffff" }} />}
                   sx={{
-                    fontFamily: "Playfair Display, serif",
-                    fontSize: "1.2rem",
-                    fontWeight: 500,
-                    color: "#ffffff",
+                    "&:hover": {
+                      backgroundColor: "#333333",
+                    },
                   }}
                 >
-                  {category.translations?.en || t(`menu.${category.id}`)}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                {menuItems
-                  .filter((item) => item.category === category.id)
-                  .slice()
-                  .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0))
-                  .map((item, index, arr) => {
-                    if (index === 0) {
-                      console.log(
-                        arr.map((i) => ({
-                          name: i.translations?.en?.name || i.name,
-                          order: i.order,
-                        }))
-                      );
-                    }
-                    return (
-                      <div key={item.id} style={{ marginBottom: "12px" }}>
+                  <Typography
+                    sx={{
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "1.2rem",
+                      fontWeight: 500,
+                      color: "#ffffff",
+                    }}
+                  >
+                    {category.translations?.en || t(`menu.${category.id}`)}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  {items.map((item) => (
+                    <div key={item.id} style={{ marginBottom: "12px" }}>
+                      <Typography
+                        sx={{
+                          fontFamily: "Playfair Display, serif",
+                          fontSize: "1.1rem",
+                          fontWeight: 500,
+                          color: "#ffffff",
+                          marginBottom: "4px",
+                        }}
+                      >
+                        {item.translations?.en?.name || item.name} -{" "}
+                        {item.price} TL
+                      </Typography>
+                      {(item.translations?.en?.description ||
+                        item.description) && (
                         <Typography
                           sx={{
-                            fontFamily: "Playfair Display, serif",
-                            fontSize: "1.1rem",
-                            fontWeight: 500,
-                            color: "#ffffff",
-                            marginBottom: "4px",
+                            fontSize: "0.9rem",
+                            color: "#cccccc",
+                            fontStyle: "italic",
                           }}
                         >
-                          {item.translations?.en?.name || item.name} -{" "}
-                          {item.price} TL
+                          {item.translations?.en?.description ||
+                            item.description}
                         </Typography>
-                        {(item.translations?.en?.description ||
-                          item.description) && (
-                          <Typography
-                            sx={{
-                              fontSize: "0.9rem",
-                              color: "#cccccc",
-                              fontStyle: "italic",
-                            }}
-                          >
-                            {item.translations?.en?.description ||
-                              item.description}
-                          </Typography>
-                        )}
-                      </div>
-                    );
-                  })}
-              </AccordionDetails>
-            </Accordion>
-          ))}
+                      )}
+                    </div>
+                  ))}
+                </AccordionDetails>
+              </Accordion>
+            );
+          })}
         </div>
       </Container>
       <Footer />
