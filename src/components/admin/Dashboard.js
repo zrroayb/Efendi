@@ -97,13 +97,14 @@ const IconBtn = styled(IconButton)(({ colorname }) => ({
   margin: 4,
   fontSize: 22,
   background: "transparent",
+  color: "#fff",
   transition: "all 0.3s ease",
   "&:hover": {
     background:
       colorname === "edit"
         ? "rgba(26, 35, 126, 0.12)"
         : "rgba(198, 40, 40, 0.12)",
-    color: colorname === "edit" ? theme.primary : theme.error,
+    color: "#fff",
     transform: "scale(1.1)",
   },
 }));
