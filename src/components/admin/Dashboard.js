@@ -336,6 +336,7 @@ const Dashboard = () => {
   };
 
   const onDragEnd = async (result) => {
+    console.log("onDragEnd tetiklendi", result);
     if (!result.destination) return;
 
     const { source, destination, type } = result;
@@ -346,17 +347,17 @@ const Dashboard = () => {
       const [removed] = reorderedCategories.splice(source.index, 1);
       reorderedCategories.splice(destination.index, 0, removed);
 
-      // Firestore'a sırayı kaydet
-      for (let i = 0; i < reorderedCategories.length; i++) {
-        await updateDoc(doc(db, "categories", reorderedCategories[i].id), {
-          order: i,
-        });
-      }
+      // Firestore'a sırayı topluca kaydet
+      await Promise.all(
+        reorderedCategories.map((cat, i) => {
+          console.log("Güncellenen kategori ID:", cat.id, "order:", i);
+          return updateDoc(doc(db, "categories", cat.id), { order: i });
+        })
+      );
 
       setCategories(
         reorderedCategories.map((cat, i) => ({ ...cat, order: i }))
       );
-      // Firestore ile kesin senkronizasyon için tekrar çek
       await fetchCategories();
     }
     // Ürün sıralama
@@ -369,14 +370,14 @@ const Dashboard = () => {
       const [removed] = reorderedItems.splice(source.index, 1);
       reorderedItems.splice(destination.index, 0, removed);
 
-      // Firestore'a sırayı kaydet
-      for (let i = 0; i < reorderedItems.length; i++) {
-        await updateDoc(doc(db, "menuItems", reorderedItems[i].id), {
-          order: i,
-        });
-      }
+      // Firestore'a sırayı topluca kaydet
+      await Promise.all(
+        reorderedItems.map((item, i) => {
+          console.log("Güncellenen ürün ID:", item.id, "order:", i);
+          return updateDoc(doc(db, "menuItems", item.id), { order: i });
+        })
+      );
 
-      // Local state'i güncelle
       setMenuItems((prevItems) =>
         prevItems.map((item) =>
           item.category === categoryId
@@ -387,7 +388,6 @@ const Dashboard = () => {
             : item
         )
       );
-      // Firestore ile kesin senkronizasyon için tekrar çek
       await fetchMenuItems();
     }
   };
