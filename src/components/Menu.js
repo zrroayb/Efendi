@@ -99,36 +99,46 @@ const Menu = () => {
                 {menuItems
                   .filter((item) => item.category === category.id)
                   .slice()
-                  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-                  .map((item, index) => (
-                    <div key={item.id} style={{ marginBottom: "12px" }}>
-                      <Typography
-                        sx={{
-                          fontFamily: "Playfair Display, serif",
-                          fontSize: "1.1rem",
-                          fontWeight: 500,
-                          color: "#ffffff",
-                          marginBottom: "4px",
-                        }}
-                      >
-                        {item.translations?.en?.name || item.name} -{" "}
-                        {item.price} TL
-                      </Typography>
-                      {(item.translations?.en?.description ||
-                        item.description) && (
+                  .sort((a, b) => Number(a.order ?? 0) - Number(b.order ?? 0))
+                  .map((item, index, arr) => {
+                    if (index === 0) {
+                      console.log(
+                        arr.map((i) => ({
+                          name: i.translations?.en?.name || i.name,
+                          order: i.order,
+                        }))
+                      );
+                    }
+                    return (
+                      <div key={item.id} style={{ marginBottom: "12px" }}>
                         <Typography
                           sx={{
-                            fontSize: "0.9rem",
-                            color: "#cccccc",
-                            fontStyle: "italic",
+                            fontFamily: "Playfair Display, serif",
+                            fontSize: "1.1rem",
+                            fontWeight: 500,
+                            color: "#ffffff",
+                            marginBottom: "4px",
                           }}
                         >
-                          {item.translations?.en?.description ||
-                            item.description}
+                          {item.translations?.en?.name || item.name} -{" "}
+                          {item.price} TL
                         </Typography>
-                      )}
-                    </div>
-                  ))}
+                        {(item.translations?.en?.description ||
+                          item.description) && (
+                          <Typography
+                            sx={{
+                              fontSize: "0.9rem",
+                              color: "#cccccc",
+                              fontStyle: "italic",
+                            }}
+                          >
+                            {item.translations?.en?.description ||
+                              item.description}
+                          </Typography>
+                        )}
+                      </div>
+                    );
+                  })}
               </AccordionDetails>
             </Accordion>
           ))}
