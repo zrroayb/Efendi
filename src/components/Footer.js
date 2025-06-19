@@ -1,47 +1,49 @@
 import React from "react";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaMapMarkerAlt, FaPhone, FaClock } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer
-      style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        width: "100%",
-        backgroundColor: "#000",
-        padding: "0.3rem 0.5rem",
-        textAlign: "center",
-        zIndex: 1000,
-        boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
-        fontSize: "0.85rem",
-        minHeight: "32px",
-        maxHeight: "40px",
-      }}
-    >
-      <a
-        href="https://www.instagram.com/efendi_nargile_pub/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "0.3rem",
-          color: "#fff",
-          textDecoration: "none",
-          fontSize: "0.95rem",
-          padding: "0.2rem 0.5rem",
-          borderRadius: "4px",
-          background:
-            "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
-          transition: "transform 0.2s ease-in-out",
-        }}
-        onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-        onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-      >
-        <FaInstagram style={{ fontSize: "1.1rem" }} />
-        <span style={{ fontSize: "0.95rem" }}>@efendi_nargile_pub</span>
-      </a>
+    <footer className="modern-footer">
+      <div className="footer-content">
+        {/* Instagram Link */}
+        <a
+          href="https://www.instagram.com/efendi_nargile_pub/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="instagram-link"
+        >
+          <FaInstagram style={{ fontSize: "1.1rem" }} />
+          <span className="instagram-text">@efendi_nargile_pub</span>
+        </a>
+
+        {/* Contact Info - Desktop */}
+        <div className="contact-info desktop-only">
+          <div className="contact-item">
+            <FaMapMarkerAlt className="contact-icon" />
+            <span>Bodrum, Türkiye</span>
+          </div>
+          <div className="contact-item">
+            <FaPhone className="contact-icon" />
+            <span>+90 252 XXX XX XX</span>
+          </div>
+          <div className="contact-item">
+            <FaClock className="contact-icon" />
+            <span>12:00 - 02:00</span>
+          </div>
+        </div>
+
+        {/* Mobile Contact Info - Compact */}
+        <div className="contact-info mobile-only">
+          <div className="contact-item">
+            <FaMapMarkerAlt className="contact-icon" />
+            <span>Bodrum</span>
+          </div>
+          <div className="contact-item">
+            <FaClock className="contact-icon" />
+            <span>12:00-02:00</span>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

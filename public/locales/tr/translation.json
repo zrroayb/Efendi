@@ -8,7 +8,9 @@
     "softDrinks": "Alkolsüz İçecekler",
     "hotCoffee": "Sıcak Kahveler",
     "coldCoffee": "Soğuk Kahveler",
-    "breakfast": "Kahvaltı"
+    "breakfast": "Kahvaltı",
+    "all": "Tümü",
+    "backToMainMenu": "Ana Menüye Dön"
   },
   "items": {
     "specialCocktails": {

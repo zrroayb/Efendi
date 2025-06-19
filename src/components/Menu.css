@@ -1,0 +1,125 @@
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  margin-bottom: 80px;
+}
+
+.menu-card {
+  background: #2a2a2a;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  min-width: 110px;
+  padding: 18px 10px;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.menu-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.category-image {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  display: block;
+}
+
+.product-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  background: #232323;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 12px 8px 8px 8px;
+}
+
+.product-card {
+  background: #292929;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 170px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .menu-card {
+    min-width: 0;
+    font-size: 1rem;
+    padding: 14px 6px;
+    min-height: 100px;
+  }
+  .category-image {
+    height: 70px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .product-card {
+    min-height: 150px;
+  }
+  .product-image {
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .menu-card {
+    font-size: 0.9rem;
+    padding: 12px 4px;
+    min-height: 90px;
+  }
+  .category-image {
+    height: 60px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .product-card {
+    min-height: 130px;
+  }
+  .product-image {
+    height: 50px;
+  }
+} 

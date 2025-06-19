@@ -2,12 +2,9 @@
   "menu": {
     "title": "Меню Эфенди",
     "subtitle": "Вкусные напитки и еда",
-    "categories": {
-      "starters": "Закуски",
-      "mainCourses": "Основные блюда",
-      "desserts": "Десерты",
-      "drinks": "Напитки"
-    },
+    "mainMenu": "Меню Эфенди",
+    "categories": "Категории",
+    "backToMainMenu": "Вернуться в главное меню",
     "addToCart": "Добавить в корзину",
     "removeFromCart": "Удалить из корзины",
     "cart": {

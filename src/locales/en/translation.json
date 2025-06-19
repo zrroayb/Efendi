@@ -2,12 +2,9 @@
   "menu": {
     "title": "Efendi Menu",
     "subtitle": "Delicious drinks and food",
-    "categories": {
-      "starters": "Starters",
-      "mainCourses": "Main Courses",
-      "desserts": "Desserts",
-      "drinks": "Drinks"
-    },
+    "mainMenu": "Efendi Menu",
+    "categories": "Categories",
+    "backToMainMenu": "Back to Main Menu",
     "addToCart": "Add to Cart",
     "removeFromCart": "Remove from Cart",
     "cart": {

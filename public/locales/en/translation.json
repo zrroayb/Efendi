@@ -8,7 +8,9 @@
     "softDrinks": "Soft Drinks",
     "hotCoffee": "Hot Coffee",
     "coldCoffee": "Cold Coffee",
-    "breakfast": "Breakfast"
+    "breakfast": "Breakfast",
+    "all": "All",
+    "backToMainMenu": "Back to Main Menu"
   },
   "items": {
     "specialCocktails": {
