@@ -7,13 +7,13 @@ const Footer = () => {
       <div className="footer-content">
         {/* Instagram Link */}
         <a
-          href="https://www.instagram.com/efendi_nargile_pub/"
+          href="https://www.instagram.com/efendinargilepub/"
           target="_blank"
           rel="noopener noreferrer"
           className="instagram-link"
         >
           <FaInstagram style={{ fontSize: "1.1rem" }} />
-          <span className="instagram-text">@efendi_nargile_pub</span>
+          <span className="instagram-text">@efendinargilepub</span>
         </a>
 
         {/* Contact Info - Desktop */}
