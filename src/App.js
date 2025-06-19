@@ -19,83 +19,148 @@ import Dashboard from "./components/admin/Dashboard";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 const categoryImages = {
-  hot_drinks: "/images/categories/hot-coffee.jpg",
-  soft_drinks: "/images/categories/soft-drinks.jpg",
-  coffees: "/images/categories/hot-coffee.jpg",
-  ice_coffees: "/images/categories/cold-coffee.jpg",
-  milkshakes: "/images/categories/soft-drinks.jpg",
-  frozen: "/images/categories/soft-drinks.jpg",
-  beers: "/images/categories/beers.jpg",
-  alcohol_drinks: "/images/categories/wines.jpg",
-  cocktails: "/images/categories/special-cocktails.jpg",
-  snacks: "/images/categories/breakfast.jpg",
-  breakfast: "/images/categories/breakfast.jpg",
-  toasts: "/images/categories/breakfast.jpg",
-  sandwiches: "/images/categories/breakfast.jpg",
-  burgers: "/images/categories/breakfast.jpg",
-  salads: "/images/categories/breakfast.jpg",
-  desserts: "/images/categories/breakfast.jpg",
-  shisha: "/images/categories/special-cocktails.jpg",
-  nahla: "/images/categories/special-cocktails.jpg",
-  alfakher: "/images/categories/special-cocktails.jpg",
-  adalya: "/images/categories/special-cocktails.jpg",
-  wines: "/images/categories/wines.jpg",
-  sparkling: "/images/categories/sparkling.jpg",
-  special_cocktails: "/images/categories/special-cocktails.jpg",
-  classic_cocktails: "/images/categories/classic-cocktails.jpg",
+  hot_drinks:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  soft_drinks:
+    "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+  coffees:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  ice_coffees:
+    "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80",
+  milkshakes:
+    "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+  frozen:
+    "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+  beers:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  alcohol_drinks:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  cocktails:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  snacks:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  breakfast:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  toasts:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  sandwiches:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  burgers:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  salads:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  desserts:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  shisha:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  nahla:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  alfakher:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  adalya:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  wines:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  sparkling:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  special_cocktails:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  classic_cocktails:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
 };
 
 const productImages = {
   // Cocktails
-  "citrus-blend": "/images/products/citrus-blend.jpg",
-  "lamb-ear": "/images/products/lamb-ear.jpg",
-  rhubarb: "/images/products/rhubarb.jpg",
-  "dr-india": "/images/products/dr-india.jpg",
-  "peach-sour": "/images/products/peach-sour.jpg",
-  "golden-harmony": "/images/products/golden-harmony.jpg",
-  "chili-passion": "/images/products/chili-passion.jpg",
-  number10: "/images/products/number10.jpg",
-  "wake-up": "/images/products/wake-up.jpg",
-  "whiskey-sour": "/images/products/whiskey-sour.jpg",
-  bramble: "/images/products/bramble.jpg",
-  "old-fashioned": "/images/products/old-fashioned.jpg",
-  manhattan: "/images/products/manhattan.jpg",
-  "aperol-spritz": "/images/products/aperol-spritz.jpg",
-  "barrel-aged-negroni": "/images/products/barrel-aged-negroni.jpg",
-  "margarita-rocks": "/images/products/margarita-rocks.jpg",
-  "mezcal-margarita": "/images/products/mezcal-margarita.jpg",
+  "citrus-blend":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "lamb-ear":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  rhubarb:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "dr-india":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "peach-sour":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "golden-harmony":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "chili-passion":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  number10:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  "wake-up":
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+  "whiskey-sour":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  bramble:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "old-fashioned":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  manhattan:
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "aperol-spritz":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "barrel-aged-negroni":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "margarita-rocks":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+  "mezcal-margarita":
+    "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
 
   // Beers
-  "belfast-draft": "/images/products/belfast-draft.jpg",
-  efes: "/images/products/efes.jpg",
-  "efes-gluten-free": "/images/products/efes-gluten-free.jpg",
-  becks: "/images/products/becks.jpg",
-  bud: "/images/products/bud.jpg",
-  corona: "/images/products/corona.jpg",
-  "leffe-blonde": "/images/products/leffe-blonde.jpg",
-  hoegaarden: "/images/products/hoegaarden.jpg",
-  erdinger: "/images/products/erdinger.jpg",
-  duvel: "/images/products/duvel.jpg",
-  "gara-guzu": "/images/products/gara-guzu.jpg",
-  "torch-brewery": "/images/products/torch-brewery.jpg",
+  "belfast-draft":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  efes: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "efes-gluten-free":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  becks:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  bud: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  corona:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "leffe-blonde":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  hoegaarden:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  erdinger:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  duvel:
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "gara-guzu":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "torch-brewery":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
 
   // Wines
-  "kayra-vintage": "/images/products/kayra-vintage.jpg",
-  "mor-salkim-syrah": "/images/products/mor-salkim-syrah.jpg",
-  "cielo-pinot-grigio": "/images/products/cielo-pinot-grigio.jpg",
-  "allure-sauvignon-blanc": "/images/products/allure-sauvignon-blanc.jpg",
-  "mor-salkim-chardonnay": "/images/products/mor-salkim-chardonnay.jpg",
-  "cielo-pinot-grigio-blush": "/images/products/cielo-pinot-grigio-blush.jpg",
-  "allure-rose": "/images/products/allure-rose.jpg",
-  "mor-salkim-rose": "/images/products/mor-salkim-rose.jpg",
+  "kayra-vintage":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "mor-salkim-syrah":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "cielo-pinot-grigio":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "allure-sauvignon-blanc":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "mor-salkim-chardonnay":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "cielo-pinot-grigio-blush":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "allure-rose":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "mor-salkim-rose":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
 
   // Sparkling
-  "ruffino-prosecco": "/images/products/ruffino-prosecco.jpg",
-  "bottega-brut": "/images/products/bottega-brut.jpg",
-  "moet-brut": "/images/products/moet-brut.jpg",
-  "bottega-gold": "/images/products/bottega-gold.jpg",
-  "chandon-garden-spritz": "/images/products/chandon-garden-spritz.jpg",
-  "vitruvius-kombucha": "/images/products/vitruvius-kombucha.jpg",
+  "ruffino-prosecco":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "bottega-brut":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "moet-brut":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "bottega-gold":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "chandon-garden-spritz":
+    "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+  "vitruvius-kombucha":
+    "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
 };
 
 // Ürün ismine göre fotoğraf bulma fonksiyonu
@@ -123,47 +188,83 @@ const getProductImage = (product) => {
 
   // Özel eşleştirmeler
   const specialMatches = {
-    "turkish coffee": "/images/products/number10.jpg",
-    "türk kahvesi": "/images/products/number10.jpg",
-    "damla sakızlı türk kahvesi": "/images/products/number10.jpg",
-    "turkish coffee with mastic": "/images/products/number10.jpg",
-    "hot chocolate": "/images/products/wake-up.jpg",
-    "sıcak çikolata": "/images/products/wake-up.jpg",
-    "herbal tea": "/images/products/citrus-blend.jpg",
-    "bitki çayı": "/images/products/citrus-blend.jpg",
-    tea: "/images/products/citrus-blend.jpg",
-    çay: "/images/products/citrus-blend.jpg",
-    sahlep: "/images/products/wake-up.jpg",
-    salep: "/images/products/wake-up.jpg",
-    "coca-cola": "/images/products/golden-harmony.jpg",
-    fanta: "/images/products/golden-harmony.jpg",
-    sprite: "/images/products/golden-harmony.jpg",
-    "red bull": "/images/products/chili-passion.jpg",
-    "mineral water": "/images/products/vitruvius-kombucha.jpg",
-    soda: "/images/products/vitruvius-kombucha.jpg",
-    "mineral water with fruit": "/images/products/vitruvius-kombucha.jpg",
-    "meyveli soda": "/images/products/vitruvius-kombucha.jpg",
-    lemonade: "/images/products/citrus-blend.jpg",
-    limonata: "/images/products/citrus-blend.jpg",
-    "fruit juice": "/images/products/citrus-blend.jpg",
-    "meyve suyu": "/images/products/citrus-blend.jpg",
-    "fresh orange": "/images/products/citrus-blend.jpg",
-    "sıkma portakal": "/images/products/citrus-blend.jpg",
-    water: "/images/products/vitruvius-kombucha.jpg",
-    su: "/images/products/vitruvius-kombucha.jpg",
-    nescafe: "/images/products/number10.jpg",
-    espresso: "/images/products/number10.jpg",
-    americano: "/images/products/number10.jpg",
-    cappuccino: "/images/products/number10.jpg",
-    "cafe latte": "/images/products/number10.jpg",
-    mocha: "/images/products/number10.jpg",
-    "filter coffee": "/images/products/number10.jpg",
-    "filtre kahve": "/images/products/number10.jpg",
-    frappe: "/images/products/cold-coffee.jpg",
-    corona: "/images/products/corona.jpg",
-    "beck's": "/images/products/becks.jpg",
-    bud: "/images/products/bud.jpg",
-    duvel: "/images/products/duvel.jpg",
+    "turkish coffee":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "türk kahvesi":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "damla sakızlı türk kahvesi":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "turkish coffee with mastic":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "hot chocolate":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "sıcak çikolata":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "herbal tea":
+      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+    "bitki çayı":
+      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+    tea: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+    çay: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+    sahlep:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    salep:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "coca-cola":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    fanta:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    sprite:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "red bull":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "mineral water":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    soda: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "mineral water with fruit":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "meyveli soda":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    lemonade:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    limonata:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "fruit juice":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "meyve suyu":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "fresh orange":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    "sıkma portakal":
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    water:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    su: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    nescafe:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    espresso:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    americano:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    cappuccino:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "cafe latte":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    mocha:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "filter coffee":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    "filtre kahve":
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    frappe:
+      "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80",
+    corona:
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+    "beck's":
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+    bud: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+    duvel:
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
   };
 
   const lowerProductName = productName.toLowerCase();
@@ -175,31 +276,56 @@ const getProductImage = (product) => {
 
   // Kategori bazlı varsayılan fotoğraflar
   const categoryDefaults = {
-    hot_drinks: "/images/categories/hot-coffee.jpg",
-    soft_drinks: "/images/categories/soft-drinks.jpg",
-    coffees: "/images/categories/hot-coffee.jpg",
-    ice_coffees: "/images/categories/cold-coffee.jpg",
-    milkshakes: "/images/categories/soft-drinks.jpg",
-    frozen: "/images/categories/soft-drinks.jpg",
-    beers: "/images/categories/beers.jpg",
-    alcohol_drinks: "/images/categories/wines.jpg",
-    cocktails: "/images/categories/special-cocktails.jpg",
-    snacks: "/images/categories/breakfast.jpg",
-    breakfast: "/images/categories/breakfast.jpg",
-    toasts: "/images/categories/breakfast.jpg",
-    sandwiches: "/images/categories/breakfast.jpg",
-    burgers: "/images/categories/breakfast.jpg",
-    salads: "/images/categories/breakfast.jpg",
-    desserts: "/images/categories/breakfast.jpg",
-    shisha: "/images/categories/special-cocktails.jpg",
-    nahla: "/images/categories/special-cocktails.jpg",
-    alfakher: "/images/categories/special-cocktails.jpg",
-    adalya: "/images/categories/special-cocktails.jpg",
-    wines: "/images/categories/wines.jpg",
-    sparkling: "/images/categories/sparkling.jpg",
+    hot_drinks:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    soft_drinks:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    coffees:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    ice_coffees:
+      "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80",
+    milkshakes:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    frozen:
+      "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=400&q=80",
+    beers:
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+    alcohol_drinks:
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+    cocktails:
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+    snacks:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    breakfast:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    toasts:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    sandwiches:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    burgers:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    salads:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    desserts:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80",
+    shisha:
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+    nahla:
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+    alfakher:
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+    adalya:
+      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=400&q=80",
+    wines:
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
+    sparkling:
+      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&q=80",
   };
 
-  return categoryDefaults[product.category] || "/images/placeholder.svg";
+  return (
+    categoryDefaults[product.category] ||
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+  );
 };
 
 // Kategori grupları
@@ -431,7 +557,7 @@ function MenuPage() {
                 src={
                   category.image ||
                   categoryImages[category.id] ||
-                  "/images/placeholder.svg"
+                  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
                 }
                 alt={
                   category.translations?.[i18n.language] ||
